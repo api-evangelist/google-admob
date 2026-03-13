@@ -1,0 +1,289 @@
+openapi: 3.1.0
+info:
+  title: Google AdMob API
+  description: >-
+    The AdMob API provides programmatic access to AdMob account information,
+    including ad units, apps, ad sources, mediation groups, and reporting for
+    mobile app monetization.
+  version: v1
+  contact:
+    name: Google
+    url: https://developers.google.com/admob/api
+  license:
+    name: Google APIs Terms of Service
+    url: https://developers.google.com/terms
+servers:
+  - url: https://admob.googleapis.com
+    description: AdMob API server
+paths:
+  /v1/accounts:
+    get:
+      summary: List accounts
+      description: Lists the AdMob accounts accessible by the caller.
+      operationId: listAccounts
+      parameters:
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+        - name: pageToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAccountsResponse'
+  /v1/{parent}/adUnits:
+    get:
+      summary: List ad units
+      description: Lists ad units under the specified AdMob account.
+      operationId: listAdUnits
+      parameters:
+        - name: parent
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAdUnitsResponse'
+    post:
+      summary: Create ad unit
+      description: Creates an ad unit under the specified AdMob account.
+      operationId: createAdUnit
+      parameters:
+        - name: parent
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdUnit'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdUnit'
+  /v1/{parent}/apps:
+    get:
+      summary: List apps
+      description: Lists apps under the specified AdMob account.
+      operationId: listApps
+      parameters:
+        - name: parent
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAppsResponse'
+  /v1/{parent}/mediationGroups:
+    get:
+      summary: List mediation groups
+      description: Lists mediation groups under the specified AdMob account.
+      operationId: listMediationGroups
+      parameters:
+        - name: parent
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListMediationGroupsResponse'
+  /v1/{parent}/networkReport:generate:
+    post:
+      summary: Generate network report
+      description: Generates an AdMob network report for the specified account.
+      operationId: generateNetworkReport
+      parameters:
+        - name: parent
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateNetworkReportRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateNetworkReportResponse'
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        name:
+          type: string
+        publisherId:
+          type: string
+        reportingTimeZone:
+          type: string
+        currencyCode:
+          type: string
+    ListAccountsResponse:
+      type: object
+      properties:
+        account:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        nextPageToken:
+          type: string
+    AdUnit:
+      type: object
+      properties:
+        name:
+          type: string
+        adUnitId:
+          type: string
+        appId:
+          type: string
+        displayName:
+          type: string
+        adFormat:
+          type: string
+          enum:
+            - BANNER
+            - INTERSTITIAL
+            - REWARDED
+            - NATIVE
+            - REWARDED_INTERSTITIAL
+            - APP_OPEN
+    ListAdUnitsResponse:
+      type: object
+      properties:
+        adUnits:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdUnit'
+        nextPageToken:
+          type: string
+    App:
+      type: object
+      properties:
+        name:
+          type: string
+        appId:
+          type: string
+        platform:
+          type: string
+        manualAppInfo:
+          type: object
+          properties:
+            displayName:
+              type: string
+    ListAppsResponse:
+      type: object
+      properties:
+        apps:
+          type: array
+          items:
+            $ref: '#/components/schemas/App'
+        nextPageToken:
+          type: string
+    MediationGroup:
+      type: object
+      properties:
+        name:
+          type: string
+        mediationGroupId:
+          type: string
+        displayName:
+          type: string
+        state:
+          type: string
+    ListMediationGroupsResponse:
+      type: object
+      properties:
+        mediationGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediationGroup'
+        nextPageToken:
+          type: string
+    GenerateNetworkReportRequest:
+      type: object
+      properties:
+        reportSpec:
+          type: object
+          properties:
+            dateRange:
+              type: object
+              properties:
+                startDate:
+                  type: object
+                  properties:
+                    year:
+                      type: integer
+                    month:
+                      type: integer
+                    day:
+                      type: integer
+                endDate:
+                  type: object
+                  properties:
+                    year:
+                      type: integer
+                    month:
+                      type: integer
+                    day:
+                      type: integer
+            metrics:
+              type: array
+              items:
+                type: string
+            dimensions:
+              type: array
+              items:
+                type: string
+    GenerateNetworkReportResponse:
+      type: object
+      properties:
+        header:
+          type: object
+        row:
+          type: object
+        footer:
+          type: object
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/admob.report: View AdMob reports
+            https://www.googleapis.com/auth/admob.readonly: View AdMob data
+security:
+  - oauth2:
+      - https://www.googleapis.com/auth/admob.report

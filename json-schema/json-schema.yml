@@ -1,0 +1,89 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://raw.githubusercontent.com/api-evangelist/google-admob/refs/heads/main/json-schema/json-schema.yml
+title: Google AdMob API Schema
+description: >-
+  JSON Schema for the Google AdMob API covering accounts, ad units, apps,
+  mediation groups, and reports.
+type: object
+properties:
+  Account:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Resource name of the account.
+      publisherId:
+        type: string
+        description: The AdMob publisher ID.
+      reportingTimeZone:
+        type: string
+        description: Reporting timezone of the account.
+      currencyCode:
+        type: string
+        description: Currency code used for reporting.
+    required:
+      - name
+      - publisherId
+  AdUnit:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Resource name of the ad unit.
+      adUnitId:
+        type: string
+        description: The ad unit ID.
+      appId:
+        type: string
+        description: The ID of the app this ad unit belongs to.
+      displayName:
+        type: string
+        description: Display name of the ad unit.
+      adFormat:
+        type: string
+        description: The ad format of the ad unit.
+        enum:
+          - BANNER
+          - INTERSTITIAL
+          - REWARDED
+          - NATIVE
+          - REWARDED_INTERSTITIAL
+          - APP_OPEN
+    required:
+      - name
+      - adFormat
+  App:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Resource name of the app.
+      appId:
+        type: string
+        description: The externally visible ID of the app.
+      platform:
+        type: string
+        description: The platform of the app (ANDROID or IOS).
+      manualAppInfo:
+        type: object
+        properties:
+          displayName:
+            type: string
+    required:
+      - name
+  MediationGroup:
+    type: object
+    properties:
+      name:
+        type: string
+      mediationGroupId:
+        type: string
+      displayName:
+        type: string
+      state:
+        type: string
+        enum:
+          - ENABLED
+          - DISABLED
+    required:
+      - name

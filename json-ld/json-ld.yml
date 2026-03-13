@@ -1,0 +1,15 @@
+"@context":
+  "@vocab": https://schema.org/
+  admob: https://developers.google.com/admob/api/reference/rest/v1/
+  name: schema:name
+  description: schema:description
+  url: schema:url
+  publisherId: admob:publisherId
+  adUnitId: admob:adUnitId
+  appId: admob:appId
+  adFormat: admob:adFormat
+  displayName: admob:displayName
+  platform: admob:platform
+  mediationGroupId: admob:mediationGroupId
+  currencyCode: admob:currencyCode
+  reportingTimeZone: admob:reportingTimeZone
