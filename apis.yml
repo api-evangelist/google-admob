@@ -1,14 +1,16 @@
+aid: google-admob
 name: Google AdMob API
 description: >-
   The Google AdMob API provides programmatic access to information about AdMob
   accounts, allowing publishers to retrieve details about ad sources, ad units,
   apps, and mediation groups, and to generate campaign, mediation, and network
   reports for mobile app monetization.
+type: Index
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/google-admob/refs/heads/main/apis.yml
 created: '2026-03-13'
-modified: '2026-03-13'
-specificationVersion: '0.18'
+modified: '2026-03-16'
+specificationVersion: '0.19'
 tags:
   - Mobile Advertising
   - App Monetization
@@ -17,7 +19,8 @@ tags:
   - Reports
   - AdMob
 apis:
-  - name: Google AdMob API
+  - aid: google-admob:google-admob
+    name: Google AdMob API
     description: >-
       The AdMob API enables publishers to programmatically manage their mobile
       app monetization, including ad units, apps, mediation groups, and ad
@@ -32,7 +35,7 @@ apis:
       - type: JSONLD
         url: json-ld/json-ld.yml
 common:
-  - type: GettingStarted
+  - type: Getting Started
     url: https://developers.google.com/admob/api/v1/getting-started
   - type: Pricing
     url: https://admob.google.com/home/
