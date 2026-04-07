@@ -37,6 +37,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListAccountsResponse'
+      tags:
+        - Accounts
   /v1/{parent}/adUnits:
     get:
       summary: Google AdMob List ad units
@@ -55,6 +57,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListAdUnitsResponse'
+      tags:
+        - adUnits
     post:
       summary: Google AdMob Create ad unit
       description: Creates an ad unit under the specified AdMob account.
@@ -77,6 +81,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdUnit'
+      tags:
+        - adUnits
   /v1/{parent}/apps:
     get:
       summary: Google AdMob List apps
@@ -95,6 +101,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListAppsResponse'
+      tags:
+        - Apps
   /v1/{parent}/mediationGroups:
     get:
       summary: Google AdMob List mediation groups
@@ -113,6 +121,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListMediationGroupsResponse'
+      tags:
+        - mediationGroups
   /v1/{parent}/networkReport:generate:
     post:
       summary: Google AdMob Generate network report
@@ -136,6 +146,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GenerateNetworkReportResponse'
+      tags:
+        - networkReport:generate
 components:
   schemas:
     Account:
@@ -287,3 +299,9 @@ components:
 security:
   - oauth2:
       - https://www.googleapis.com/auth/admob.report
+tags:
+  - name: Accounts
+  - name: adUnits
+  - name: Apps
+  - name: mediationGroups
+  - name: networkReport:generate

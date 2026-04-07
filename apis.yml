@@ -12,12 +12,12 @@ created: '2026-03-13'
 modified: '2026-03-16'
 specificationVersion: '0.19'
 tags:
-  - Mobile Advertising
-  - App Monetization
   - Ad Mediation
+  - AdMob
+  - App Monetization
+  - Mobile Advertising
   - Mobile Apps
   - Reports
-  - AdMob
 apis:
   - aid: google-admob:google-admob
     name: Google AdMob API
