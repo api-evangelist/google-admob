@@ -35,7 +35,7 @@ apis:
       - type: JSONLD
         url: json-ld/json-ld.yml
 common:
-  - type: Getting Started
+  - type: GettingStarted
     url: https://developers.google.com/admob/api/v1/getting-started
   - type: Pricing
     url: https://admob.google.com/home/
