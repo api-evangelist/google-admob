@@ -1,0 +1,120 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Google AdMob API — adUnits
+  description: 'Google AdMob API — adUnits. 2 operations. Lead operation: Google AdMob List ad units. Self-contained Naftiko
+    capability covering one Google Admob business surface.'
+  tags:
+  - Google Admob
+  - adUnits
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    GOOGLE_ADMOB_API_KEY: GOOGLE_ADMOB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openapi-adunits
+    baseUri: https://admob.googleapis.com
+    description: Google AdMob API — adUnits business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-parent-adUnits
+      path: /v1/{parent}/adUnits
+      operations:
+      - name: listadunits
+        method: GET
+        description: Google AdMob List ad units
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: parent
+          in: path
+          type: string
+          required: true
+      - name: createadunit
+        method: POST
+        description: Google AdMob Create ad unit
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: parent
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.GOOGLE_ADMOB_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: openapi-adunits-rest
+    port: 8080
+    description: REST adapter for Google AdMob API — adUnits. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/{parent}/adunits
+      name: v1-parent-adunits
+      description: REST surface for v1-parent-adUnits.
+      operations:
+      - method: GET
+        name: listadunits
+        description: Google AdMob List ad units
+        call: openapi-adunits.listadunits
+        with:
+          parent: rest.parent
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createadunit
+        description: Google AdMob Create ad unit
+        call: openapi-adunits.createadunit
+        with:
+          parent: rest.parent
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openapi-adunits-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Google AdMob API — adUnits. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: google-admob-list-ad-units
+      description: Google AdMob List ad units
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi-adunits.listadunits
+      with:
+        parent: tools.parent
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-admob-create-ad-unit
+      description: Google AdMob Create ad unit
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: openapi-adunits.createadunit
+      with:
+        parent: tools.parent
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
