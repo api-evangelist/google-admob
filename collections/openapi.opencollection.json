@@ -1,0 +1,183 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google AdMob API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
+      "accessTokenUrl": "https://oauth2.googleapis.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google AdMob List accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1/accounts",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lists the AdMob accounts accessible by the caller."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "adUnits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google AdMob List ad units",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1/:parent/adUnits",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lists ad units under the specified AdMob account."
+        },
+        {
+          "info": {
+            "name": "Google AdMob Create ad unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://admob.googleapis.com/v1/:parent/adUnits",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an ad unit under the specified AdMob account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Apps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google AdMob List apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1/:parent/apps",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lists apps under the specified AdMob account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "mediationGroups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google AdMob List mediation groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1/:parent/mediationGroups",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lists mediation groups under the specified AdMob account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "networkReport:generate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google AdMob Generate network report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://admob.googleapis.com/v1/:parent/networkReport:generate",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates an AdMob network report for the specified account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
