@@ -5,7 +5,7 @@ description: >-
   details about ad sources, ad units, apps, and mediation groups, and to generate campaign, mediation, and network
   reports for mobile app monetization.
 type: Index
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/google-admob/refs/heads/main/apis.yml
 created: '2026-03-13'
 modified: '2026-05-19'
