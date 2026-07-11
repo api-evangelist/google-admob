@@ -33,6 +33,12 @@ apis:
       - type: JSONLD
         url: json-ld/json-ld.yml
 common:
+  - type: VulnerabilityDisclosure
+    url: security/google-admob-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/google-admob-domain-security.yml
+  - type: Authentication
+    url: authentication/google-admob-authentication.yml
   - type: OAuthScopes
     url: scopes/google-admob-scopes.yml
   - type: GitHubOrganization
