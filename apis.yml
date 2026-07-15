@@ -33,6 +33,8 @@ apis:
       - type: JSONLD
         url: json-ld/json-ld.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/google-admob-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/google-admob-vulnerability-disclosure.yml
   - type: DomainSecurity
