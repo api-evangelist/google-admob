@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: Google AdMob Accounts adUnits API
+  description: The AdMob API provides programmatic access to AdMob account information, including ad units, apps, ad sources, mediation groups, and reporting for mobile app monetization.
+  version: v1
+  contact:
+    name: Google
+    url: https://developers.google.com/admob/api
+  license:
+    name: Google APIs Terms of Service
+    url: https://developers.google.com/terms
+servers:
+- url: https://admob.googleapis.com
+  description: AdMob API server
+security:
+- oauth2:
+  - https://www.googleapis.com/auth/admob.report
+tags:
+- name: adUnits
+paths:
+  /v1/{parent}/adUnits:
+    get:
+      summary: Google AdMob List ad units
+      description: Lists ad units under the specified AdMob account.
+      operationId: listAdUnits
+      parameters:
+      - name: parent
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAdUnitsResponse'
+      tags:
+      - adUnits
+    post:
+      summary: Google AdMob Create ad unit
+      description: Creates an ad unit under the specified AdMob account.
+      operationId: createAdUnit
+      parameters:
+      - name: parent
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdUnit'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdUnit'
+      tags:
+      - adUnits
+components:
+  schemas:
+    ListAdUnitsResponse:
+      type: object
+      properties:
+        adUnits:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdUnit'
+        nextPageToken:
+          type: string
+    AdUnit:
+      type: object
+      properties:
+        name:
+          type: string
+        adUnitId:
+          type: string
+        appId:
+          type: string
+        displayName:
+          type: string
+        adFormat:
+          type: string
+          enum:
+          - BANNER
+          - INTERSTITIAL
+          - REWARDED
+          - NATIVE
+          - REWARDED_INTERSTITIAL
+          - APP_OPEN
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/admob.report: View AdMob reports
+            https://www.googleapis.com/auth/admob.readonly: View AdMob data

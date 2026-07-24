@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: Google AdMob Accounts API
+  description: The AdMob API provides programmatic access to AdMob account information, including ad units, apps, ad sources, mediation groups, and reporting for mobile app monetization.
+  version: v1
+  contact:
+    name: Google
+    url: https://developers.google.com/admob/api
+  license:
+    name: Google APIs Terms of Service
+    url: https://developers.google.com/terms
+servers:
+- url: https://admob.googleapis.com
+  description: AdMob API server
+security:
+- oauth2:
+  - https://www.googleapis.com/auth/admob.report
+tags:
+- name: Accounts
+paths:
+  /v1/accounts:
+    get:
+      summary: Google AdMob List accounts
+      description: Lists the AdMob accounts accessible by the caller.
+      operationId: listAccounts
+      parameters:
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      - name: pageToken
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAccountsResponse'
+      tags:
+      - Accounts
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        name:
+          type: string
+        publisherId:
+          type: string
+        reportingTimeZone:
+          type: string
+        currencyCode:
+          type: string
+    ListAccountsResponse:
+      type: object
+      properties:
+        account:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        nextPageToken:
+          type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/admob.report: View AdMob reports
+            https://www.googleapis.com/auth/admob.readonly: View AdMob data

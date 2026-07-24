@@ -1,0 +1,101 @@
+openapi: 3.1.0
+info:
+  title: Google AdMob Accounts networkReport:generate API
+  description: The AdMob API provides programmatic access to AdMob account information, including ad units, apps, ad sources, mediation groups, and reporting for mobile app monetization.
+  version: v1
+  contact:
+    name: Google
+    url: https://developers.google.com/admob/api
+  license:
+    name: Google APIs Terms of Service
+    url: https://developers.google.com/terms
+servers:
+- url: https://admob.googleapis.com
+  description: AdMob API server
+security:
+- oauth2:
+  - https://www.googleapis.com/auth/admob.report
+tags:
+- name: networkReport:generate
+paths:
+  /v1/{parent}/networkReport:generate:
+    post:
+      summary: Google AdMob Generate network report
+      description: Generates an AdMob network report for the specified account.
+      operationId: generateNetworkReport
+      parameters:
+      - name: parent
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateNetworkReportRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateNetworkReportResponse'
+      tags:
+      - networkReport:generate
+components:
+  schemas:
+    GenerateNetworkReportRequest:
+      type: object
+      properties:
+        reportSpec:
+          type: object
+          properties:
+            dateRange:
+              type: object
+              properties:
+                startDate:
+                  type: object
+                  properties:
+                    year:
+                      type: integer
+                    month:
+                      type: integer
+                    day:
+                      type: integer
+                endDate:
+                  type: object
+                  properties:
+                    year:
+                      type: integer
+                    month:
+                      type: integer
+                    day:
+                      type: integer
+            metrics:
+              type: array
+              items:
+                type: string
+            dimensions:
+              type: array
+              items:
+                type: string
+    GenerateNetworkReportResponse:
+      type: object
+      properties:
+        header:
+          type: object
+        row:
+          type: object
+        footer:
+          type: object
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/admob.report: View AdMob reports
+            https://www.googleapis.com/auth/admob.readonly: View AdMob data
