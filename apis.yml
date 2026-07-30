@@ -5,7 +5,20 @@ description: >-
   details about ad sources, ad units, apps, and mediation groups, and to generate campaign, mediation, and network
   reports for mobile app monetization.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/google-admob.png
 url: https://raw.githubusercontent.com/api-evangelist/google-admob/refs/heads/main/apis.yml
 created: '2026-03-13'
 modified: '2026-05-19'
@@ -18,20 +31,77 @@ tags:
   - Mobile Apps
   - Reports
 apis:
-  - aid: google-admob:google-admob
-    name: Google AdMob API
-    description: >-
-      The AdMob API enables publishers to programmatically manage their mobile app monetization, including ad units,
-      apps, mediation groups, and ad sources, while generating detailed campaign and network reports.
-    humanURL: https://developers.google.com/admob/api
-    baseURL: https://admob.googleapis.com
-    properties:
-      - type: OpenAPI
-        url: openapi/openapi.yml
-      - type: JSONSchema
-        url: json-schema/json-schema.yml
-      - type: JSONLD
-        url: json-ld/json-ld.yml
+- aid: google-admob:google-admob-accounts-api
+  name: Google AdMob Accounts API
+  description: The Accounts API from Google AdMob — 1 operation(s) for accounts.
+  humanURL: https://developers.google.com/admob/api
+  baseURL: https://admob.googleapis.com
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/google-admob-accounts-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/json-schema.yml
+  - type: JSONLD
+    url: json-ld/json-ld.yml
+- aid: google-admob:google-admob-adunits-api
+  name: Google AdMob adUnits API
+  description: The adUnits API from Google AdMob — 1 operation(s) for adunits.
+  humanURL: https://developers.google.com/admob/api
+  baseURL: https://admob.googleapis.com
+  tags:
+  - adUnits
+  properties:
+  - type: OpenAPI
+    url: openapi/google-admob-adunits-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/json-schema.yml
+  - type: JSONLD
+    url: json-ld/json-ld.yml
+- aid: google-admob:google-admob-apps-api
+  name: Google AdMob Apps API
+  description: The Apps API from Google AdMob — 1 operation(s) for apps.
+  humanURL: https://developers.google.com/admob/api
+  baseURL: https://admob.googleapis.com
+  tags:
+  - Apps
+  properties:
+  - type: OpenAPI
+    url: openapi/google-admob-apps-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/json-schema.yml
+  - type: JSONLD
+    url: json-ld/json-ld.yml
+- aid: google-admob:google-admob-mediationgroups-api
+  name: Google AdMob mediationGroups API
+  description: The mediationGroups API from Google AdMob — 1 operation(s) for mediationgroups.
+  humanURL: https://developers.google.com/admob/api
+  baseURL: https://admob.googleapis.com
+  tags:
+  - mediationGroups
+  properties:
+  - type: OpenAPI
+    url: openapi/google-admob-mediationgroups-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/json-schema.yml
+  - type: JSONLD
+    url: json-ld/json-ld.yml
+- aid: google-admob:google-admob-networkreport-generate-api
+  name: Google AdMob networkReport:generate API
+  description: >-
+    The networkReport:generate API from Google AdMob — 1 operation(s) for networkreport:generate.
+  humanURL: https://developers.google.com/admob/api
+  baseURL: https://admob.googleapis.com
+  tags:
+  - networkReport:generate
+  properties:
+  - type: OpenAPI
+    url: openapi/google-admob-networkreport-generate-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/json-schema.yml
+  - type: JSONLD
+    url: json-ld/json-ld.yml
 common:
   - type: AgenticAccess
     url: agentic-access/google-admob-agentic-access.yml
