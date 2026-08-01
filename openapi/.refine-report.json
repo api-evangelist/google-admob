@@ -1,0 +1,22 @@
+{
+  "provider": "google-admob",
+  "sources": [
+    "google-admob-accounts-api-openapi.yml",
+    "google-admob-adunits-api-openapi.yml",
+    "google-admob-apps-api-openapi.yml",
+    "google-admob-mediationgroups-api-openapi.yml",
+    "google-admob-networkreport-generate-api-openapi.yml"
+  ],
+  "outputs": [
+    "google-admob-accounts-api-openapi.yml",
+    "google-admob-adunits-api-openapi.yml",
+    "google-admob-apps-api-openapi.yml",
+    "google-admob-mediationgroups-api-openapi.yml",
+    "google-admob-networkreport-generate-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
