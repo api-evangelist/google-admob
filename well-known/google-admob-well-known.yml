@@ -1,0 +1,112 @@
+generated: '2026-08-13'
+method: probed
+source: live GET of every /.well-known/ path on every host in apis.yml and every OpenAPI servers[] host
+notes: >-
+  The AdMob API host (admob.googleapis.com) and the AdMob developer/product hosts
+  serve NOTHING at /.well-known/ — every path returns a Google 404 page. The
+  well-known surface that is real for this API belongs to two other Google hosts
+  that this API genuinely depends on: www.google.com serves the corporate RFC 9116
+  security.txt (the vulnerability-disclosure contact for AdMob), and
+  accounts.google.com serves the OIDC discovery + RFC 8414 authorization-server
+  metadata for the OAuth 2.0 authorization server every AdMob API call
+  authenticates against (its authorizationUrl/tokenUrl are exactly the ones the
+  Discovery Document declares). Both are recorded here with the host they were
+  served from, so the record never implies admob.googleapis.com serves them.
+hosts_probed:
+- admob.googleapis.com
+- developers.google.com
+- admob.google.com
+- www.google.com
+- accounts.google.com
+documents:
+- host: https://admob.googleapis.com
+  path: /.well-known/security.txt
+  status: 404
+- host: https://admob.googleapis.com
+  path: /.well-known/openid-configuration
+  status: 404
+- host: https://admob.googleapis.com
+  path: /.well-known/oauth-authorization-server
+  status: 404
+- host: https://admob.googleapis.com
+  path: /.well-known/api-catalog
+  status: 404
+- host: https://admob.googleapis.com
+  path: /.well-known/ai-plugin.json
+  status: 404
+- host: https://admob.googleapis.com
+  path: /.well-known/agent-card.json
+  status: 404
+- host: https://admob.googleapis.com
+  path: /.well-known/agent.json
+  status: 404
+- host: https://developers.google.com
+  path: /.well-known/security.txt
+  status: 404
+- host: https://developers.google.com
+  path: /.well-known/openid-configuration
+  status: 404
+- host: https://developers.google.com
+  path: /.well-known/oauth-authorization-server
+  status: 404
+- host: https://developers.google.com
+  path: /.well-known/api-catalog
+  status: 404
+- host: https://developers.google.com
+  path: /.well-known/ai-plugin.json
+  status: 404
+- host: https://developers.google.com
+  path: /.well-known/agent-card.json
+  status: 404
+- host: https://developers.google.com
+  path: /.well-known/agent.json
+  status: 404
+- host: https://admob.google.com
+  path: /.well-known/security.txt
+  status: 404
+- host: https://admob.google.com
+  path: /.well-known/openid-configuration
+  status: 404
+- host: https://admob.google.com
+  path: /.well-known/api-catalog
+  status: 404
+- host: https://admob.google.com
+  path: /.well-known/ai-plugin.json
+  status: 404
+- host: https://admob.google.com
+  path: /.well-known/agent-card.json
+  status: 404
+- host: https://admob.google.com
+  path: /.well-known/agent.json
+  status: 404
+- host: https://www.google.com
+  path: /.well-known/security.txt
+  status: 200
+  content_type: text/plain
+  file: google-admob-security.txt
+  spec: RFC 9116
+  note: Google's corporate security.txt — the disclosure contact that governs AdMob.
+- host: https://accounts.google.com
+  path: /.well-known/openid-configuration
+  status: 200
+  content_type: application/json
+  file: google-admob-openid-configuration.json
+  spec: OpenID Connect Discovery 1.0
+  note: >-
+    The OIDC discovery document for the authorization server AdMob API tokens are
+    issued by. Its authorization_endpoint/token_endpoint match the flow declared
+    in the AdMob Discovery Document.
+- host: https://accounts.google.com
+  path: /.well-known/oauth-authorization-server
+  status: 200
+  content_type: application/json
+  file: google-admob-oauth-authorization-server.json
+  spec: RFC 8414
+  note: OAuth 2.0 Authorization Server Metadata for accounts.google.com.
+api_catalog:
+  served: false
+  note: Google publishes no RFC 9727 /.well-known/api-catalog for AdMob or for googleapis.com.
+cross_links:
+  authentication: authentication/google-admob-authentication.yml
+  scopes: scopes/google-admob-scopes.yml
+  vulnerability_disclosure: security/google-admob-vulnerability-disclosure.yml

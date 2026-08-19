@@ -1,0 +1,58 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Google AdMob API (v1)
+  version: 1.0.0
+extends: openapi/google-admob-api-v1-openapi.yml
+x-provenance:
+  generated: '2026-08-13'
+  method: generated
+  source: >-
+    Enhancements derived from artifacts harvested in this repository:
+    rate-limits/google-admob-rate-limits.yml (Google's published quotas),
+    errors/google-admob-problem-types.yml (Google's published error reference),
+    conventions/google-admob-conventions.yml and
+    sandbox/google-admob-sandbox.yml. Nothing here is invented; the overlay
+    exists so the converted OpenAPI is never mutated in place.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-source: https://admob.googleapis.com/$discovery/rest?version=v1
+    x-apievangelist-conversion: Converted by API Evangelist from Google's first-party Discovery Document.
+      Google publishes no OpenAPI for AdMob.
+    x-apievangelist-artifacts:
+      conventions: conventions/google-admob-conventions.yml
+      errors: errors/google-admob-problem-types.yml
+      rate_limits: rate-limits/google-admob-rate-limits.yml
+      data_model: data-model/google-admob-data-model.yml
+      lifecycle: lifecycle/google-admob-lifecycle.yml
+      packages: packages/google-admob-packages.yml
+      skills: skills/_index.yml
+- target: $.info
+  update:
+    x-rate-limits:
+      scope: per-google-cloud-project
+      account_reads_per_minute: 900
+      inventory_reads_per_minute: 120
+      inventory_reads_per_day: 172800
+      reporting_reads_per_minute: 900
+      headers: none
+      status_on_exhaustion: 429
+      canonical_reason: RESOURCE_EXHAUSTED
+      source: https://developers.google.com/admob/api/quotas
+- target: $.info
+  update:
+    x-idempotency:
+      supported: false
+      note: No Idempotency-Key or client request id on any write method. Retried creates can duplicate.
+    x-sandbox:
+      available: false
+      note: Single live environment. No test mode for the REST API.
+    x-error-envelope:
+      format: google-rpc-status
+      content_type: application/json
+      rfc9457: false
+- target: $.components.securitySchemes.GoogleOAuth2
+  update:
+    x-service-accounts-supported: false
+    x-consent-required: true
+    x-note: AdMob requires a Google OAuth 2.0 USER token. Unattended agents cannot self-authorize.

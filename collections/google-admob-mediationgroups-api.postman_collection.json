@@ -1,0 +1,151 @@
+{
+  "item": [
+    {
+      "id": "9eb08d7b-b387-44d0-95ed-a7b0d1acf8cc",
+      "name": "mediationGroups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2acd7386-4f74-44b8-9747-693b8dc81606",
+          "name": "Google AdMob List mediation groups",
+          "request": {
+            "name": "Google AdMob List mediation groups",
+            "description": {
+              "content": "Lists mediation groups under the specified AdMob account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                ":parent",
+                "mediationGroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "parent",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3009e23-dfa7-4280-a584-8628e3da2c86",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":parent",
+                    "mediationGroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "parent",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"mediationGroups\": [\n    {\n      \"name\": \"string\",\n      \"mediationGroupId\": \"string\",\n      \"displayName\": \"string\",\n      \"state\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"mediationGroupId\": \"string\",\n      \"displayName\": \"string\",\n      \"state\": \"string\"\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://admob.googleapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://www.googleapis.com/auth/admob.report https://www.googleapis.com/auth/admob.readonly"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth2.googleapis.com/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.google.com/o/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f6b402ce-ac93-4176-bddc-bc41b4d9c00d",
+    "name": "Google AdMob Accounts mediationGroups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The AdMob API provides programmatic access to AdMob account information, including ad units, apps, ad sources, mediation groups, and reporting for mobile app monetization.\n\nContact Support:\n Name: Google",
+      "type": "text/plain"
+    }
+  }
+}

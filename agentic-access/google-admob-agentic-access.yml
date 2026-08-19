@@ -1,46 +1,168 @@
-generated: '2026-07-15'
+generated: '2026-08-13'
 method: generated
-source: openapi/openapi.yml
+source: openapi/google-admob-api-v1-openapi.yml, openapi/google-admob-api-v1beta-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 6
+  operations: 25
   by_action_class:
-    connected: 4
-    acting: 2
+    connected: 12
+    acting: 13
   by_consequence:
-    read: 4
-    write: 2
-  human_in_the_loop_required: 0
+    read: 12
+    write: 12
+    safety-critical: 1
+  human_in_the_loop_required: 1
 operations:
+- path: /v1/accounts/{accountsId}
+  method: get
+  operationId: accounts_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    - https://www.googleapis.com/auth/admob.report
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /v1/accounts
   method: get
-  operationId: listAccounts
+  operationId: accounts_list
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    - https://www.googleapis.com/auth/admob.report
     token:
       max-ttl: 3600
     audit: none
-    scope:
-    - https://www.googleapis.com/auth/admob.report
-- path: /v1/{parent}/adUnits
-  method: get
-  operationId: listAdUnits
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-    scope:
-    - https://www.googleapis.com/auth/admob.report
-- path: /v1/{parent}/adUnits
+- path: /v1/accounts/{accountsId}/networkReport:generate
   method: post
-  operationId: createAdUnit
+  operationId: accounts_networkReport_generate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    - https://www.googleapis.com/auth/admob.report
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/accounts/{accountsId}/adUnits
+  method: get
+  operationId: accounts_adUnits_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/accounts/{accountsId}/apps
+  method: get
+  operationId: accounts_apps_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/accounts/{accountsId}/mediationReport:generate
+  method: post
+  operationId: accounts_mediationReport_generate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    - https://www.googleapis.com/auth/admob.report
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1beta/accounts/{accountsId}
+  method: get
+  operationId: accounts_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    - https://www.googleapis.com/auth/admob.report
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1beta/accounts
+  method: get
+  operationId: accounts_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    - https://www.googleapis.com/auth/admob.report
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1beta/accounts/{accountsId}/campaignReport:generate
+  method: post
+  operationId: accounts_campaignReport_generate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    - https://www.googleapis.com/auth/admob.report
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1beta/accounts/{accountsId}/mediationGroups
+  method: get
+  operationId: accounts_mediationGroups_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1beta/accounts/{accountsId}/mediationGroups
+  method: post
+  operationId: accounts_mediationGroups_create
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -55,34 +177,11 @@ operations:
       - high-value
     audit: required
     scope:
+    - https://www.googleapis.com/auth/admob.readonly
     - https://www.googleapis.com/auth/admob.report
-- path: /v1/{parent}/apps
-  method: get
-  operationId: listApps
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-    scope:
-    - https://www.googleapis.com/auth/admob.report
-- path: /v1/{parent}/mediationGroups
-  method: get
-  operationId: listMediationGroups
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-    scope:
-    - https://www.googleapis.com/auth/admob.report
-- path: /v1/{parent}/networkReport:generate
-  method: post
-  operationId: generateNetworkReport
+- path: /v1beta/accounts/{accountsId}/mediationGroups/{mediationGroupsId}
+  method: patch
+  operationId: accounts_mediationGroups_patch
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -97,4 +196,218 @@ operations:
       - high-value
     audit: required
     scope:
+    - https://www.googleapis.com/auth/admob.readonly
     - https://www.googleapis.com/auth/admob.report
+- path: /v1beta/accounts/{accountsId}/mediationGroups/{mediationGroupsId}/mediationAbExperiments
+  method: post
+  operationId: accounts_mediationGroups_mediationAbExperiments_create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    - https://www.googleapis.com/auth/admob.report
+- path: /v1beta/accounts/{accountsId}/mediationGroups/{mediationGroupsId}/mediationAbExperiments:stop
+  method: post
+  operationId: accounts_mediationGroups_mediationAbExperiments_stop
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    - https://www.googleapis.com/auth/admob.report
+- path: /v1beta/accounts/{accountsId}/mediationReport:generate
+  method: post
+  operationId: accounts_mediationReport_generate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    - https://www.googleapis.com/auth/admob.report
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1beta/accounts/{accountsId}/apps
+  method: post
+  operationId: accounts_apps_create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    - https://www.googleapis.com/auth/admob.report
+- path: /v1beta/accounts/{accountsId}/apps
+  method: get
+  operationId: accounts_apps_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1beta/accounts/{accountsId}/adUnitMappings:batchCreate
+  method: post
+  operationId: accounts_adUnitMappings_batchCreate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    - https://www.googleapis.com/auth/admob.report
+- path: /v1beta/accounts/{accountsId}/networkReport:generate
+  method: post
+  operationId: accounts_networkReport_generate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    - https://www.googleapis.com/auth/admob.report
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1beta/accounts/{accountsId}/adUnits
+  method: post
+  operationId: accounts_adUnits_create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    - https://www.googleapis.com/auth/admob.report
+- path: /v1beta/accounts/{accountsId}/adUnits
+  method: get
+  operationId: accounts_adUnits_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1beta/accounts/{accountsId}/adUnits/{adUnitsId}/adUnitMappings
+  method: post
+  operationId: accounts_adUnits_adUnitMappings_create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    - https://www.googleapis.com/auth/admob.report
+- path: /v1beta/accounts/{accountsId}/adUnits/{adUnitsId}/adUnitMappings
+  method: get
+  operationId: accounts_adUnits_adUnitMappings_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1beta/accounts/{accountsId}/adSources
+  method: get
+  operationId: accounts_adSources_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    - https://www.googleapis.com/auth/admob.report
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1beta/accounts/{accountsId}/adSources/{adSourcesId}/adapters
+  method: get
+  operationId: accounts_adSources_adapters_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://www.googleapis.com/auth/admob.readonly
+    token:
+      max-ttl: 3600
+    audit: none

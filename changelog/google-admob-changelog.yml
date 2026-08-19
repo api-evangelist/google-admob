@@ -1,0 +1,53 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.google.com/admob/api/release-notes
+docs: https://developers.google.com/admob/api/release-notes
+notes: >-
+  Google maintains a dated release-notes page for the AdMob API, but it is
+  extremely sparse: three entries covering seven years, the most recent from
+  September 2023. The page's own "last updated" stamp reads 28 August 2025 with
+  no matching entry. The real change signal is elsewhere — the Discovery
+  Document carries a `revision` field which read 20260731 for BOTH v1 and
+  v1beta when harvested on 2026-08-13, i.e. the contract moved on 31 July 2026
+  without a release note. Anyone tracking AdMob API change should diff the
+  Discovery Document revision, not watch the changelog. Both snapshots are in
+  discovery/ for exactly that purpose.
+scheme: dated-release-notes
+current_version: v1
+beta_version: v1beta
+contract_revision:
+  v1: '20260731'
+  v1beta: '20260731'
+  observed: '2026-08-13'
+  source: https://admob.googleapis.com/$discovery/rest?version=v1
+entry_count: 3
+entries:
+- date: '2023-09-05'
+  version: v1beta
+  breaking: false
+  additions: true
+  highlights: >-
+    Numerous new methods added to v1beta — accounts, ad sources and adapters, ad
+    unit mappings, apps, campaign reports, mediation groups and mediation A/B
+    experiments. This is the release that created AdMob's write surface.
+- date: '2021-04-21'
+  version: v1
+  breaking: false
+  additions: true
+  highlights: accounts.adUnits:list and accounts.apps:list added to the stable v1 channel.
+- date: '2019-08-11'
+  version: v1
+  breaking: false
+  additions: true
+  highlights: >-
+    AdMob API v1 launch — accounts.get, accounts.list,
+    accounts.mediationReport:generate and accounts.networkReport:generate.
+gaps:
+- issue: changelog-stale
+  detail: >-
+    No release note has been published since 2023-09-05 even though the machine
+    contract was revised on 2026-07-31.
+- issue: no-breaking-change-notice
+  detail: The page records no breaking changes and there is no deprecation policy to frame one.
+cross_links:
+  lifecycle: lifecycle/google-admob-lifecycle.yml

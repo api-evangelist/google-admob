@@ -1,0 +1,163 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.google.com/admob/api/v1/libraries
+notes: >-
+  Google ships no bespoke "AdMob SDK" for the REST management/reporting API.
+  Instead the AdMob API is covered by Google's generated API-client families: two
+  ecosystems (Ruby, .NET) publish a dedicated per-API package generated directly
+  from the AdMob Discovery Document, and the rest (Node.js, Python, Go, PHP,
+  Java, Objective-C) reach AdMob through one umbrella client that carries every
+  Google REST API at once. Version and published date below were read from each
+  registry's metadata endpoint on 2026-08-13.
+  DECAY SIGNAL: the Java per-API artifact com.google.apis:google-api-services-admob
+  is pinned at v1-rev20240514-2.0.0 — generated from the 2024-05-14 Discovery
+  revision, more than two years behind the live revision 20260731 this repo
+  harvested. Java callers using that artifact are working from a stale contract.
+  Do NOT confuse anything below with the Google Mobile Ads SDK
+  (com.google.android.gms:play-services-ads, Google-Mobile-Ads-SDK,
+  google_mobile_ads) — that is the client-side ad-serving SDK an app embeds, a
+  different surface from admob.googleapis.com, and it is recorded separately at
+  the bottom of this file rather than counted as an API client library.
+packages:
+- language: ruby
+  registry: rubygems
+  name: google-apis-admob_v1
+  url: https://rubygems.org/gems/google-apis-admob_v1
+  install: gem install google-apis-admob_v1
+  official: true
+  dedicated: true
+  version: 0.26.0
+  published: '2026-06-21'
+  license: Apache-2.0
+  source: https://github.com/googleapis/google-api-ruby-client/tree/main/generated/google-apis-admob_v1
+  note: Generated automatically from the AdMob v1 Discovery Document. Authored by Google LLC.
+- language: ruby
+  registry: rubygems
+  name: google-apis-admob_v1beta
+  url: https://rubygems.org/gems/google-apis-admob_v1beta
+  install: gem install google-apis-admob_v1beta
+  official: true
+  dedicated: true
+  version: 0.34.0
+  published: '2026-06-21'
+  license: Apache-2.0
+  source: https://github.com/googleapis/google-api-ruby-client/tree/main/generated/google-apis-admob_v1beta
+  note: The only per-API package that covers the v1beta write surface.
+- language: dotnet
+  registry: nuget
+  name: Google.Apis.AdMob.v1
+  url: https://www.nuget.org/packages/Google.Apis.AdMob.v1
+  install: dotnet add package Google.Apis.AdMob.v1
+  official: true
+  dedicated: true
+  version: 1.75.0.4178
+  published: '2026-06-18'
+  license: Apache-2.0
+  source: https://github.com/googleapis/google-api-dotnet-client
+- language: dotnet
+  registry: nuget
+  name: Google.Apis.AdMob.v1beta
+  url: https://www.nuget.org/packages/Google.Apis.AdMob.v1beta
+  install: dotnet add package Google.Apis.AdMob.v1beta
+  official: true
+  dedicated: true
+  version: 1.75.0.4178
+  published: '2026-06-18'
+  license: Apache-2.0
+  source: https://github.com/googleapis/google-api-dotnet-client
+- language: java
+  registry: maven
+  name: com.google.apis:google-api-services-admob
+  url: https://central.sonatype.com/artifact/com.google.apis/google-api-services-admob
+  install: 'implementation "com.google.apis:google-api-services-admob:v1-rev20240514-2.0.0"'
+  official: true
+  dedicated: true
+  version: v1-rev20240514-2.0.0
+  published: '2024-05-15'
+  license: Apache-2.0
+  note: >-
+    STALE. Generated from AdMob Discovery revision 20240514; the live revision on
+    2026-08-13 is 20260731. 115 versions published historically, none since
+    May 2024. Java callers should verify field coverage against
+    discovery/google-admob-api-v1.json before relying on it.
+- language: javascript
+  registry: npm
+  name: googleapis
+  url: https://www.npmjs.com/package/googleapis
+  install: npm install googleapis
+  official: true
+  dedicated: false
+  version: 174.0.1
+  published: '2026-08-05'
+  license: Apache-2.0
+  source: https://github.com/googleapis/google-api-nodejs-client
+  note: Umbrella client. AdMob is reached as `google.admob('v1')` / `google.admob('v1beta')`.
+- language: python
+  registry: pypi
+  name: google-api-python-client
+  url: https://pypi.org/project/google-api-python-client/
+  install: pip install google-api-python-client
+  official: true
+  dedicated: false
+  version: 2.198.0
+  published: '2026-06-25'
+  license: Apache-2.0
+  source: https://github.com/googleapis/google-api-python-client
+  note: Umbrella client. AdMob is reached as `build('admob', 'v1', credentials=creds)`.
+- language: go
+  registry: gomodules
+  name: google.golang.org/api
+  url: https://pkg.go.dev/google.golang.org/api/admob/v1
+  install: go get google.golang.org/api/admob/v1
+  official: true
+  dedicated: false
+  version: v0.293.0
+  published: '2026-08-11'
+  license: BSD-3-Clause
+  source: https://github.com/googleapis/google-api-go-client
+  note: Umbrella module; the admob/v1 and admob/v1beta sub-packages are generated from the Discovery Document.
+- language: php
+  registry: packagist
+  name: google/apiclient
+  url: https://packagist.org/packages/google/apiclient
+  install: composer require google/apiclient
+  official: true
+  dedicated: false
+  version: null
+  published: null
+  license: Apache-2.0
+  source: https://github.com/googleapis/google-api-php-client
+  note: >-
+    Umbrella client listed on Google's AdMob client-libraries page. Version left
+    null: the Packagist metadata endpoint was reachable but AdMob service classes
+    ship inside google/apiclient-services, not google/apiclient, so no single
+    version number honestly describes the AdMob coverage of this package.
+- language: objective-c
+  registry: null
+  name: google-api-objectivec-client-for-rest
+  url: https://github.com/google/google-api-objectivec-client-for-rest
+  install: 'CocoaPods: pod ''GoogleAPIClientForREST/AdMob'''
+  official: true
+  dedicated: false
+  version: null
+  published: null
+  note: >-
+    Listed on Google's AdMob client-libraries page. Distributed through CocoaPods
+    and Swift Package Manager, neither of which exposes an unauthenticated
+    per-subspec metadata endpoint, so version/published are recorded null rather
+    than guessed.
+sdk_count: 10
+official_sdk_count: 10
+related_but_not_api_clients:
+- name: Google Mobile Ads SDK (Android)
+  package: com.google.android.gms:play-services-ads
+  url: https://developers.google.com/admob/android/quick-start
+  note: Client-side ad-serving SDK embedded in an app. Not a client for admob.googleapis.com.
+- name: Google Mobile Ads SDK (iOS)
+  package: Google-Mobile-Ads-SDK
+  url: https://developers.google.com/admob/ios/quick-start
+  note: Client-side ad-serving SDK embedded in an app. Not a client for admob.googleapis.com.
+- name: Google Mobile Ads Flutter plugin
+  package: google_mobile_ads
+  url: https://pub.dev/packages/google_mobile_ads
+  note: Client-side ad-serving plugin. Not a client for admob.googleapis.com.

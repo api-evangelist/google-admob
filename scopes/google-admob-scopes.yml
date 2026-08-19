@@ -1,23 +1,47 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/openapi.yml
+generated: '2026-08-13'
+method: searched
+source: openapi/google-admob-api-v1-openapi.yml, openapi/google-admob-api-v1beta-openapi.yml
 schemes:
-- name: oauth2
-  source: openapi/openapi.yml
+- name: GoogleOAuth2
+  source: openapi/google-admob-api-v1-openapi.yml
   flows:
   - flow: authorizationCode
-    authorizationUrl: https://accounts.google.com/o/oauth2/auth
+    authorizationUrl: https://accounts.google.com/o/oauth2/v2/auth
     tokenUrl: https://oauth2.googleapis.com/token
+  description: Google OAuth 2.0 user authorization. AdMob does not support service accounts.
+- name: GoogleOAuth2
+  source: openapi/google-admob-api-v1beta-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://accounts.google.com/o/oauth2/v2/auth
+    tokenUrl: https://oauth2.googleapis.com/token
+  description: Google OAuth 2.0 user authorization. AdMob does not support service accounts.
 scopes:
 - scope: https://www.googleapis.com/auth/admob.readonly
-  description: View AdMob data
+  description: See your AdMob data. Grants read access to account, app, ad unit, ad source, adapter, ad
+    unit mapping and mediation group resources.
   flows:
   - authorizationCode
   sources:
-  - openapi/openapi.yml
+  - openapi/google-admob-api-v1-openapi.yml
+  - openapi/google-admob-api-v1beta-openapi.yml
 - scope: https://www.googleapis.com/auth/admob.report
-  description: View AdMob reports
+  description: See your AdMob data. Grants access to generate network, mediation and campaign reports.
   flows:
   - authorizationCode
   sources:
-  - openapi/openapi.yml
+  - openapi/google-admob-api-v1-openapi.yml
+  - openapi/google-admob-api-v1beta-openapi.yml
+docs: https://developers.google.com/admob/api/v1/getting-started
+notes: 'Scopes confirmed against Google''s own AdMob Discovery Document auth block (both v1 and v1beta
+  declare exactly these two) and the AdMob getting-started page on 2026-08-13. AdMob publishes only two
+  scopes and neither is a write scope: there is no admob.write. The v1beta write methods are authorized
+  by the same admob.readonly/admob.report tokens plus the consenting user''s AdMob account role, which
+  means SCOPE ALONE CANNOT CONSTRAIN AN AGENT TO READ-ONLY on v1beta. To keep an agent read-only, restrict
+  it to the v1 channel, which has no write operations at all.'
+write_scope_published: false
+agent_note: Neither scope is write-scoped; v1beta writes ride on the same tokens. Channel choice, not
+  scope choice, is the read-only control.
+cross_links:
+  authentication: authentication/google-admob-authentication.yml
+  wellknown: well-known/google-admob-well-known.yml

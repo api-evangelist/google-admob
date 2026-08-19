@@ -1,0 +1,122 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.google.com/admob/api/v1/getting-started
+docs: https://developers.google.com/admob/api/rest
+derived_from: openapi/google-admob-api-v1-openapi.yml, openapi/google-admob-api-v1beta-openapi.yml
+notes: >-
+  The AdMob API follows Google's standard REST conventions (the Google API
+  Improvement Proposals). v1 is entirely read-only. v1beta adds the write
+  methods — creating apps, ad units, ad unit mappings and mediation groups,
+  patching mediation groups, and creating/stopping mediation A/B experiments —
+  and NONE of them documents an idempotency contract, so a retried v1beta write
+  can duplicate a resource.
+authentication:
+  style: oauth2-bearer
+  detail: >-
+    OAuth 2.0 user access token in `Authorization: Bearer <token>`. AdMob does
+    NOT support service accounts — every call is made on behalf of a Google
+    account that is a user on the AdMob publisher account.
+  scopes:
+  - https://www.googleapis.com/auth/admob.readonly
+  - https://www.googleapis.com/auth/admob.report
+  cross_link: authentication/google-admob-authentication.yml
+resource_naming:
+  style: google-resource-names
+  detail: >-
+    Every resource is addressed by a hierarchical name string —
+    accounts/{publisherId}, accounts/{publisherId}/adUnits/{adUnitId},
+    accounts/{publisherId}/mediationGroups/{mediationGroupId}. Custom
+    (non-CRUD) methods use a colon suffix: networkReport:generate,
+    mediationReport:generate, campaignReport:generate,
+    adUnitMappings:batchCreate, mediationAbExperiments:stop.
+  publisher_id_format: pub-XXXXXXXXXXXXXXXX
+  cross_link: data-model/google-admob-data-model.yml
+idempotency:
+  supported: false
+  header: null
+  detail: >-
+    No Idempotency-Key header, no client-supplied request id, and no equivalent
+    parameter appears anywhere in either Discovery Document or in the AdMob
+    documentation. v1 is read-only so the question is moot there. On v1beta the
+    write methods — accounts_apps_create, accounts_adUnits_create,
+    accounts_adUnits_adUnitMappings_create, accounts_adUnitMappings_batchCreate,
+    accounts_mediationGroups_create,
+    accounts_mediationGroups_mediationAbExperiments_create — are NOT
+    idempotency-protected. accounts_mediationGroups_patch is naturally
+    idempotent by virtue of being a field-masked PATCH, and
+    accounts_mediationGroups_mediationAbExperiments_stop is idempotent by
+    semantics, but neither is a contractual guarantee. Agents should re-read the
+    parent collection before retrying any create.
+pagination:
+  style: page-token
+  request_params:
+  - pageSize
+  - pageToken
+  response_fields:
+  - nextPageToken
+  detail: >-
+    Google's standard AIP-158 paging. Applies to accounts_list,
+    accounts_apps_list, accounts_adUnits_list, accounts_adSources_list,
+    accounts_adSources_adapters_list, accounts_mediationGroups_list and
+    accounts_adUnits_adUnitMappings_list. Reports are NOT paged this way — they
+    stream a report row set bounded by maxReportRows (hard ceiling 100,000).
+filtering:
+  supported: true
+  detail: >-
+    accounts_mediationGroups_list and accounts_adUnits_adUnitMappings_list accept
+    a `filter` query parameter using Google's list-filter syntax. Report scoping
+    is done inside the report specification body (date range, dimensions,
+    metrics, dimension filters, sort conditions), not via query parameters.
+field_masks:
+  supported: true
+  detail: >-
+    accounts_mediationGroups_patch takes an `updateMask` query parameter naming
+    the fields to change — Google's standard partial-update convention. Omitting
+    updateMask on a patch is a common source of unintended overwrites.
+field_selection:
+  supported: true
+  parameter: fields
+  detail: Google's system `fields` parameter selects a partial response across every method.
+metadata:
+  supported: false
+  detail: No user-defined metadata/tag surface on AdMob resources.
+request_tracing:
+  request_id_header: null
+  detail: >-
+    No request-id response header is documented for admob.googleapis.com. There
+    is no correlation identifier to quote in a support thread beyond the
+    timestamped request itself.
+versioning:
+  style: uri-path
+  detail: Version is the first path segment — /v1/... and /v1beta/... on the same host.
+  cross_link: lifecycle/google-admob-lifecycle.yml
+error_envelope:
+  format: google-rpc-status
+  content_type: application/json
+  rfc9457: false
+  shape: '{"error": {"code": <int>, "message": "<string>", "status": "<CANONICAL_REASON>", "details": [...]}}'
+  cross_link: errors/google-admob-problem-types.yml
+rate_limit_signalling:
+  headers: none
+  status_on_exhaustion: 429
+  canonical_reason: RESOURCE_EXHAUSTED
+  detail: >-
+    No RateLimit-*, X-RateLimit-* or Retry-After headers. The only runtime signal
+    is the 429 and the quota-group name in the error message, so backoff must be
+    client-scheduled.
+  cross_link: rate-limits/google-admob-rate-limits.yml
+long_running_operations:
+  supported: false
+  detail: >-
+    No google.longrunning.Operation surface. Reports are generated synchronously
+    in the response to the :generate call.
+transport:
+  rest: https://admob.googleapis.com
+  grpc:
+    proto_published: true
+    location: grpc/google-admob-admob-api.proto
+    detail: >-
+      Google publishes google/ads/admob/v1/admob_api.proto in googleapis/googleapis
+      (service AdMobApi, 4 RPCs), but does not document a public gRPC endpoint for
+      AdMob. Treat the proto as the canonical v1 IDL, not as a callable transport.
+  mtls_root_url: https://admob.mtls.googleapis.com/

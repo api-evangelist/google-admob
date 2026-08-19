@@ -1,0 +1,87 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.google.com/admob/api/release-notes
+derived_from: discovery/google-admob-api-v1.json, discovery/google-admob-api-v1beta.json
+notes: >-
+  AdMob runs two live channels off one host. v1 is the stable, entirely READ-ONLY
+  channel — six methods, unchanged since April 2021. v1beta carries the whole
+  write surface (create app / ad unit / ad unit mapping / mediation group, patch
+  mediation group, create and stop mediation A/B experiments) plus campaign
+  reporting and ad-source discovery, and has been in beta since September 2023
+  with no announced GA date. Both Discovery Documents carried revision 20260731
+  when harvested on 2026-08-13, so both channels are actively maintained even
+  where the release notes are quiet.
+versioning:
+  scheme: uri-path
+  channels:
+  - version: v1
+    stability: stable
+    read_only: true
+    operations: 6
+    discovery_revision: '20260731'
+    discovery: https://admob.googleapis.com/$discovery/rest?version=v1
+    first_released: '2019-08-11'
+  - version: v1beta
+    stability: beta
+    read_only: false
+    operations: 19
+    discovery_revision: '20260731'
+    discovery: https://admob.googleapis.com/$discovery/rest?version=v1beta
+    first_released: '2023-09-05'
+    note: Beta channel; Google publishes no GA date and no stability guarantee for v1beta.
+  docs: https://developers.google.com/admob/api/release-notes
+deprecation:
+  published: false
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  notes: >-
+    NO deprecation policy is published for the AdMob API. There is no AdMob
+    deprecation page, no RFC 8594 Sunset/Deprecation header support, and the
+    governing Google APIs Terms of Service (https://developers.google.com/terms,
+    fetched 2026-08-13) contains no deprecation-policy section and commits to no
+    notice period — its Section 10.a only covers modification of the terms
+    themselves. AdMob is also not a Google Cloud Platform service, so the GCP
+    deprecation commitments do not apply to it. No AdMob operation is flagged
+    `deprecated` in either Discovery Document and no version has been retired to
+    date, but a consumer has no contractual warning window. Treat v1beta as the
+    unstable channel: breaking change lands there first.
+  deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+  notes: >-
+    No published SLA or uptime commitment for the AdMob API. AdMob is not a
+    Google Cloud Platform service and is not covered by a GCP SLA.
+status_page: https://ads.google.com/status/publisher/
+status_page_notes: >-
+  The Google Ads publisher status dashboard lists AdMob by name alongside AdSense,
+  Ad Manager, Ads Data Hub and the Google Ads API. Verified 200 and confirmed to
+  name AdMob on 2026-08-13.
+support:
+  developer_forum: https://groups.google.com/g/google-admob-api
+  product_support: https://support.google.com/admob
+release_history:
+- date: '2023-09-05'
+  version: v1beta
+  type: additions
+  breaking: false
+  highlights: >-
+    Numerous new methods added to beta — account management, ad sources and
+    adapters, ad unit mappings, apps, campaign reports, mediation groups, and
+    mediation A/B experiments.
+- date: '2021-04-21'
+  version: v1
+  type: additions
+  breaking: false
+  highlights: accounts.adUnits.list and accounts.apps.list added to the stable channel.
+- date: '2019-08-11'
+  version: v1
+  type: launch
+  breaking: false
+  highlights: >-
+    Initial launch — accounts.get, accounts.list,
+    accounts.mediationReport.generate and accounts.networkReport.generate.
+cross_links:
+  changelog: changelog/google-admob-changelog.yml
+  conventions: conventions/google-admob-conventions.yml

@@ -3,88 +3,104 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: Google AdMob
 providerId: google-admob
+generated: '2026-08-13'
+method: searched
+source: https://developers.google.com/admob/api/quotas
+docs: https://developers.google.com/admob/api/quotas
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-08-13'
+description: >-
+  Published AdMob API quotas, harvested from Google's own quota page on
+  2026-08-13. This file REPLACES the 2026-05-04 bulk-sweep scaffold, whose
+  numbers (10 requests/minute on a "free tier", X-RateLimit-* headers, a
+  RateLimit-Policy header) were invented defaults and matched nothing Google
+  publishes.
 tags:
-  - Ad Mediation
-  - AdMob
-  - App Monetization
-  - Mobile Advertising
-  - Mobile Apps
-  - Reports
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Google AdMob API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
+- AdMob
+- Quotas
+- Rate Limiting
+- Reporting
+notes: >-
+  AdMob quotas are enforced PER GOOGLE CLOUD PROJECT, not per user or per API
+  key, and are split into three method classes: account, inventory and
+  reporting. Google publishes the numeric limits but documents NO rate-limit
+  response headers for the AdMob API — no RateLimit-*, no X-RateLimit-*, no
+  Retry-After — so the only runtime signal an agent receives is an HTTP 429
+  carrying the canonical RESOURCE_EXHAUSTED status in the google.rpc.Status
+  error envelope, naming the quota group that was exhausted (e.g.
+  "Quota exceeded for quota group 'ReportingReadGroup'"). Google's guidance on
+  hitting quota is to add client-side rate limiting and request fewer rows per
+  report, and additional daily quota is requested through the AdMob API
+  developer forum with a use case, not purchased.
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  limit: null
+  remaining: null
+  reset: null
+  retryAfter: null
+  policy: null
+  note: No rate-limit response headers are documented for admob.googleapis.com.
 responseCodes:
   throttled: 429
   quotaExceeded: 429
-  serviceUnavailable: 503
+limit_count: 4
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Google AdMob API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Google AdMob API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Google AdMob API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Google AdMob API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Google AdMob API
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- scope: per-project
+  method_class: account
+  name: Account read requests per minute per project
+  window: minute
+  limit: 900
+  unit: read requests
+  operations:
+  - accounts_get
+  - accounts_list
+- scope: per-project
+  method_class: inventory
+  name: Inventory read requests per minute per project
+  window: minute
+  limit: 120
+  unit: read requests
+  operations:
+  - accounts_apps_list
+  - accounts_adUnits_list
+  - accounts_adSources_list
+  - accounts_adSources_adapters_list
+  - accounts_mediationGroups_list
+  - accounts_adUnits_adUnitMappings_list
+- scope: per-project
+  method_class: inventory
+  name: Inventory read requests per day per project
+  window: day
+  limit: 172800
+  unit: read requests
+- scope: per-project
+  method_class: reporting
+  name: Reporting read requests per minute per project
+  window: minute
+  limit: 900
+  unit: read requests
+  operations:
+  - accounts_networkReport_generate
+  - accounts_mediationReport_generate
+  - accounts_campaignReport_generate
+exhaustion:
+  http_status: 429
+  status: RESOURCE_EXHAUSTED
+  envelope: google.rpc.Status inside an `error` wrapper
+  example_message: Quota exceeded for quota group 'ReportingReadGroup'
+  guidance: >-
+    Introduce client-side rate limiting and request fewer rows per report
+    request. Request additional daily quota via the AdMob API developer forum
+    with a described use case.
+other_limits:
+- name: Maximum report rows per request
+  limit: 100000
+  applies_to:
+  - accounts_networkReport_generate
+  - accounts_mediationReport_generate
+  - accounts_campaignReport_generate
+  error: 400 INVALID_ARGUMENT "Cannot request more than 100,000 rows in one report request."
+  source: https://developers.google.com/admob/api/v1/errors
+cross_links:
+  errors: errors/google-admob-problem-types.yml
+  conventions: conventions/google-admob-conventions.yml
+  plans: plans/google-admob-plans-pricing.yml

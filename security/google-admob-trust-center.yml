@@ -1,0 +1,64 @@
+generated: '2026-08-13'
+method: searched
+probe: true
+url: https://business.safety.google/compliance/
+also:
+- https://privacy.google.com/businesses/compliance/
+- https://safety.google/security/
+notes: >-
+  AdMob has no trust center of its own — trust.admob.google.com and
+  security.admob.google.com do not exist, and the automated probe over
+  admob.google.com and developers.google.com found no trust/compliance page
+  (probe-security-programs.py, 2026-08-13, trust=none). What Google DOES publish
+  is a business-wide compliance page at business.safety.google/compliance/,
+  fetched 2026-08-13, which names certifications and states their scope
+  product-by-product. SCOPE CAVEAT, recorded deliberately: AdMob is NOT named on
+  that page. Google Ads appears in the ISO 27001 scope statement, and AdWords and
+  AdSense appear in the SOC 1 Type 2 scope; AdMob appears in neither. Do not read
+  this artifact as a certification claim for admob.googleapis.com — read it as
+  "Google publishes a compliance program covering its advertising business, and
+  AdMob is not enumerated in it."
+certifications:
+- name: ISO/IEC 27001
+  scope_stated: Google Cloud Platform, Google Workspace, Google Ads
+  admob_named: false
+- name: ISO/IEC 27017
+  scope_stated: Google Cloud Platform, Google Workspace
+  admob_named: false
+- name: ISO/IEC 27018
+  scope_stated: Google Cloud Platform, Google Workspace
+  admob_named: false
+- name: ISO/IEC 27701
+  scope_stated: Google Cloud Platform, Google Workspace
+  admob_named: false
+- name: SOC 2 / SOC 3
+  scope_stated: Google Cloud Platform, Google Workspace
+  admob_named: false
+- name: SOC 1 Type 2
+  scope_stated: AdWords, AdSense, Google Cloud Platform, Google Workspace, DoubleClick Campaign Manager, DoubleClick
+    for Publishers, DoubleClick Ad Exchange
+  admob_named: false
+- name: FedRAMP
+  scope_stated: Google Workspace, Google Cloud Platform
+  admob_named: false
+- name: PCI DSS
+  scope_stated: Google Cloud Platform, Android Pay
+  admob_named: false
+not_listed:
+- HIPAA
+- CSA STAR
+data_protection_terms:
+  ads_controller_terms: https://business.safety.google/adscontrollerterms/
+  privacy_policy: https://policies.google.com/privacy
+evidence:
+- source: https://business.safety.google/compliance/
+  status: 200
+  keywords: [iso 27001, soc 2, soc 1 type 2, fedramp, pci dss]
+- source: https://privacy.google.com/businesses/compliance/
+  status: 200
+- source: https://trust.admob.google.com/
+  status: dns-nxdomain
+  note: 'Probed 2026-08-13: no A record, connection failed (curl 000). No AdMob-specific trust center exists.'
+- source: https://security.admob.google.com/
+  status: dns-nxdomain
+  note: 'Probed 2026-08-13: no A record, connection failed (curl 000).'

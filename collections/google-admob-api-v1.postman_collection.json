@@ -1,0 +1,2683 @@
+{
+  "item": [
+    {
+      "id": "4978b0f9-0439-4f68-867a-493b34fbff2c",
+      "name": "accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0f413fac-8c4b-435f-a0ea-2c6a44eda263",
+          "name": "Gets information about the specified AdMob publisher account.",
+          "request": {
+            "name": "Gets information about the specified AdMob publisher account.",
+            "description": {
+              "content": "Gets information about the specified AdMob publisher account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":accountsId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountsId",
+                  "description": "(Required) Path segment of the resource name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://www.googleapis.com/auth/admob.readonly https://www.googleapis.com/auth/admob.report"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth2.googleapis.com/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://accounts.google.com/o/oauth2/v2/auth"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8f4843e2-99b2-404b-ac0a-925f0c783432",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reportingTimeZone\": \"string\",\n  \"currencyCode\": \"string\",\n  \"publisherId\": \"string\",\n  \"name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "117136a0-0b2a-49d1-8f2c-4960899072d7",
+              "name": "INVALID_ARGUMENT — malformed request, unknown publisher id, or incompatible report metrics/dimensions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "956fdb78-f7e6-407b-8c09-5fee7b239ac6",
+              "name": "UNAUTHENTICATED — missing or invalid OAuth 2.0 access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69777a0a-acbc-417e-870d-f32933df76f5",
+              "name": "PERMISSION_DENIED — AdMob API not enabled on the project, or the effective user lacks access to the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "877f85b5-d67b-4f0f-9e76-cb12933fbf10",
+              "name": "RESOURCE_EXHAUSTED — per-project quota exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "702cc43c-9c7b-4496-8fed-5c297ac9564d",
+              "name": "INTERNAL — unexpected server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "527ec77d-c936-4596-90d3-f20dcf766ba0",
+          "name": "Lists the AdMob publisher account that was most recently signed in to from the AdMob UI",
+          "request": {
+            "name": "Lists the AdMob publisher account that was most recently signed in to from the AdMob UI",
+            "description": {
+              "content": "Lists the AdMob publisher account that was most recently signed in to from the AdMob UI. For more information, see https://support.google.com/admob/answer/10243672.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "Maximum number of accounts to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "The value returned by the last `ListPublisherAccountsResponse`; indicates that this is a continuation of a prior `ListPublisherAccounts` call, and that the system should return the next page of data."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://www.googleapis.com/auth/admob.readonly https://www.googleapis.com/auth/admob.report"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth2.googleapis.com/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://accounts.google.com/o/oauth2/v2/auth"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ecfb302a-a0c2-4446-8afc-ee401124c497",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account\": [\n    {\n      \"reportingTimeZone\": \"string\",\n      \"currencyCode\": \"string\",\n      \"publisherId\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"reportingTimeZone\": \"string\",\n      \"currencyCode\": \"string\",\n      \"publisherId\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5adc43df-f6a9-4b82-9da1-7115ededfa25",
+              "name": "INVALID_ARGUMENT — malformed request, unknown publisher id, or incompatible report metrics/dimensions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78f8b973-ba54-40f7-8ad2-bebea1cff901",
+              "name": "UNAUTHENTICATED — missing or invalid OAuth 2.0 access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "410f00b6-7806-4f97-a9d2-e6f424090eb1",
+              "name": "PERMISSION_DENIED — AdMob API not enabled on the project, or the effective user lacks access to the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6df5e440-d0e1-40ac-aeb6-1aeb7046f6ab",
+              "name": "RESOURCE_EXHAUSTED — per-project quota exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a48a1600-109f-484d-8716-e081b90f0426",
+              "name": "INTERNAL — unexpected server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "19d44068-551d-4e36-b5d1-6a02c29b2a5f",
+      "name": "networkReport",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b2c77631-60be-4d22-a735-e92d66a4efaa",
+          "name": "Generates an AdMob Network report based on the provided report specification",
+          "request": {
+            "name": "Generates an AdMob Network report based on the provided report specification",
+            "description": {
+              "content": "Generates an AdMob Network report based on the provided report specification. Returns result of a server-side streaming RPC. The result is returned in a sequence of responses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":accountsId",
+                "networkReport:generate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountsId",
+                  "description": "(Required) Path segment of the resource name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://www.googleapis.com/auth/admob.readonly https://www.googleapis.com/auth/admob.report"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth2.googleapis.com/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://accounts.google.com/o/oauth2/v2/auth"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reportSpec\": {\n    \"localizationSettings\": {\n      \"languageCode\": \"<string>\",\n      \"currencyCode\": \"<string>\"\n    },\n    \"maxReportRows\": \"<integer>\",\n    \"dimensions\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"dateRange\": {\n      \"startDate\": {\n        \"year\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"day\": \"<integer>\"\n      },\n      \"endDate\": {\n        \"year\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"day\": \"<integer>\"\n      }\n    },\n    \"dimensionFilters\": [\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"dimension\": \"<string>\"\n      },\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"dimension\": \"<string>\"\n      }\n    ],\n    \"sortConditions\": [\n      {\n        \"metric\": \"<string>\",\n        \"dimension\": \"<string>\",\n        \"order\": \"<string>\"\n      },\n      {\n        \"metric\": \"<string>\",\n        \"dimension\": \"<string>\",\n        \"order\": \"<string>\"\n      }\n    ],\n    \"timeZone\": \"<string>\",\n    \"metrics\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "162c093f-5c68-4c9b-a705-90ea0bd0ab9b",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "networkReport:generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportSpec\": {\n    \"localizationSettings\": {\n      \"languageCode\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"maxReportRows\": 6705,\n    \"dimensions\": [\n      \"DIMENSION_UNSPECIFIED\",\n      \"FORMAT\"\n    ],\n    \"dateRange\": {\n      \"startDate\": {\n        \"year\": 3428,\n        \"month\": 4232,\n        \"day\": 2202\n      },\n      \"endDate\": {\n        \"year\": 3599,\n        \"month\": 4602,\n        \"day\": 3831\n      }\n    },\n    \"dimensionFilters\": [\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"DATE\"\n      },\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"DATE\"\n      }\n    ],\n    \"sortConditions\": [\n      {\n        \"metric\": \"AD_REQUESTS\",\n        \"dimension\": \"MONTH\",\n        \"order\": \"DESCENDING\"\n      },\n      {\n        \"metric\": \"MATCH_RATE\",\n        \"dimension\": \"PLATFORM\",\n        \"order\": \"DESCENDING\"\n      }\n    ],\n    \"timeZone\": \"string\",\n    \"metrics\": [\n      \"MATCHED_REQUESTS\",\n      \"MATCHED_REQUESTS\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"header\": {\n    \"reportingTimeZone\": \"string\",\n    \"dateRange\": {\n      \"startDate\": {\n        \"year\": 4068,\n        \"month\": 4032,\n        \"day\": 9099\n      },\n      \"endDate\": {\n        \"year\": 4878,\n        \"month\": 9790,\n        \"day\": 3845\n      }\n    },\n    \"localizationSettings\": {\n      \"languageCode\": \"string\",\n      \"currencyCode\": \"string\"\n    }\n  },\n  \"row\": {\n    \"dimensionValues\": {\n      \"key_0\": {\n        \"displayLabel\": \"string\",\n        \"value\": \"string\"\n      },\n      \"key_1\": {\n        \"displayLabel\": \"string\",\n        \"value\": \"string\"\n      },\n      \"key_2\": {\n        \"displayLabel\": \"string\",\n        \"value\": \"string\"\n      }\n    },\n    \"metricValues\": {\n      \"key_0\": {\n        \"microsValue\": \"string\",\n        \"integerValue\": \"string\",\n        \"doubleValue\": 7297.288779973863\n      },\n      \"key_1\": {\n        \"microsValue\": \"string\",\n        \"integerValue\": \"string\",\n        \"doubleValue\": 6617.883282032159\n      }\n    }\n  },\n  \"footer\": {\n    \"warnings\": [\n      {\n        \"type\": \"DATA_DELAYED\",\n        \"description\": \"string\"\n      },\n      {\n        \"type\": \"TYPE_UNSPECIFIED\",\n        \"description\": \"string\"\n      }\n    ],\n    \"matchingRowCount\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45819c8f-e307-41c7-baf1-2d374daa1aeb",
+              "name": "INVALID_ARGUMENT — malformed request, unknown publisher id, or incompatible report metrics/dimensions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "networkReport:generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportSpec\": {\n    \"localizationSettings\": {\n      \"languageCode\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"maxReportRows\": 6705,\n    \"dimensions\": [\n      \"DIMENSION_UNSPECIFIED\",\n      \"FORMAT\"\n    ],\n    \"dateRange\": {\n      \"startDate\": {\n        \"year\": 3428,\n        \"month\": 4232,\n        \"day\": 2202\n      },\n      \"endDate\": {\n        \"year\": 3599,\n        \"month\": 4602,\n        \"day\": 3831\n      }\n    },\n    \"dimensionFilters\": [\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"DATE\"\n      },\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"DATE\"\n      }\n    ],\n    \"sortConditions\": [\n      {\n        \"metric\": \"AD_REQUESTS\",\n        \"dimension\": \"MONTH\",\n        \"order\": \"DESCENDING\"\n      },\n      {\n        \"metric\": \"MATCH_RATE\",\n        \"dimension\": \"PLATFORM\",\n        \"order\": \"DESCENDING\"\n      }\n    ],\n    \"timeZone\": \"string\",\n    \"metrics\": [\n      \"MATCHED_REQUESTS\",\n      \"MATCHED_REQUESTS\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e00c990-20b2-44db-a69d-89dd51197c2b",
+              "name": "UNAUTHENTICATED — missing or invalid OAuth 2.0 access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "networkReport:generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportSpec\": {\n    \"localizationSettings\": {\n      \"languageCode\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"maxReportRows\": 6705,\n    \"dimensions\": [\n      \"DIMENSION_UNSPECIFIED\",\n      \"FORMAT\"\n    ],\n    \"dateRange\": {\n      \"startDate\": {\n        \"year\": 3428,\n        \"month\": 4232,\n        \"day\": 2202\n      },\n      \"endDate\": {\n        \"year\": 3599,\n        \"month\": 4602,\n        \"day\": 3831\n      }\n    },\n    \"dimensionFilters\": [\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"DATE\"\n      },\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"DATE\"\n      }\n    ],\n    \"sortConditions\": [\n      {\n        \"metric\": \"AD_REQUESTS\",\n        \"dimension\": \"MONTH\",\n        \"order\": \"DESCENDING\"\n      },\n      {\n        \"metric\": \"MATCH_RATE\",\n        \"dimension\": \"PLATFORM\",\n        \"order\": \"DESCENDING\"\n      }\n    ],\n    \"timeZone\": \"string\",\n    \"metrics\": [\n      \"MATCHED_REQUESTS\",\n      \"MATCHED_REQUESTS\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f633d63e-1eaa-45c8-9538-ee3468648c4e",
+              "name": "PERMISSION_DENIED — AdMob API not enabled on the project, or the effective user lacks access to the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "networkReport:generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportSpec\": {\n    \"localizationSettings\": {\n      \"languageCode\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"maxReportRows\": 6705,\n    \"dimensions\": [\n      \"DIMENSION_UNSPECIFIED\",\n      \"FORMAT\"\n    ],\n    \"dateRange\": {\n      \"startDate\": {\n        \"year\": 3428,\n        \"month\": 4232,\n        \"day\": 2202\n      },\n      \"endDate\": {\n        \"year\": 3599,\n        \"month\": 4602,\n        \"day\": 3831\n      }\n    },\n    \"dimensionFilters\": [\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"DATE\"\n      },\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"DATE\"\n      }\n    ],\n    \"sortConditions\": [\n      {\n        \"metric\": \"AD_REQUESTS\",\n        \"dimension\": \"MONTH\",\n        \"order\": \"DESCENDING\"\n      },\n      {\n        \"metric\": \"MATCH_RATE\",\n        \"dimension\": \"PLATFORM\",\n        \"order\": \"DESCENDING\"\n      }\n    ],\n    \"timeZone\": \"string\",\n    \"metrics\": [\n      \"MATCHED_REQUESTS\",\n      \"MATCHED_REQUESTS\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eba9d345-a34e-418c-818f-317fbce8e225",
+              "name": "RESOURCE_EXHAUSTED — per-project quota exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "networkReport:generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportSpec\": {\n    \"localizationSettings\": {\n      \"languageCode\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"maxReportRows\": 6705,\n    \"dimensions\": [\n      \"DIMENSION_UNSPECIFIED\",\n      \"FORMAT\"\n    ],\n    \"dateRange\": {\n      \"startDate\": {\n        \"year\": 3428,\n        \"month\": 4232,\n        \"day\": 2202\n      },\n      \"endDate\": {\n        \"year\": 3599,\n        \"month\": 4602,\n        \"day\": 3831\n      }\n    },\n    \"dimensionFilters\": [\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"DATE\"\n      },\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"DATE\"\n      }\n    ],\n    \"sortConditions\": [\n      {\n        \"metric\": \"AD_REQUESTS\",\n        \"dimension\": \"MONTH\",\n        \"order\": \"DESCENDING\"\n      },\n      {\n        \"metric\": \"MATCH_RATE\",\n        \"dimension\": \"PLATFORM\",\n        \"order\": \"DESCENDING\"\n      }\n    ],\n    \"timeZone\": \"string\",\n    \"metrics\": [\n      \"MATCHED_REQUESTS\",\n      \"MATCHED_REQUESTS\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "383339e6-c1b2-400a-9245-9dc1f6dac342",
+              "name": "INTERNAL — unexpected server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "networkReport:generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportSpec\": {\n    \"localizationSettings\": {\n      \"languageCode\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"maxReportRows\": 6705,\n    \"dimensions\": [\n      \"DIMENSION_UNSPECIFIED\",\n      \"FORMAT\"\n    ],\n    \"dateRange\": {\n      \"startDate\": {\n        \"year\": 3428,\n        \"month\": 4232,\n        \"day\": 2202\n      },\n      \"endDate\": {\n        \"year\": 3599,\n        \"month\": 4602,\n        \"day\": 3831\n      }\n    },\n    \"dimensionFilters\": [\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"DATE\"\n      },\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"DATE\"\n      }\n    ],\n    \"sortConditions\": [\n      {\n        \"metric\": \"AD_REQUESTS\",\n        \"dimension\": \"MONTH\",\n        \"order\": \"DESCENDING\"\n      },\n      {\n        \"metric\": \"MATCH_RATE\",\n        \"dimension\": \"PLATFORM\",\n        \"order\": \"DESCENDING\"\n      }\n    ],\n    \"timeZone\": \"string\",\n    \"metrics\": [\n      \"MATCHED_REQUESTS\",\n      \"MATCHED_REQUESTS\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0f389f76-13ea-43f3-b5c3-f5c0e90ebcae",
+      "name": "adUnits",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2250b405-d75a-42a5-a603-eed9cd2fd3e4",
+          "name": "List the ad units under the specified AdMob account.",
+          "request": {
+            "name": "List the ad units under the specified AdMob account.",
+            "description": {
+              "content": "List the ad units under the specified AdMob account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":accountsId",
+                "adUnits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "The maximum number of ad units to return. If unspecified or 0, at most 10,000 ad units will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "The value returned by the last `ListAdUnitsResponse`; indicates that this is a continuation of a prior `ListAdUnits` call, and that the system should return the next page of data."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountsId",
+                  "description": "(Required) Path segment of the resource name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://www.googleapis.com/auth/admob.readonly https://www.googleapis.com/auth/admob.report"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth2.googleapis.com/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://accounts.google.com/o/oauth2/v2/auth"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2879295a-671c-4ddf-8063-db812e4bff64",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "adUnits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nextPageToken\": \"string\",\n  \"adUnits\": [\n    {\n      \"appId\": \"string\",\n      \"name\": \"string\",\n      \"adTypes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"adUnitId\": \"string\",\n      \"displayName\": \"string\",\n      \"adFormat\": \"string\"\n    },\n    {\n      \"appId\": \"string\",\n      \"name\": \"string\",\n      \"adTypes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"adUnitId\": \"string\",\n      \"displayName\": \"string\",\n      \"adFormat\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4aa4f3f-20b7-4111-89ac-3710306e88a4",
+              "name": "INVALID_ARGUMENT — malformed request, unknown publisher id, or incompatible report metrics/dimensions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "adUnits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e65f39f2-f98f-45b6-bc68-8164e87c5906",
+              "name": "UNAUTHENTICATED — missing or invalid OAuth 2.0 access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "adUnits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fbef7a0c-6a87-4c2c-9bc3-f24057418e47",
+              "name": "PERMISSION_DENIED — AdMob API not enabled on the project, or the effective user lacks access to the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "adUnits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb33bd44-f1b9-40ab-a3a7-7fc1a62c8cff",
+              "name": "RESOURCE_EXHAUSTED — per-project quota exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "adUnits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15838bf5-614f-4a36-80ef-f5dad8169621",
+              "name": "INTERNAL — unexpected server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "adUnits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4c67afa2-505e-4f8c-a6bc-50412e9b0a4e",
+      "name": "apps",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9f941e1a-37b7-4aa2-b7b3-57feaac7ae65",
+          "name": "List the apps under the specified AdMob account.",
+          "request": {
+            "name": "List the apps under the specified AdMob account.",
+            "description": {
+              "content": "List the apps under the specified AdMob account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":accountsId",
+                "apps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "The maximum number of apps to return. If unspecified or 0, at most 10,000 apps will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "The value returned by the last `ListAppsResponse`; indicates that this is a continuation of a prior `ListApps` call, and that the system should return the next page of data."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountsId",
+                  "description": "(Required) Path segment of the resource name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://www.googleapis.com/auth/admob.readonly https://www.googleapis.com/auth/admob.report"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth2.googleapis.com/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://accounts.google.com/o/oauth2/v2/auth"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0f8f46ce-7b7c-47e8-bda6-64bcc55843bb",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apps\": [\n    {\n      \"appApprovalState\": \"IN_REVIEW\",\n      \"appId\": \"string\",\n      \"linkedAppInfo\": {\n        \"appStoreId\": \"string\",\n        \"displayName\": \"string\"\n      },\n      \"platform\": \"string\",\n      \"name\": \"string\",\n      \"manualAppInfo\": {\n        \"displayName\": \"string\"\n      }\n    },\n    {\n      \"appApprovalState\": \"ACTION_REQUIRED\",\n      \"appId\": \"string\",\n      \"linkedAppInfo\": {\n        \"appStoreId\": \"string\",\n        \"displayName\": \"string\"\n      },\n      \"platform\": \"string\",\n      \"name\": \"string\",\n      \"manualAppInfo\": {\n        \"displayName\": \"string\"\n      }\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89e25a08-6fee-447b-b497-be3e5d742735",
+              "name": "INVALID_ARGUMENT — malformed request, unknown publisher id, or incompatible report metrics/dimensions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d34ace25-f6cd-4f7e-b996-952f2cf314f0",
+              "name": "UNAUTHENTICATED — missing or invalid OAuth 2.0 access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "393f1f5f-4f6c-449d-9492-70450e9c594f",
+              "name": "PERMISSION_DENIED — AdMob API not enabled on the project, or the effective user lacks access to the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2345e12f-61e1-41f6-bbc7-a54067cb6d0d",
+              "name": "RESOURCE_EXHAUSTED — per-project quota exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "834ea98a-0d9a-471f-bf2f-a43af4dc8220",
+              "name": "INTERNAL — unexpected server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f0ea922c-fcdd-47f7-989b-b9cb827954f5",
+      "name": "mediationReport",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "215a02a9-10de-437c-9b30-0a48628ec63b",
+          "name": "Generates an AdMob Mediation report based on the provided report specification",
+          "request": {
+            "name": "Generates an AdMob Mediation report based on the provided report specification",
+            "description": {
+              "content": "Generates an AdMob Mediation report based on the provided report specification. Returns result of a server-side streaming RPC. The result is returned in a sequence of responses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":accountsId",
+                "mediationReport:generate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountsId",
+                  "description": "(Required) Path segment of the resource name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://www.googleapis.com/auth/admob.readonly https://www.googleapis.com/auth/admob.report"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth2.googleapis.com/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://accounts.google.com/o/oauth2/v2/auth"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reportSpec\": {\n    \"dateRange\": {\n      \"startDate\": {\n        \"year\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"day\": \"<integer>\"\n      },\n      \"endDate\": {\n        \"year\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"day\": \"<integer>\"\n      }\n    },\n    \"dimensionFilters\": [\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"dimension\": \"<string>\"\n      },\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"dimension\": \"<string>\"\n      }\n    ],\n    \"sortConditions\": [\n      {\n        \"dimension\": \"<string>\",\n        \"order\": \"<string>\",\n        \"metric\": \"<string>\"\n      },\n      {\n        \"dimension\": \"<string>\",\n        \"order\": \"<string>\",\n        \"metric\": \"<string>\"\n      }\n    ],\n    \"timeZone\": \"<string>\",\n    \"metrics\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"localizationSettings\": {\n      \"languageCode\": \"<string>\",\n      \"currencyCode\": \"<string>\"\n    },\n    \"maxReportRows\": \"<integer>\",\n    \"dimensions\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c764949a-cfea-4d44-894e-5e3aa70043b4",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "mediationReport:generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportSpec\": {\n    \"dateRange\": {\n      \"startDate\": {\n        \"year\": 159,\n        \"month\": 4202,\n        \"day\": 6407\n      },\n      \"endDate\": {\n        \"year\": 7563,\n        \"month\": 8076,\n        \"day\": 2322\n      }\n    },\n    \"dimensionFilters\": [\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"AD_SOURCE_INSTANCE\"\n      },\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"AD_SOURCE\"\n      }\n    ],\n    \"sortConditions\": [\n      {\n        \"dimension\": \"MEDIATION_GROUP\",\n        \"order\": \"DESCENDING\",\n        \"metric\": \"IMPRESSIONS\"\n      },\n      {\n        \"dimension\": \"COUNTRY\",\n        \"order\": \"SORT_ORDER_UNSPECIFIED\",\n        \"metric\": \"IMPRESSIONS\"\n      }\n    ],\n    \"timeZone\": \"string\",\n    \"metrics\": [\n      \"METRIC_UNSPECIFIED\",\n      \"OBSERVED_ECPM\"\n    ],\n    \"localizationSettings\": {\n      \"languageCode\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"maxReportRows\": 2847,\n    \"dimensions\": [\n      \"COUNTRY\",\n      \"WEEK\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"header\": {\n    \"reportingTimeZone\": \"string\",\n    \"dateRange\": {\n      \"startDate\": {\n        \"year\": 407,\n        \"month\": 9718,\n        \"day\": 5852\n      },\n      \"endDate\": {\n        \"year\": 2340,\n        \"month\": 8160,\n        \"day\": 7969\n      }\n    },\n    \"localizationSettings\": {\n      \"languageCode\": \"string\",\n      \"currencyCode\": \"string\"\n    }\n  },\n  \"row\": {\n    \"dimensionValues\": {\n      \"key_0\": {\n        \"displayLabel\": \"string\",\n        \"value\": \"string\"\n      }\n    },\n    \"metricValues\": {\n      \"key_0\": {\n        \"microsValue\": \"string\",\n        \"integerValue\": \"string\",\n        \"doubleValue\": 1737.9026743632276\n      },\n      \"key_1\": {\n        \"microsValue\": \"string\",\n        \"integerValue\": \"string\",\n        \"doubleValue\": 3250.415679851405\n      }\n    }\n  },\n  \"footer\": {\n    \"warnings\": [\n      {\n        \"type\": \"TYPE_UNSPECIFIED\",\n        \"description\": \"string\"\n      },\n      {\n        \"type\": \"REPORT_CURRENCY_NOT_ACCOUNT_CURRENCY\",\n        \"description\": \"string\"\n      }\n    ],\n    \"matchingRowCount\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da4ee8f6-3e3e-4b71-ba30-3fd5d0ef3938",
+              "name": "INVALID_ARGUMENT — malformed request, unknown publisher id, or incompatible report metrics/dimensions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "mediationReport:generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportSpec\": {\n    \"dateRange\": {\n      \"startDate\": {\n        \"year\": 159,\n        \"month\": 4202,\n        \"day\": 6407\n      },\n      \"endDate\": {\n        \"year\": 7563,\n        \"month\": 8076,\n        \"day\": 2322\n      }\n    },\n    \"dimensionFilters\": [\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"AD_SOURCE_INSTANCE\"\n      },\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"AD_SOURCE\"\n      }\n    ],\n    \"sortConditions\": [\n      {\n        \"dimension\": \"MEDIATION_GROUP\",\n        \"order\": \"DESCENDING\",\n        \"metric\": \"IMPRESSIONS\"\n      },\n      {\n        \"dimension\": \"COUNTRY\",\n        \"order\": \"SORT_ORDER_UNSPECIFIED\",\n        \"metric\": \"IMPRESSIONS\"\n      }\n    ],\n    \"timeZone\": \"string\",\n    \"metrics\": [\n      \"METRIC_UNSPECIFIED\",\n      \"OBSERVED_ECPM\"\n    ],\n    \"localizationSettings\": {\n      \"languageCode\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"maxReportRows\": 2847,\n    \"dimensions\": [\n      \"COUNTRY\",\n      \"WEEK\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "437f559e-39ad-431c-9c6e-323078b4924c",
+              "name": "UNAUTHENTICATED — missing or invalid OAuth 2.0 access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "mediationReport:generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportSpec\": {\n    \"dateRange\": {\n      \"startDate\": {\n        \"year\": 159,\n        \"month\": 4202,\n        \"day\": 6407\n      },\n      \"endDate\": {\n        \"year\": 7563,\n        \"month\": 8076,\n        \"day\": 2322\n      }\n    },\n    \"dimensionFilters\": [\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"AD_SOURCE_INSTANCE\"\n      },\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"AD_SOURCE\"\n      }\n    ],\n    \"sortConditions\": [\n      {\n        \"dimension\": \"MEDIATION_GROUP\",\n        \"order\": \"DESCENDING\",\n        \"metric\": \"IMPRESSIONS\"\n      },\n      {\n        \"dimension\": \"COUNTRY\",\n        \"order\": \"SORT_ORDER_UNSPECIFIED\",\n        \"metric\": \"IMPRESSIONS\"\n      }\n    ],\n    \"timeZone\": \"string\",\n    \"metrics\": [\n      \"METRIC_UNSPECIFIED\",\n      \"OBSERVED_ECPM\"\n    ],\n    \"localizationSettings\": {\n      \"languageCode\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"maxReportRows\": 2847,\n    \"dimensions\": [\n      \"COUNTRY\",\n      \"WEEK\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4598adcc-8a30-422e-ab57-a1bbbb5d8218",
+              "name": "PERMISSION_DENIED — AdMob API not enabled on the project, or the effective user lacks access to the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "mediationReport:generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportSpec\": {\n    \"dateRange\": {\n      \"startDate\": {\n        \"year\": 159,\n        \"month\": 4202,\n        \"day\": 6407\n      },\n      \"endDate\": {\n        \"year\": 7563,\n        \"month\": 8076,\n        \"day\": 2322\n      }\n    },\n    \"dimensionFilters\": [\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"AD_SOURCE_INSTANCE\"\n      },\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"AD_SOURCE\"\n      }\n    ],\n    \"sortConditions\": [\n      {\n        \"dimension\": \"MEDIATION_GROUP\",\n        \"order\": \"DESCENDING\",\n        \"metric\": \"IMPRESSIONS\"\n      },\n      {\n        \"dimension\": \"COUNTRY\",\n        \"order\": \"SORT_ORDER_UNSPECIFIED\",\n        \"metric\": \"IMPRESSIONS\"\n      }\n    ],\n    \"timeZone\": \"string\",\n    \"metrics\": [\n      \"METRIC_UNSPECIFIED\",\n      \"OBSERVED_ECPM\"\n    ],\n    \"localizationSettings\": {\n      \"languageCode\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"maxReportRows\": 2847,\n    \"dimensions\": [\n      \"COUNTRY\",\n      \"WEEK\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6a99dbb-32c8-4140-8267-e9a2644c805f",
+              "name": "RESOURCE_EXHAUSTED — per-project quota exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "mediationReport:generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportSpec\": {\n    \"dateRange\": {\n      \"startDate\": {\n        \"year\": 159,\n        \"month\": 4202,\n        \"day\": 6407\n      },\n      \"endDate\": {\n        \"year\": 7563,\n        \"month\": 8076,\n        \"day\": 2322\n      }\n    },\n    \"dimensionFilters\": [\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"AD_SOURCE_INSTANCE\"\n      },\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"AD_SOURCE\"\n      }\n    ],\n    \"sortConditions\": [\n      {\n        \"dimension\": \"MEDIATION_GROUP\",\n        \"order\": \"DESCENDING\",\n        \"metric\": \"IMPRESSIONS\"\n      },\n      {\n        \"dimension\": \"COUNTRY\",\n        \"order\": \"SORT_ORDER_UNSPECIFIED\",\n        \"metric\": \"IMPRESSIONS\"\n      }\n    ],\n    \"timeZone\": \"string\",\n    \"metrics\": [\n      \"METRIC_UNSPECIFIED\",\n      \"OBSERVED_ECPM\"\n    ],\n    \"localizationSettings\": {\n      \"languageCode\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"maxReportRows\": 2847,\n    \"dimensions\": [\n      \"COUNTRY\",\n      \"WEEK\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cf6392c-e064-462c-96e1-98c7fadd55e1",
+              "name": "INTERNAL — unexpected server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountsId",
+                    "mediationReport:generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountsId",
+                      "description": "(Required) Path segment of the resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportSpec\": {\n    \"dateRange\": {\n      \"startDate\": {\n        \"year\": 159,\n        \"month\": 4202,\n        \"day\": 6407\n      },\n      \"endDate\": {\n        \"year\": 7563,\n        \"month\": 8076,\n        \"day\": 2322\n      }\n    },\n    \"dimensionFilters\": [\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"AD_SOURCE_INSTANCE\"\n      },\n      {\n        \"matchesAny\": {\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dimension\": \"AD_SOURCE\"\n      }\n    ],\n    \"sortConditions\": [\n      {\n        \"dimension\": \"MEDIATION_GROUP\",\n        \"order\": \"DESCENDING\",\n        \"metric\": \"IMPRESSIONS\"\n      },\n      {\n        \"dimension\": \"COUNTRY\",\n        \"order\": \"SORT_ORDER_UNSPECIFIED\",\n        \"metric\": \"IMPRESSIONS\"\n      }\n    ],\n    \"timeZone\": \"string\",\n    \"metrics\": [\n      \"METRIC_UNSPECIFIED\",\n      \"OBSERVED_ECPM\"\n    ],\n    \"localizationSettings\": {\n      \"languageCode\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"maxReportRows\": 2847,\n    \"dimensions\": [\n      \"COUNTRY\",\n      \"WEEK\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1351,\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://admob.googleapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://www.googleapis.com/auth/admob.readonly https://www.googleapis.com/auth/admob.report"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth2.googleapis.com/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.google.com/o/oauth2/v2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a261c5d8-af22-41ed-acff-e854459bdfb9",
+    "name": "Google AdMob API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The AdMob API allows publishers to programmatically get information about their AdMob account. \n\nContact Support:\n Name: Google",
+      "type": "text/plain"
+    }
+  }
+}

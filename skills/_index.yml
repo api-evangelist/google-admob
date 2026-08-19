@@ -1,0 +1,55 @@
+generated: '2026-08-13'
+method: generated
+source: >-
+  Grounded in the OpenAPI converted from Google's first-party AdMob Discovery
+  Documents plus the conventions/, errors/, rate-limits/, data-model/ and
+  sandbox/ artifacts in this repository. Every operationId referenced was
+  verified to exist verbatim in the named spec. Google publishes no AGENTS.md or
+  skill files for AdMob (searched 2026-08-13), so these are generated, not
+  harvested.
+skills:
+- file: google-admob-earnings-report.md
+  name: Pull an AdMob earnings report
+  description: >-
+    Resolve the publisher account and generate a network report of earnings,
+    handling the microsValue money format, the 100,000-row ceiling and the
+    per-project reporting quota.
+  api: openapi/google-admob-api-v1-openapi.yml
+  channel: v1
+  writes: false
+  operations:
+  - accounts_list
+  - accounts_get
+  - accounts_networkReport_generate
+- file: google-admob-inventory-audit.md
+  name: Audit AdMob apps and ad units
+  description: >-
+    Walk apps, ad units, ad sources, adapters and ad unit mappings read-only,
+    paging correctly and staying inside the 120/minute inventory quota.
+  api: openapi/google-admob-api-v1beta-openapi.yml
+  channel: v1beta
+  writes: false
+  operations:
+  - accounts_list
+  - accounts_apps_list
+  - accounts_adUnits_list
+  - accounts_adSources_list
+  - accounts_adSources_adapters_list
+  - accounts_adUnits_adUnitMappings_list
+- file: google-admob-mediation-experiment.md
+  name: Run a mediation A/B experiment
+  description: >-
+    Create or patch a mediation group and run an A/B experiment on production
+    inventory — no sandbox, no idempotency key, human confirmation required on
+    every write.
+  api: openapi/google-admob-api-v1beta-openapi.yml
+  channel: v1beta
+  writes: true
+  operations:
+  - accounts_list
+  - accounts_mediationGroups_list
+  - accounts_mediationGroups_create
+  - accounts_mediationGroups_patch
+  - accounts_mediationGroups_mediationAbExperiments_create
+  - accounts_mediationGroups_mediationAbExperiments_stop
+  - accounts_mediationReport_generate

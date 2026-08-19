@@ -1,0 +1,156 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/google-admob-api-v1beta-openapi.yml, openapi/google-admob-api-v1-openapi.yml
+derived_from_discovery: discovery/google-admob-api-v1beta.json (revision 20260731)
+docs: https://developers.google.com/admob/api/rest
+notes: >-
+  Entity graph derived from the $ref links and id-reference fields in the
+  converted OpenAPI (50 schemas on v1beta, 29 on v1). AdMob's model is a strict
+  hierarchy hanging off PublisherAccount, expressed through Google resource
+  names rather than foreign-key objects — most relationships are carried as a
+  string id field (appId, adUnitId, adSourceId, adapterId, mediationGroupId), so
+  `via` below names that field. Reporting is not part of the entity graph: the
+  three :generate methods take a report specification and return rows, they do
+  not expose a queryable Report resource.
+root_entity: PublisherAccount
+entities:
+- name: PublisherAccount
+  resource_name: accounts/{publisherId}
+  id_field: publisherId
+  id_format: pub-XXXXXXXXXXXXXXXX
+  fields: [name, publisherId, reportingTimeZone, currencyCode]
+  operations: [accounts_get, accounts_list]
+  note: The tenant. Every other resource is a child of it.
+- name: App
+  resource_name: accounts/{publisherId}/apps/{appId}
+  id_field: appId
+  fields: [name, appId, platform, appApprovalState, manualAppInfo, linkedAppInfo]
+  operations: [accounts_apps_list, accounts_apps_create]
+  embeds: [AppManualAppInfo, AppLinkedAppInfo]
+- name: AdUnit
+  resource_name: accounts/{publisherId}/adUnits/{adUnitId}
+  id_field: adUnitId
+  fields: [name, adUnitId, appId, displayName, adFormat, adTypes, rewardSettings]
+  operations: [accounts_adUnits_list, accounts_adUnits_create]
+  embeds: [AdUnitRewardSettings]
+- name: AdUnitMapping
+  resource_name: accounts/{publisherId}/adUnits/{adUnitId}/adUnitMappings/{adUnitMappingId}
+  fields: [name, displayName, adapterId, adUnitConfigurations, state]
+  operations:
+  - accounts_adUnits_adUnitMappings_list
+  - accounts_adUnits_adUnitMappings_create
+  - accounts_adUnitMappings_batchCreate
+  note: Binds one AdMob ad unit to one third-party mediation adapter's own ad unit.
+- name: AdSource
+  resource_name: accounts/{publisherId}/adSources/{adSourceId}
+  id_field: adSourceId
+  fields: [name, title, adSourceId]
+  operations: [accounts_adSources_list]
+  note: Read-only catalog of the mediation networks available to the account.
+- name: Adapter
+  resource_name: accounts/{publisherId}/adSources/{adSourceId}/adapters/{adapterId}
+  id_field: adapterId
+  fields: [name, adapterId, title, formats, platform, adapterConfigMetadata]
+  operations: [accounts_adSources_adapters_list]
+  embeds: [AdapterAdapterConfigMetadata]
+- name: MediationGroup
+  resource_name: accounts/{publisherId}/mediationGroups/{mediationGroupId}
+  id_field: mediationGroupId
+  fields: [name, mediationGroupId, displayName, state, targeting, mediationGroupLines, mediationAbExperimentState]
+  operations: [accounts_mediationGroups_list, accounts_mediationGroups_create, accounts_mediationGroups_patch]
+  embeds: [MediationGroupTargeting, MediationGroupMediationGroupLine]
+- name: MediationAbExperiment
+  resource_name: accounts/{publisherId}/mediationGroups/{mediationGroupId}/mediationAbExperiments/{experimentId}
+  id_field: experimentId
+  fields: [name, experimentId, displayName, mediationGroupId, state, startTime, endTime, treatmentTrafficPercentage,
+    controlMediationLines, treatmentMediationLines, variantLeader]
+  operations:
+  - accounts_mediationGroups_mediationAbExperiments_create
+  - accounts_mediationGroups_mediationAbExperiments_stop
+relationships:
+- from: PublisherAccount
+  to: App
+  kind: has_many
+  via: parent resource name accounts/{publisherId}
+- from: PublisherAccount
+  to: AdUnit
+  kind: has_many
+  via: parent resource name accounts/{publisherId}
+- from: PublisherAccount
+  to: AdSource
+  kind: has_many
+  via: parent resource name accounts/{publisherId}
+- from: PublisherAccount
+  to: MediationGroup
+  kind: has_many
+  via: parent resource name accounts/{publisherId}
+- from: AdUnit
+  to: App
+  kind: belongs_to
+  via: AdUnit.appId
+- from: AdUnit
+  to: AdUnitMapping
+  kind: has_many
+  via: parent resource name accounts/{publisherId}/adUnits/{adUnitId}
+- from: AdUnitMapping
+  to: Adapter
+  kind: belongs_to
+  via: AdUnitMapping.adapterId
+- from: AdSource
+  to: Adapter
+  kind: has_many
+  via: parent resource name accounts/{publisherId}/adSources/{adSourceId}
+- from: MediationGroup
+  to: MediationGroupMediationGroupLine
+  kind: has_many
+  via: MediationGroup.mediationGroupLines
+- from: MediationGroupMediationGroupLine
+  to: AdSource
+  kind: belongs_to
+  via: MediationGroupMediationGroupLine.adSourceId
+- from: MediationGroupMediationGroupLine
+  to: AdUnitMapping
+  kind: has_many
+  via: MediationGroupMediationGroupLine.adUnitMappings
+- from: MediationGroup
+  to: AdUnit
+  kind: has_many
+  via: MediationGroupTargeting.adUnitIds
+- from: MediationGroup
+  to: MediationAbExperiment
+  kind: has_many
+  via: parent resource name accounts/{publisherId}/mediationGroups/{mediationGroupId}
+- from: MediationAbExperiment
+  to: MediationGroup
+  kind: belongs_to
+  via: MediationAbExperiment.mediationGroupId
+reporting_model:
+  note: >-
+    Reports are a request/response projection, not an entity. Each :generate
+    method posts a report specification and returns a row stream.
+  specifications:
+  - name: NetworkReportSpec
+    operation: accounts_networkReport_generate
+    fields: [dateRange, dimensions, metrics, dimensionFilters, sortConditions, maxReportRows, timeZone, localizationSettings]
+    versions: [v1, v1beta]
+  - name: MediationReportSpec
+    operation: accounts_mediationReport_generate
+    fields: [dateRange, dimensions, metrics, dimensionFilters, sortConditions, maxReportRows, timeZone, localizationSettings]
+    versions: [v1, v1beta]
+  - name: CampaignReportSpec
+    operation: accounts_campaignReport_generate
+    fields: [dateRange, dimensions, metrics, languageCode]
+    versions: [v1beta]
+  row_shape:
+    header: ReportHeader (dateRange, reportingTimeZone, localizationSettings)
+    row: ReportRow (dimensionValues -> ReportRowDimensionValue, metricValues -> ReportRowMetricValue)
+    footer: ReportFooter (matchingRowCount, warnings -> ReportWarning)
+  metric_value_note: >-
+    ReportRowMetricValue is a oneof — integerValue, doubleValue or microsValue.
+    Revenue arrives as microsValue (millionths of the account currency); a
+    consumer that reads doubleValue for earnings will silently get nothing.
+counts:
+  entities: 8
+  relationships: 14
+  schemas_v1: 29
+  schemas_v1beta: 50

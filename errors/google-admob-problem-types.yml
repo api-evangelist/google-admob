@@ -1,0 +1,118 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.google.com/admob/api/v1/errors
+docs: https://developers.google.com/admob/api/v1/errors
+derived_from: openapi/google-admob-api-v1-openapi.yml, openapi/google-admob-api-v1beta-openapi.yml
+format: google-rpc-status
+rfc9457: false
+notes: >-
+  The AdMob API does NOT use RFC 9457 application/problem+json. It returns
+  Google's canonical error envelope — a google.rpc.Status object wrapped in a
+  top-level `error` key, carrying an integer `code` (HTTP status), a
+  developer-facing `message`, a canonical `status` reason string
+  (INVALID_ARGUMENT, UNAUTHENTICATED, PERMISSION_DENIED, RESOURCE_EXHAUSTED,
+  INTERNAL) and an optional `details[]` array. The Discovery Document declares no
+  error schemas at all, so the envelope shape and every entry below was read from
+  Google's published AdMob "Common errors and suggested actions" page rather than
+  derived from the contract. Content-Type is application/json, never
+  application/problem+json.
+envelope:
+  content_type: application/json
+  shape: '{"error": {"code": <int>, "message": "<string>", "status": "<CANONICAL_REASON>", "details": [...]}}'
+  fields:
+  - name: error.code
+    type: integer
+    description: Mirrors the HTTP status code.
+  - name: error.message
+    type: string
+    description: Developer-facing message in English.
+  - name: error.status
+    type: string
+    description: Canonical google.rpc.Code reason string.
+  - name: error.details
+    type: array
+    description: Optional structured detail messages.
+problems:
+- status: 400
+  reason: INVALID_ARGUMENT
+  title: Invalid account information in request URL
+  message: "Invalid account information in request url: 'accounts/pub-XXXXXXXXXXXXXXXX'"
+  cause: The publisher ID placeholder in the resource name was not replaced with a real AdMob publisher ID.
+  remediation: >-
+    Substitute your own publisher ID (the pub-… value shown in the AdMob UI, or
+    returned by accounts_list) into the accounts/{publisherId} resource name.
+  affects:
+  - accounts_get
+  - accounts_apps_list
+  - accounts_adUnits_list
+  - accounts_networkReport_generate
+  - accounts_mediationReport_generate
+- status: 400
+  reason: INVALID_ARGUMENT
+  title: Report row limit exceeded
+  message: Cannot request more than 100,000 rows in one report request.
+  cause: maxReportRows in the report specification exceeded the hard 100,000-row ceiling.
+  remediation: Set maxReportRows between 1 and 100,000 and page the report by date range or dimension.
+  affects:
+  - accounts_networkReport_generate
+  - accounts_mediationReport_generate
+  - accounts_campaignReport_generate
+- status: 400
+  reason: INVALID_ARGUMENT
+  title: Incompatible metrics and dimensions
+  message: Requested metrics and dimensions are incompatible.
+  cause: The report specification combined a metric with a dimension that AdMob does not support together.
+  remediation: >-
+    Check the compatibility table in the network-report and mediation-report
+    reference before building the report specification; the valid combinations
+    differ between network and mediation reports.
+  affects:
+  - accounts_networkReport_generate
+  - accounts_mediationReport_generate
+- status: 401
+  reason: UNAUTHENTICATED
+  title: Missing or invalid credentials
+  message: Request is missing required authentication credential. Expected OAuth 2 access token, login cookie
+    or other valid authentication credential.
+  cause: No Authorization header, an expired access token, or a token minted without an AdMob scope.
+  remediation: >-
+    Complete the OAuth 2.0 flow with https://www.googleapis.com/auth/admob.readonly
+    and/or admob.report, and send the access token as `Authorization: Bearer <token>`.
+    Service accounts are not supported by AdMob.
+  cross_link: authentication/google-admob-authentication.yml
+- status: 403
+  reason: PERMISSION_DENIED
+  title: AdMob API not enabled on the project
+  message: AdMob API has not been used in project XXXXXXXXXXXX before or it is disabled.
+  cause: The Google Cloud project behind the OAuth client has not enabled admob.googleapis.com.
+  remediation: Enable the AdMob API for the project in the Google API Console, then retry after propagation.
+- status: 403
+  reason: PERMISSION_DENIED
+  title: Resource not accessible to the effective user
+  message: The requested resource is not accessible to the effective user.
+  cause: >-
+    The authenticated Google account is not an AdMob user on that publisher
+    account, or holds a role without access to the requested inventory/reporting
+    resource.
+  remediation: Review the AdMob account access roles for the authorizing user and re-consent with the correct account.
+- status: 429
+  reason: RESOURCE_EXHAUSTED
+  title: Quota exceeded
+  message: Quota exceeded for quota group 'ReportingReadGroup'
+  cause: The per-project quota for that method class (account, inventory or reporting) was exhausted.
+  remediation: >-
+    Apply client-side rate limiting, request fewer rows per report, and request
+    additional daily quota through the AdMob API developer forum. No Retry-After
+    header is returned, so back off on a client-side schedule.
+  cross_link: rate-limits/google-admob-rate-limits.yml
+- status: 500
+  reason: INTERNAL
+  title: Internal server error
+  message: Internal error encountered.
+  cause: Unexpected server-side failure.
+  remediation: Retry with exponential backoff. Note that v1beta writes are not idempotency-protected — re-read
+    the parent collection before retrying a create.
+  cross_link: conventions/google-admob-conventions.yml
+  documented: false
+  note: Not enumerated on Google's AdMob errors page; included because google.rpc.Status INTERNAL is the standard
+    Google API 5xx and the converted OpenAPI declares it.

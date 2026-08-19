@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google AdMob Accounts Apps API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
+      "accessTokenUrl": "https://oauth2.googleapis.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Apps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google AdMob List apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1/:parent/apps",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lists apps under the specified AdMob account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

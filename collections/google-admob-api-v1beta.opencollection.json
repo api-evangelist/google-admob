@@ -1,0 +1,757 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google AdMob API",
+    "version": "v1beta"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+      "accessTokenUrl": "https://oauth2.googleapis.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets information about the specified AdMob publisher account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId",
+            "params": [
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets information about the specified AdMob publisher account."
+        },
+        {
+          "info": {
+            "name": "Lists the AdMob publisher account that was most recently signed in to from the AdMob UI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1beta/accounts",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of accounts to return."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The value returned by the last `ListPublisherAccountsResponse`; indicates that this is a continuation of a prior `ListPublisherAccounts` call, and that the system should return the next page of data."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lists the AdMob publisher account that was most recently signed in to from the AdMob UI. For more information, see https://support.google.com/admob/answer/10243672."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "campaignReport",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generates Campaign Report based on provided specifications.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/campaignReport:generate",
+            "params": [
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Generates Campaign Report based on provided specifications."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "mediationGroups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List mediation groups under the specified AdMob account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/mediationGroups",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filter string that uses [EBNF grammar syntax](https://google.aip.dev/assets/misc/ebnf-filtering.txt). Possible fields to filter by are: - \"AD_SOURCE_IDS\" - \"AD_UNIT_IDS\" - \"APP_IDS\" - \"DISPLAY_NAME\" - \"FORMAT\" - \"MEDIATION_GROUP_ID\" - \"PLATFORM\" - \"STATE\" - \"TARGETED_REGION_CODES\" Possible filter functions are: - `IN`: Used to filter fields that represent a singleton including \"MEDIATION_GROUP_ID\", \"DISPLAY_NAME\", \"STATE\", \"PLATFORM\", and \"FORMAT\". - `CONTAINS_ANY`: Used to filter fields that represent a collection including \"AD_SOURCE_IDS\", \"AD_UNIT_IDS\", \"APP_IDS\", and \"TARGETED_REGION_CODES\". The filter functions can be added together using `AND`. `OR` functionality is not supported. Example: filter: IN(DISPLAY_NAME, \"Test Group 1\", \"Test Group 2\") AND IN(PLATFORM, \"ANDROID\") AND CONTAINS_ANY(AD_SOURCE_IDS, \"5450213213286189855\")"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of mediation groups to return. If unspecified or 0, at most 10,000 mediation groups will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The value returned by the last `ListMediationGroupsResponse`; indicates that this is a continuation of a prior `ListMediationGroups` call, and that the system should return the next page of data."
+              },
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List mediation groups under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
+        },
+        {
+          "info": {
+            "name": "Create a mediation group under the specific AdMob account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/mediationGroups",
+            "params": [
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a mediation group under the specific AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
+        },
+        {
+          "info": {
+            "name": "Update the specified mediation group under the specified AdMob account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/mediationGroups/:mediationGroupsId",
+            "params": [
+              {
+                "name": "updateMask",
+                "value": "",
+                "type": "query",
+                "description": "List of mediation group fields to be updated. Updates to repeated fields such as items in a list will fully replace the existing value(s) with the new value(s). Updates to individual values in a map can be done by indexing by the key. The following field masks are supported for mediation group updates: - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"]\" clang-format off - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].ad_unit_mappings[\\\"{ad_unit_id}\\\"]\" clang-format on - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].cpm_micros\" - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].cpm_mode\" - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].state\" - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].display_name\" - \"targeting.ad_unit_ids\" To update a mediation group with a new mediation group line, use a distinct negative number for the \"mediation_group_line_id\". For Example: update_mask { paths: \"mediation_group_lines[\\\"123456789012345\\\"].cpm_micros\" }"
+              },
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              },
+              {
+                "name": "mediationGroupsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the specified mediation group under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "mediationAbExperiments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an A/B testing experiment for a specified AdMob account and a mediation group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/mediationGroups/:mediationGroupsId/mediationAbExperiments",
+            "params": [
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              },
+              {
+                "name": "mediationGroupsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an A/B testing experiment for a specified AdMob account and a mediation group. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
+        },
+        {
+          "info": {
+            "name": "Stop the mediation A/B experiment and choose a variant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/mediationGroups/:mediationGroupsId/mediationAbExperiments:stop",
+            "params": [
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              },
+              {
+                "name": "mediationGroupsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stop the mediation A/B experiment and choose a variant. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "mediationReport",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generates an AdMob Mediation report based on the provided report specification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/mediationReport:generate",
+            "params": [
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Generates an AdMob Mediation report based on the provided report specification. Returns result of a server-side streaming RPC. The result is returned in a sequence of responses."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "apps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the apps under the specified AdMob account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/apps",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of apps to return. If unspecified or 0, at most 10,000 apps will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The value returned by the last `ListAppsResponse`; indicates that this is a continuation of a prior `ListApps` call, and that the system should return the next page of data."
+              },
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List the apps under the specified AdMob account."
+        },
+        {
+          "info": {
+            "name": "Creates an app under the specified AdMob account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/apps",
+            "params": [
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an app under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "adUnitMappings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Batch create the ad unit mappings under the specific AdMob account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/adUnitMappings:batchCreate",
+            "params": [
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Batch create the ad unit mappings under the specific AdMob account. The maximum allowed batch size is 100. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
+        },
+        {
+          "info": {
+            "name": "List ad unit mappings under the specified AdMob account and ad unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/adUnits/:adUnitsId/adUnitMappings",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filter string that uses [EBNF grammar syntax](https://google.aip.dev/assets/misc/ebnf-filtering.txt). Possible field to filter by is: - \"DISPLAY_NAME\" Possible filter function is: - `IN`: Used to filter fields that represent a singleton including \"DISPLAY_NAME\". The filter functions can be added together using `AND`. `OR` functionality is not supported. Example: filter: IN(DISPLAY_NAME, \"Test Ad Unit Mapping 1\", \"Test Ad Unit Mapping 2\")"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of ad unit mappings to return. If unspecified or 0, at most 10,000 ad unit mappings will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "A page token, received from a previous `ListAdUnitMappings` call. Provide this to retrieve the subsequent page."
+              },
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              },
+              {
+                "name": "adUnitsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List ad unit mappings under the specified AdMob account and ad unit. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
+        },
+        {
+          "info": {
+            "name": "Create an ad unit mapping under the specific AdMob account and ad unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/adUnits/:adUnitsId/adUnitMappings",
+            "params": [
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              },
+              {
+                "name": "adUnitsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an ad unit mapping under the specific AdMob account and ad unit. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "networkReport",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generates an AdMob Network report based on the provided report specification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/networkReport:generate",
+            "params": [
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Generates an AdMob Network report based on the provided report specification. Returns result of a server-side streaming RPC. The result is returned in a sequence of responses."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "adUnits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the ad units under the specified AdMob account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/adUnits",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of ad units to return. If unspecified or 0, at most 10,000 ad units will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The value returned by the last `ListAdUnitsResponse`; indicates that this is a continuation of a prior `ListAdUnits` call, and that the system should return the next page of data."
+              },
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List the ad units under the specified AdMob account."
+        },
+        {
+          "info": {
+            "name": "Creates an ad unit under the specified AdMob account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/adUnits",
+            "params": [
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an ad unit under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "adSources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the ad sources.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/adSources",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of ad sources to return. If unspecified or 0, at most 10,000 ad sources will be returned. The maximum value is 20,000; values above 10,000 will be coerced to 20,000."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "A page token, received from a previous `ListAdSources` call. Provide this to retrieve the subsequent page."
+              },
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List the ad sources."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "adapters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the adapters of the ad source.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1beta/accounts/:accountsId/adSources/:adSourcesId/adapters",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of adapters to return. If unspecified or 0, at most 10,000 adapters will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "A page token, received from a previous `ListAdapters` call. Provide this to retrieve the subsequent page."
+              },
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              },
+              {
+                "name": "adSourcesId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List the adapters of the ad source."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

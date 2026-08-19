@@ -1,18 +1,40 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/openapi.yml
+generated: '2026-08-13'
+method: searched
+source: openapi/google-admob-api-v1-openapi.yml, openapi/google-admob-api-v1beta-openapi.yml
 summary:
   types:
   - oauth2
   oauth2_flows:
   - authorizationCode
 schemes:
-- name: oauth2
+- name: GoogleOAuth2
   type: oauth2
   flows:
   - flow: authorizationCode
-    authorizationUrl: https://accounts.google.com/o/oauth2/auth
+    authorizationUrl: https://accounts.google.com/o/oauth2/v2/auth
     tokenUrl: https://oauth2.googleapis.com/token
     scopes: 2
+  description: Google OAuth 2.0 user authorization. AdMob does not support service accounts.
   sources:
-  - openapi/openapi.yml
+  - openapi/google-admob-api-v1-openapi.yml
+  - openapi/google-admob-api-v1beta-openapi.yml
+docs: https://developers.google.com/admob/api/v1/getting-started
+searched_source: https://developers.google.com/admob/api/v1/getting-started
+notes: 'Upgraded from the mechanically derived profile on 2026-08-13 by reading Google''s own AdMob auth
+  documentation. AdMob accepts ONLY a Google OAuth 2.0 user access token, sent as ''Authorization: Bearer
+  <token>''. There is no API key, no basic auth, no mutual TLS client auth and - critically for automation
+  - NO SERVICE ACCOUNT SUPPORT, so an unattended agent cannot self-authorize; a human must complete consent
+  and the refresh token must be held. The AdMob API must additionally be enabled on the Google Cloud project
+  behind the OAuth client or every call returns 403 PERMISSION_DENIED. The authorization server is accounts.google.com,
+  whose RFC 8414 metadata and OIDC discovery documents were probed live (both HTTP 200) and saved to well-known/.'
+service_accounts_supported: false
+api_keys_supported: false
+token_type: OAuth 2.0 user access token (Bearer)
+authorization_server:
+  issuer: https://accounts.google.com
+  metadata: well-known/google-admob-oauth-authorization-server.json
+  openid_configuration: well-known/google-admob-openid-configuration.json
+cross_links:
+  scopes: scopes/google-admob-scopes.yml
+  conventions: conventions/google-admob-conventions.yml
+  errors: errors/google-admob-problem-types.yml

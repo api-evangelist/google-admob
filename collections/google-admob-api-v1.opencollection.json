@@ -1,0 +1,274 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google AdMob API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+      "accessTokenUrl": "https://oauth2.googleapis.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets information about the specified AdMob publisher account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1/accounts/:accountsId",
+            "params": [
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets information about the specified AdMob publisher account."
+        },
+        {
+          "info": {
+            "name": "Lists the AdMob publisher account that was most recently signed in to from the AdMob UI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1/accounts",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of accounts to return."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The value returned by the last `ListPublisherAccountsResponse`; indicates that this is a continuation of a prior `ListPublisherAccounts` call, and that the system should return the next page of data."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lists the AdMob publisher account that was most recently signed in to from the AdMob UI. For more information, see https://support.google.com/admob/answer/10243672."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "networkReport",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generates an AdMob Network report based on the provided report specification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://admob.googleapis.com/v1/accounts/:accountsId/networkReport:generate",
+            "params": [
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Generates an AdMob Network report based on the provided report specification. Returns result of a server-side streaming RPC. The result is returned in a sequence of responses."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "adUnits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the ad units under the specified AdMob account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1/accounts/:accountsId/adUnits",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of ad units to return. If unspecified or 0, at most 10,000 ad units will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The value returned by the last `ListAdUnitsResponse`; indicates that this is a continuation of a prior `ListAdUnits` call, and that the system should return the next page of data."
+              },
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List the ad units under the specified AdMob account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "apps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the apps under the specified AdMob account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://admob.googleapis.com/v1/accounts/:accountsId/apps",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of apps to return. If unspecified or 0, at most 10,000 apps will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The value returned by the last `ListAppsResponse`; indicates that this is a continuation of a prior `ListApps` call, and that the system should return the next page of data."
+              },
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List the apps under the specified AdMob account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "mediationReport",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generates an AdMob Mediation report based on the provided report specification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://admob.googleapis.com/v1/accounts/:accountsId/mediationReport:generate",
+            "params": [
+              {
+                "name": "accountsId",
+                "value": "",
+                "type": "path",
+                "description": "Path segment of the resource name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+              "accessTokenUrl": "https://oauth2.googleapis.com/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Generates an AdMob Mediation report based on the provided report specification. Returns result of a server-side streaming RPC. The result is returned in a sequence of responses."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

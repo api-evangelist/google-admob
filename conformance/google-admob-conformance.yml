@@ -1,0 +1,104 @@
+generated: '2026-08-13'
+method: derived
+source: discovery/google-admob-api-v1.json, discovery/google-admob-api-v1beta.json, openapi/google-admob-api-v1beta-openapi.yml
+searched: https://developers.google.com/admob/api/v1/errors, https://business.safety.google/compliance/
+notes: >-
+  Cross-cutting standards posture for the AdMob API, derived from the harvested
+  Discovery Documents and the converted OpenAPI, with the compliance claims read
+  from Google's own published pages. The headline is that AdMob is standards-lean
+  in the API-design sense: it conforms to OAuth 2.0 and to Google's own AIP
+  resource conventions, but it publishes no OpenAPI of its own, no RFC 9457
+  problem details, no RFC 8594 sunset headers, no RFC 9116 security.txt on its
+  own host, and no rate-limit header standard.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    Discovery `auth.oauth2.scopes` declares admob.readonly and admob.report;
+    authorization at accounts.google.com/o/oauth2/v2/auth, tokens at
+    oauth2.googleapis.com/token. Verified against the RFC 8414 metadata at
+    accounts.google.com/.well-known/oauth-authorization-server (HTTP 200).
+- id: oidc
+  conforms: partial
+  evidence: >-
+    The authorization server (accounts.google.com) is a certified OpenID Provider
+    and serves OIDC discovery (well-known/google-admob-openid-configuration.json,
+    HTTP 200), but the AdMob API itself declares no openIdConnect security scheme
+    and consumes only OAuth 2.0 access tokens.
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: https://accounts.google.com/.well-known/oauth-authorization-server returned 200 on 2026-08-13.
+- id: openapi
+  conforms: false
+  evidence: >-
+    Google publishes no OpenAPI for AdMob. The machine-readable contract is a
+    Google Discovery Document (discovery#restDescription) served at
+    admob.googleapis.com/$discovery/rest. The OpenAPI in openapi/ was converted
+    by API Evangelist from that document.
+- id: google-discovery-document
+  conforms: true
+  evidence: kind=discovery#restDescription, revision 20260731, served for both v1 and v1beta.
+- id: google-aip-resource-names
+  conforms: true
+  evidence: >-
+    Hierarchical resource names (accounts/{publisherId}/adUnits/{adUnitId}),
+    AIP-158 pageSize/pageToken/nextPageToken paging, AIP-134 updateMask partial
+    update, colon-suffixed custom methods.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors are google.rpc.Status under an `error` key with Content-Type
+    application/json; no application/problem+json anywhere in the documentation
+    or the Discovery Document.
+- id: grpc-protobuf
+  conforms: partial
+  evidence: >-
+    google/ads/admob/v1/admob_api.proto is published in googleapis/googleapis
+    (service AdMobApi, 4 RPCs) and harvested to grpc/, but no public gRPC
+    endpoint is documented — only the REST/JSON transport and an mTLS root at
+    admob.mtls.googleapis.com.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header support; no deprecation policy published.
+- id: rfc9116-security-txt
+  conforms: partial
+  evidence: >-
+    admob.googleapis.com/.well-known/security.txt returns 404. Google's corporate
+    security.txt is served from www.google.com (200) and carries the Policy and
+    Contact that govern AdMob disclosure.
+- id: ratelimit-headers
+  conforms: false
+  evidence: >-
+    No RateLimit-*, X-RateLimit-* or Retry-After headers documented; exhaustion
+    signalled only by HTTP 429 + RESOURCE_EXHAUSTED.
+- id: idempotency-keys
+  conforms: false
+  evidence: No Idempotency-Key header or client request id on any v1beta write method.
+- id: json-api
+  conforms: false
+- id: odata
+  conforms: false
+- id: scim
+  conforms: false
+- id: fhir
+  conforms: false
+- id: fapi
+  conforms: false
+- id: psd2
+  conforms: false
+compliance_program:
+  published: true
+  url: https://business.safety.google/compliance/
+  certifications: [ISO 27001, ISO 27017, ISO 27018, ISO 27701, SOC 1 Type 2, SOC 2, SOC 3, FedRAMP, PCI DSS]
+  admob_named_in_scope: false
+  note: >-
+    Google publishes a business-wide compliance page naming these certifications
+    and their product scope. AdMob is not enumerated on it — Google Ads appears
+    under ISO 27001, AdWords/AdSense under SOC 1 Type 2. See
+    security/google-admob-trust-center.yml for the full scope breakdown.
+cross_links:
+  authentication: authentication/google-admob-authentication.yml
+  scopes: scopes/google-admob-scopes.yml
+  errors: errors/google-admob-problem-types.yml
+  conventions: conventions/google-admob-conventions.yml
+  trust_center: security/google-admob-trust-center.yml

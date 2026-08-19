@@ -1,0 +1,69 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.google.com/admob/android/test-ads
+docs:
+  android: https://developers.google.com/admob/android/test-ads
+  ios: https://developers.google.com/admob/ios/test-ads
+notes: >-
+  AdMob has NO sandbox for the REST management/reporting API.
+  admob.googleapis.com has a single live environment, no test-vs-live key
+  prefixes, no test mode and no simulated data — every call reads the caller's
+  real AdMob account, and the v1beta write methods create real apps, ad units,
+  ad unit mappings and mediation groups against production inventory. The
+  sandbox surface AdMob does publish sits on the publisher-integration side: a
+  permanent set of Google-owned demo ad unit IDs that always serve test ads, and
+  a test-device mechanism for serving test ads against your own ad units. Every
+  value below was read verbatim from Google's own test-ads pages on 2026-08-13;
+  none is invented.
+api_sandbox:
+  available: false
+  detail: >-
+    No sandbox host, no test credentials, no test/live separation for the AdMob
+    API. Treat every v1beta write as a production mutation.
+  agent_warning: >-
+    An agent given admob.report/admob.readonly on v1beta can create production
+    inventory with no way to roll back and no idempotency key to make a retry
+    safe. Gate every write behind human confirmation.
+test_mode:
+  mechanisms:
+  - name: Demo ad units
+    detail: >-
+      Google-owned ad unit IDs that always return test ads and are safe to
+      hard-code during development. Not associated with your AdMob account, so
+      they carry no invalid-traffic risk. All share the publisher prefix
+      ca-app-pub-3940256099942544.
+  - name: Test devices
+    detail: >-
+      Register a device so your own ad units serve test ads — programmatically
+      via RequestConfiguration.Builder.setTestDeviceIds() using the device id
+      printed to logcat, or through the AdMob UI. Ads then render with a
+      "Test Ad" label and clicks generate no reportable impressions.
+demo_ad_units:
+  publisher_prefix: ca-app-pub-3940256099942544
+  android:
+    app_open: ca-app-pub-3940256099942544/9257395921
+    banner_anchored_adaptive: ca-app-pub-3940256099942544/9214589741
+    banner_inline_adaptive: ca-app-pub-3940256099942544/9214589741
+    banner_fixed_size: ca-app-pub-3940256099942544/6300978111
+    interstitial: ca-app-pub-3940256099942544/1033173712
+    rewarded: ca-app-pub-3940256099942544/5224354917
+    rewarded_interstitial: ca-app-pub-3940256099942544/5354046379
+    native: ca-app-pub-3940256099942544/2247696110
+    native_video: ca-app-pub-3940256099942544/1044960115
+  ios:
+    documented_at: https://developers.google.com/admob/ios/test-ads
+    note: >-
+      The iOS page publishes an equivalent demo ad unit table under the same
+      ca-app-pub-3940256099942544 publisher prefix. Values not transcribed here;
+      read them from the iOS page rather than assuming they match Android — they
+      do not.
+  verified: '2026-08-13'
+test_clocks:
+  supported: false
+fixtures:
+  supported: false
+  detail: No fixture, trigger or event-simulation tooling for the AdMob API.
+cross_links:
+  packages: packages/google-admob-packages.yml
+  authentication: authentication/google-admob-authentication.yml
+  conventions: conventions/google-admob-conventions.yml

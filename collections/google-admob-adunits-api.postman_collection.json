@@ -1,0 +1,270 @@
+{
+  "item": [
+    {
+      "id": "ef3bb74a-7cf0-429c-a63f-13bc4b734464",
+      "name": "adUnits",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4cc13b5a-1479-426f-9469-e5e2d2d5d7f8",
+          "name": "Google AdMob List ad units",
+          "request": {
+            "name": "Google AdMob List ad units",
+            "description": {
+              "content": "Lists ad units under the specified AdMob account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                ":parent",
+                "adUnits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "parent",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0d7af97-673e-4c38-87b9-ecc0953db8fa",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":parent",
+                    "adUnits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "parent",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"adUnits\": [\n    {\n      \"name\": \"string\",\n      \"adUnitId\": \"string\",\n      \"appId\": \"string\",\n      \"displayName\": \"string\",\n      \"adFormat\": \"INTERSTITIAL\"\n    },\n    {\n      \"name\": \"string\",\n      \"adUnitId\": \"string\",\n      \"appId\": \"string\",\n      \"displayName\": \"string\",\n      \"adFormat\": \"BANNER\"\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "614d6497-d093-4a0e-ad7d-f29eeff20fe3",
+          "name": "Google AdMob Create ad unit",
+          "request": {
+            "name": "Google AdMob Create ad unit",
+            "description": {
+              "content": "Creates an ad unit under the specified AdMob account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                ":parent",
+                "adUnits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "parent",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"adUnitId\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"adFormat\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "451df532-d597-4753-a02b-f7251f657285",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":parent",
+                    "adUnits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "parent",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"adUnitId\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"adFormat\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"adUnitId\": \"string\",\n  \"appId\": \"string\",\n  \"displayName\": \"string\",\n  \"adFormat\": \"INTERSTITIAL\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://admob.googleapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://www.googleapis.com/auth/admob.report https://www.googleapis.com/auth/admob.readonly"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth2.googleapis.com/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.google.com/o/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "989b6f62-aab4-4bff-bcdb-353c19829c81",
+    "name": "Google AdMob Accounts adUnits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The AdMob API provides programmatic access to AdMob account information, including ad units, apps, ad sources, mediation groups, and reporting for mobile app monetization.\n\nContact Support:\n Name: Google",
+      "type": "text/plain"
+    }
+  }
+}
