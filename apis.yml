@@ -51,6 +51,10 @@ apis:
   humanURL: https://developers.google.com/admob/api
   baseURL: https://admob.googleapis.com
   tags:
+  - Account
+  - Application
+  - Ad Units
+  tags_raw:
   - Accounts
   - Apps
   - adUnits
@@ -83,6 +87,14 @@ apis:
   humanURL: https://developers.google.com/admob/api
   baseURL: https://admob.googleapis.com
   tags:
+  - Account
+  - Application
+  - Ad Units
+  - adUnitMappings
+  - adSources
+  - Adapters
+  - mediationAbExperiments
+  tags_raw:
   - Accounts
   - Apps
   - adUnits
