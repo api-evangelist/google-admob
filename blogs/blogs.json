@@ -1,0 +1,11 @@
+{
+  "repo": "google-admob",
+  "feeds": [
+    {
+      "source": "https://support.google.com/admob",
+      "error": "TimeoutError"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-08-22T20:20:02Z"
+}
