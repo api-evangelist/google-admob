@@ -12,6 +12,18 @@ description: >-
   Google publishes no OpenAPI for AdMob — the first-party machine-readable contract is a Google Discovery
   Document served by the API host itself, alongside a protobuf IDL in googleapis/googleapis.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free-with-quota
   onboarding: self-serve
