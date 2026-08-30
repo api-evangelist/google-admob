@@ -59,6 +59,8 @@ apis:
   humanURL: https://developers.google.com/admob/api
   baseURL: https://admob.googleapis.com
   tags:
+  - Account
+  tags_raw:
   - accounts
   properties:
   - type: OpenAPI
@@ -81,6 +83,8 @@ apis:
   humanURL: https://developers.google.com/admob/api
   baseURL: https://admob.googleapis.com
   tags:
+  - Adapters
+  tags_raw:
   - adapters
   properties:
   - type: OpenAPI
@@ -147,6 +151,8 @@ apis:
   humanURL: https://developers.google.com/admob/api
   baseURL: https://admob.googleapis.com
   tags:
+  - Ad Units
+  tags_raw:
   - adUnits
   properties:
   - type: OpenAPI
@@ -169,6 +175,8 @@ apis:
   humanURL: https://developers.google.com/admob/api
   baseURL: https://admob.googleapis.com
   tags:
+  - Application
+  tags_raw:
   - apps
   properties:
   - type: OpenAPI
@@ -190,7 +198,8 @@ apis:
   description: The campaignReport API from Google AdMob — 1 operation(s) for campaignreport.
   humanURL: https://developers.google.com/admob/api
   baseURL: https://admob.googleapis.com
-  tags:
+  tags: []
+  tags_raw:
   - campaignReport
   properties:
   - type: OpenAPI
@@ -235,7 +244,8 @@ apis:
   description: The mediationGroups API from Google AdMob — 2 operation(s) for mediationgroups.
   humanURL: https://developers.google.com/admob/api
   baseURL: https://admob.googleapis.com
-  tags:
+  tags: []
+  tags_raw:
   - mediationGroups
   properties:
   - type: OpenAPI
@@ -257,7 +267,8 @@ apis:
   description: The mediationReport API from Google AdMob — 2 operation(s) for mediationreport.
   humanURL: https://developers.google.com/admob/api
   baseURL: https://admob.googleapis.com
-  tags:
+  tags: []
+  tags_raw:
   - mediationReport
   properties:
   - type: OpenAPI
@@ -279,7 +290,8 @@ apis:
   description: The networkReport API from Google AdMob — 2 operation(s) for networkreport.
   humanURL: https://developers.google.com/admob/api
   baseURL: https://admob.googleapis.com
-  tags:
+  tags: []
+  tags_raw:
   - networkReport
   properties:
   - type: OpenAPI
