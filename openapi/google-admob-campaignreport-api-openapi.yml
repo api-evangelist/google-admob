@@ -1,0 +1,264 @@
+openapi: 3.2.0
+info:
+  title: Google AdMob Campaign Report API
+  version: v1beta
+  description: 'The AdMob API allows publishers to programmatically get information about their AdMob account. '
+  contact:
+    name: Google
+    url: https://developers.google.com/admob/api/
+  termsOfService: https://developers.google.com/terms
+  license:
+    name: Google APIs Terms of Service
+    url: https://developers.google.com/terms
+  x-discovery-revision: '20260731'
+  x-discovery-source: https://admob.googleapis.com/$discovery/rest?version=v1beta
+servers:
+- url: https://admob.googleapis.com
+  description: Google AdMob API
+security:
+- GoogleOAuth2:
+  - https://www.googleapis.com/auth/admob.readonly
+  - https://www.googleapis.com/auth/admob.report
+tags:
+- name: campaignReport
+paths:
+  /v1beta/accounts/{accountsId}/campaignReport:generate:
+    post:
+      operationId: accounts_campaignReport_generate
+      summary: Generates Campaign Report based on provided specifications.
+      description: Generates Campaign Report based on provided specifications.
+      tags:
+      - campaignReport
+      x-resource-name-parameter:
+        parent:
+          pattern: ^accounts/[^/]+$
+          description: 'Resource name of the account to generate the report for. Example: accounts/pub-9876543210987654'
+      parameters:
+      - name: accountsId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path segment of the resource name.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateCampaignReportRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateCampaignReportResponse'
+        '400':
+          description: INVALID_ARGUMENT — malformed request, unknown publisher id, or incompatible report metrics/dimensions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '401':
+          description: UNAUTHENTICATED — missing or invalid OAuth 2.0 access token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '403':
+          description: PERMISSION_DENIED — AdMob API not enabled on the project, or the effective user lacks access to the resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '429':
+          description: RESOURCE_EXHAUSTED — per-project quota exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '500':
+          description: INTERNAL — unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+      security:
+      - GoogleOAuth2:
+        - https://www.googleapis.com/auth/admob.readonly
+        - https://www.googleapis.com/auth/admob.report
+components:
+  schemas:
+    ReportRow:
+      type: object
+      description: A row of the returning report.
+      properties:
+        dimensionValues:
+          type: object
+          description: Map of dimension values in a row, with keys as enum name of the dimensions.
+          additionalProperties:
+            $ref: '#/components/schemas/ReportRowDimensionValue'
+        metricValues:
+          type: object
+          description: Map of metric values in a row, with keys as enum name of the metrics. If a metric being requested has no value returned, the map will not include it.
+          additionalProperties:
+            $ref: '#/components/schemas/ReportRowMetricValue'
+    GenerateCampaignReportRequest:
+      type: object
+      description: Request to generate campaign report.
+      properties:
+        reportSpec:
+          $ref: '#/components/schemas/CampaignReportSpec'
+    DateRange:
+      type: object
+      description: Specification of a single date range. Both dates are inclusive.
+      properties:
+        endDate:
+          $ref: '#/components/schemas/Date'
+        startDate:
+          $ref: '#/components/schemas/Date'
+    Date:
+      type: object
+      description: 'Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp'
+      properties:
+        year:
+          type: integer
+          format: int32
+          description: Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+        month:
+          type: integer
+          format: int32
+          description: Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+        day:
+          type: integer
+          format: int32
+          description: Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+    ReportRowMetricValue:
+      type: object
+      description: Representation of a metric value.
+      properties:
+        doubleValue:
+          type: number
+          format: double
+          description: Double precision (approximate) decimal values. Rates are from 0 to 1.
+        integerValue:
+          type: string
+          format: int64
+          description: Metric integer value.
+        microsValue:
+          type: string
+          format: int64
+          description: Amount in micros. One million is equivalent to one unit. Currency value is in the unit (USD, EUR or other) specified by the request. For example, $6.50 whould be represented as 6500000 micros.
+    CampaignReportSpec:
+      type: object
+      description: 'The specification for generating a Campaign report. For example, the specification to get IMPRESSIONS and CLICKS sliced by CAMPAIGN_ID can look like the following example: { "date_range": { "start_date": {"year": 2021, "month": 12, "day": 1}, "end_date": {"year": 2021, "month": 12, "day": 30} }, "dimensions": ["CAMPAIGN_ID"], "metrics": ["IMPRESSIONS", "CLICKS"], }'
+      properties:
+        dateRange:
+          $ref: '#/components/schemas/DateRange'
+        dimensions:
+          type: array
+          description: List of dimensions of the report. The value combination of these dimensions determines the row of the report. If no dimensions are specified, the report returns a single row of requested metrics for the entire account.
+          items:
+            type: string
+            enum:
+            - DIMENSION_UNSPECIFIED
+            - DATE
+            - CAMPAIGN_ID
+            - CAMPAIGN_NAME
+            - AD_ID
+            - AD_NAME
+            - PLACEMENT_ID
+            - PLACEMENT_NAME
+            - PLACEMENT_PLATFORM
+            - COUNTRY
+            - FORMAT
+            x-enum-descriptions:
+            - Default value of an unspecified dimension. Do not use.
+            - A date in the YYYYMMDD format (for example, "20210701").
+            - The unique ID of the campaign, for example "123456789", which is consistent with the campaign id from campaign list api.
+            - The name of the campaign.
+            - The unique ID of the ad, for example "123456789".
+            - The name of the ad, which may not be unique.
+            - The vendor-specific unique ID of the app where the ad is placed. For example, com.goog.bar for Android and 123456789 for iOS apps.
+            - The name of the app where the ad is placed.
+            - The platform of the app where the ad is placed.
+            - The name of the targeted country.
+            - Format of the ad unit (for example, "banner", "native"), an ad delivery dimension.
+        metrics:
+          type: array
+          description: List of metrics of the report. A report must specify at least one metric.
+          items:
+            type: string
+            enum:
+            - METRIC_UNSPECIFIED
+            - IMPRESSIONS
+            - CLICKS
+            - CLICK_THROUGH_RATE
+            - INSTALLS
+            - ESTIMATED_COST
+            - AVERAGE_CPI
+            - INTERACTIONS
+            x-enum-descriptions:
+            - Default value for an unset field. Do not use.
+            - The number of times an ad is shown to the user.
+            - The number of times a user clicks an ad.
+            - The number of clicks an ad receives divided by the number of times the ad is shown.
+            - The number of times apps were downloaded to devices.
+            - The estimated cost of serving a campaign ad instead of an ad that earns revenue. The currency is the reporting currency for campaigns.
+            - The average cost per install. This means the average amount that was spent to acquire a new user. The currency is the reporting currency for campaigns.
+            - The number of times a user interacts with an ad. This consists of clicks and engagements.
+        languageCode:
+          type: string
+          description: Language used for any localized text, such as certain applicable dimension values. The language tag is defined in the IETF BCP47. Defaults to 'en-US' if unspecified or invalid.
+    GoogleRpcStatus:
+      type: object
+      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
+      properties:
+        code:
+          type: integer
+          description: The status code, which should be an enum value of google.rpc.Code.
+        message:
+          type: string
+          description: A developer-facing error message in English.
+        status:
+          type: string
+          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
+        details:
+          type: array
+          items:
+            type: object
+          description: A list of messages that carry the error details.
+      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
+    GenerateCampaignReportResponse:
+      type: object
+      description: Campaign Report API response.
+      properties:
+        rows:
+          type: array
+          description: The campaign report data from the specified publisher. At most 100000 rows will be returned from the API.
+          items:
+            $ref: '#/components/schemas/ReportRow'
+    ReportRowDimensionValue:
+      type: object
+      description: Representation of a dimension value.
+      properties:
+        value:
+          type: string
+          description: Dimension value in the format specified in the report's spec Dimension enum.
+        displayLabel:
+          type: string
+          description: The localized string representation of the value. If unspecified, the display label should be derived from the value.
+  securitySchemes:
+    GoogleOAuth2:
+      type: oauth2
+      description: Google OAuth 2.0 user authorization. AdMob does not support service accounts.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/v2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/admob.readonly: See your AdMob data
+            https://www.googleapis.com/auth/admob.report: See your AdMob data
+externalDocs:
+  description: AdMob API documentation
+  url: https://developers.google.com/admob/api/

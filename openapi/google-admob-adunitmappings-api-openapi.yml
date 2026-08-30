@@ -1,0 +1,337 @@
+openapi: 3.2.0
+info:
+  title: Google AdMob Ad Unit Mappings API
+  version: v1beta
+  description: 'The AdMob API allows publishers to programmatically get information about their AdMob account. '
+  contact:
+    name: Google
+    url: https://developers.google.com/admob/api/
+  termsOfService: https://developers.google.com/terms
+  license:
+    name: Google APIs Terms of Service
+    url: https://developers.google.com/terms
+  x-discovery-revision: '20260731'
+  x-discovery-source: https://admob.googleapis.com/$discovery/rest?version=v1beta
+servers:
+- url: https://admob.googleapis.com
+  description: Google AdMob API
+security:
+- GoogleOAuth2:
+  - https://www.googleapis.com/auth/admob.readonly
+  - https://www.googleapis.com/auth/admob.report
+tags:
+- name: adUnitMappings
+paths:
+  /v1beta/accounts/{accountsId}/adUnitMappings:batchCreate:
+    post:
+      operationId: accounts_adUnitMappings_batchCreate
+      summary: Batch create the ad unit mappings under the specific AdMob account
+      description: Batch create the ad unit mappings under the specific AdMob account. The maximum allowed batch size is 100. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.
+      tags:
+      - adUnitMappings
+      x-resource-name-parameter:
+        parent:
+          pattern: ^accounts/[^/]+$
+          description: 'Required. The AdMob account which owns this collection of ad unit mappings. Format: accounts/{publisher_id} See https://support.google.com/admob/answer/2784578 for instructions on how to find your AdMob publisher ID.'
+      parameters:
+      - name: accountsId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path segment of the resource name.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchCreateAdUnitMappingsRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchCreateAdUnitMappingsResponse'
+        '400':
+          description: INVALID_ARGUMENT — malformed request, unknown publisher id, or incompatible report metrics/dimensions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '401':
+          description: UNAUTHENTICATED — missing or invalid OAuth 2.0 access token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '403':
+          description: PERMISSION_DENIED — AdMob API not enabled on the project, or the effective user lacks access to the resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '429':
+          description: RESOURCE_EXHAUSTED — per-project quota exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '500':
+          description: INTERNAL — unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+  /v1beta/accounts/{accountsId}/adUnits/{adUnitsId}/adUnitMappings:
+    post:
+      operationId: accounts_adUnits_adUnitMappings_create
+      summary: Create an ad unit mapping under the specific AdMob account and ad unit
+      description: Create an ad unit mapping under the specific AdMob account and ad unit. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.
+      tags:
+      - adUnitMappings
+      x-resource-name-parameter:
+        parent:
+          pattern: ^accounts/[^/]+/adUnits/[^/]+$
+          description: 'Required. The parent which owns the ad unit mapping. Format: accounts/{publisher_id}/adUnits/{ad_unit_id}'
+      parameters:
+      - name: accountsId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path segment of the resource name.
+      - name: adUnitsId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path segment of the resource name.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdUnitMapping'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdUnitMapping'
+        '400':
+          description: INVALID_ARGUMENT — malformed request, unknown publisher id, or incompatible report metrics/dimensions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '401':
+          description: UNAUTHENTICATED — missing or invalid OAuth 2.0 access token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '403':
+          description: PERMISSION_DENIED — AdMob API not enabled on the project, or the effective user lacks access to the resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '429':
+          description: RESOURCE_EXHAUSTED — per-project quota exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '500':
+          description: INTERNAL — unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+    get:
+      operationId: accounts_adUnits_adUnitMappings_list
+      summary: List ad unit mappings under the specified AdMob account and ad unit
+      description: List ad unit mappings under the specified AdMob account and ad unit. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.
+      tags:
+      - adUnitMappings
+      x-resource-name-parameter:
+        parent:
+          pattern: ^accounts/[^/]+/adUnits/[^/]+$
+          description: 'Required. The parent which owns this collection of ad unit mappings. Format: accounts/{publisher_id}/adUnits/{ad_unit_id}'
+      parameters:
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'The filter string that uses [EBNF grammar syntax](https://google.aip.dev/assets/misc/ebnf-filtering.txt). Possible field to filter by is: - "DISPLAY_NAME" Possible filter function is: - `IN`: Used to filter fields that represent a singleton including "DISPLAY_NAME". The filter functions can be added together using `AND`. `OR` functionality is not supported. Example: filter: IN(DISPLAY_NAME, "Test Ad Unit Mapping 1", "Test Ad Unit Mapping 2")'
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+        description: The maximum number of ad unit mappings to return. If unspecified or 0, at most 10,000 ad unit mappings will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.
+      - name: pageToken
+        in: query
+        required: false
+        schema:
+          type: string
+        description: A page token, received from a previous `ListAdUnitMappings` call. Provide this to retrieve the subsequent page.
+      - name: accountsId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path segment of the resource name.
+      - name: adUnitsId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path segment of the resource name.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAdUnitMappingsResponse'
+        '400':
+          description: INVALID_ARGUMENT — malformed request, unknown publisher id, or incompatible report metrics/dimensions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '401':
+          description: UNAUTHENTICATED — missing or invalid OAuth 2.0 access token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '403':
+          description: PERMISSION_DENIED — AdMob API not enabled on the project, or the effective user lacks access to the resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '429':
+          description: RESOURCE_EXHAUSTED — per-project quota exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '500':
+          description: INTERNAL — unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+      security:
+      - GoogleOAuth2:
+        - https://www.googleapis.com/auth/admob.readonly
+components:
+  schemas:
+    ListAdUnitMappingsResponse:
+      type: object
+      description: Response for the ListAdUnitMappingsRequest.
+      properties:
+        adUnitMappings:
+          type: array
+          description: The ad unit mappings from the specified account and ad unit.
+          items:
+            $ref: '#/components/schemas/AdUnitMapping'
+        nextPageToken:
+          type: string
+          description: Used to set the `page_token` in the `ListAdUnitMappingsRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+    BatchCreateAdUnitMappingsResponse:
+      type: object
+      description: Response containing a batch of created ad unit mappings.
+      properties:
+        adUnitMappings:
+          type: array
+          description: The Ad units mappings created under the requested account.
+          items:
+            $ref: '#/components/schemas/AdUnitMapping'
+    CreateAdUnitMappingRequest:
+      type: object
+      description: Request to create an ad unit mapping under the specific AdMob account and ad unit.
+      properties:
+        parent:
+          type: string
+          description: 'Required. The parent which owns the ad unit mapping. Format: accounts/{publisher_id}/adUnits/{ad_unit_id}'
+        adUnitMapping:
+          $ref: '#/components/schemas/AdUnitMapping'
+    BatchCreateAdUnitMappingsRequest:
+      type: object
+      description: Request to create a batch of ad unit mappings under the specific AdMob account.
+      properties:
+        requests:
+          type: array
+          description: Required. The request message specifying the ad unit mappings to create. A maximum of 100 ad unit mappings can be created in a batch. If the number of ad unit mappings in the batch request exceed 100, the entire request will be rejected and no ad unit mappings will be created.
+          items:
+            $ref: '#/components/schemas/CreateAdUnitMappingRequest'
+    AdUnitMapping:
+      type: object
+      description: Settings to map an AdMob ad unit to a 3rd party ad unit.
+      properties:
+        adUnitConfigurations:
+          type: object
+          description: Settings for the specified ad unit to make an ad request to 3rd party ad network. Key-value pairs with values set by the user for the keys requested by the ad network. Please see https://support.google.com/admob/answer/3245073 for details on how to configure the network settings.
+          additionalProperties:
+            type: string
+        displayName:
+          type: string
+          description: Optional. The display name of this ad unit mapping instance.
+        adapterId:
+          type: string
+          format: int64
+          description: The ID of mediation ad source adapter used by this ad unit mapping. The adapter determines the information needed in the ad_network_settings.
+        state:
+          type: string
+          description: Output only. The status of this ad unit mapping.
+          enum:
+          - STATE_UNSPECIFIED
+          - ENABLED
+          x-enum-descriptions:
+          - The default value.
+          - The ad unit mapping is active and used to serve ads or collecting stats.
+          readOnly: true
+        name:
+          type: string
+          description: 'Resource name of this ad unit mapping. Format is: accounts/{publisher_id}/adUnits/{ad_unit_id_fragment}/adUnitMappings/{ad_unit_mapping_id} Example: accounts/pub-1234567890123456/adUnits/0123456789/adUnitMappings/987654321'
+    GoogleRpcStatus:
+      type: object
+      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
+      properties:
+        code:
+          type: integer
+          description: The status code, which should be an enum value of google.rpc.Code.
+        message:
+          type: string
+          description: A developer-facing error message in English.
+        status:
+          type: string
+          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
+        details:
+          type: array
+          items:
+            type: object
+          description: A list of messages that carry the error details.
+      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
+  securitySchemes:
+    GoogleOAuth2:
+      type: oauth2
+      description: Google OAuth 2.0 user authorization. AdMob does not support service accounts.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/v2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/admob.readonly: See your AdMob data
+            https://www.googleapis.com/auth/admob.report: See your AdMob data
+externalDocs:
+  description: AdMob API documentation
+  url: https://developers.google.com/admob/api/

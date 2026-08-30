@@ -1,0 +1,345 @@
+openapi: 3.2.0
+info:
+  title: Google Admob Accounts API
+  contact:
+    name: Google
+    url: https://developers.google.com/admob/api/
+  license:
+    name: Google APIs Terms of Service
+    url: https://developers.google.com/terms
+  termsOfService: https://developers.google.com/terms
+  x-discovery-revision: '20260731'
+  x-refined-note:
+  - x-discovery-source differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged accounts across 2 of this provider''s published API definitions: google-admob-api-v1-openapi.yml, google-admob-api-v1beta-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://admob.googleapis.com
+  description: Google AdMob API
+security:
+- GoogleOAuth2:
+  - https://www.googleapis.com/auth/admob.readonly
+  - https://www.googleapis.com/auth/admob.report
+tags:
+- name: accounts
+paths:
+  /v1/accounts/{accountsId}:
+    get:
+      operationId: accounts_get
+      summary: Gets information about the specified AdMob publisher account.
+      description: Gets information about the specified AdMob publisher account.
+      tags:
+      - accounts
+      x-resource-name-parameter:
+        name:
+          pattern: ^accounts/[^/]+$
+          description: 'Resource name of the publisher account to retrieve. Example: accounts/pub-9876543210987654'
+      parameters:
+      - name: accountsId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path segment of the resource name.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherAccount'
+        '400':
+          description: INVALID_ARGUMENT — malformed request, unknown publisher id, or incompatible report metrics/dimensions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '401':
+          description: UNAUTHENTICATED — missing or invalid OAuth 2.0 access token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '403':
+          description: PERMISSION_DENIED — AdMob API not enabled on the project, or the effective user lacks access to the resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '429':
+          description: RESOURCE_EXHAUSTED — per-project quota exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '500':
+          description: INTERNAL — unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+      security:
+      - GoogleOAuth2:
+        - https://www.googleapis.com/auth/admob.readonly
+        - https://www.googleapis.com/auth/admob.report
+    servers:
+    - url: https://admob.googleapis.com
+      description: Google AdMob API
+  /v1/accounts:
+    get:
+      operationId: accounts_list
+      summary: Lists the AdMob publisher account that was most recently signed in to from the AdMob UI
+      description: Lists the AdMob publisher account that was most recently signed in to from the AdMob UI. For more information, see https://support.google.com/admob/answer/10243672.
+      tags:
+      - accounts
+      parameters:
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+        description: Maximum number of accounts to return.
+      - name: pageToken
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The value returned by the last `ListPublisherAccountsResponse`; indicates that this is a continuation of a prior `ListPublisherAccounts` call, and that the system should return the next page of data.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListPublisherAccountsResponse'
+        '400':
+          description: INVALID_ARGUMENT — malformed request, unknown publisher id, or incompatible report metrics/dimensions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '401':
+          description: UNAUTHENTICATED — missing or invalid OAuth 2.0 access token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '403':
+          description: PERMISSION_DENIED — AdMob API not enabled on the project, or the effective user lacks access to the resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '429':
+          description: RESOURCE_EXHAUSTED — per-project quota exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '500':
+          description: INTERNAL — unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+      security:
+      - GoogleOAuth2:
+        - https://www.googleapis.com/auth/admob.readonly
+        - https://www.googleapis.com/auth/admob.report
+    servers:
+    - url: https://admob.googleapis.com
+      description: Google AdMob API
+  /v1beta/accounts/{accountsId}:
+    get:
+      operationId: accounts_get
+      summary: Gets information about the specified AdMob publisher account.
+      description: Gets information about the specified AdMob publisher account.
+      tags:
+      - accounts
+      x-resource-name-parameter:
+        name:
+          pattern: ^accounts/[^/]+$
+          description: 'Resource name of the publisher account to retrieve. Example: accounts/pub-9876543210987654'
+      parameters:
+      - name: accountsId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path segment of the resource name.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherAccount'
+        '400':
+          description: INVALID_ARGUMENT — malformed request, unknown publisher id, or incompatible report metrics/dimensions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '401':
+          description: UNAUTHENTICATED — missing or invalid OAuth 2.0 access token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '403':
+          description: PERMISSION_DENIED — AdMob API not enabled on the project, or the effective user lacks access to the resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '429':
+          description: RESOURCE_EXHAUSTED — per-project quota exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '500':
+          description: INTERNAL — unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+      security:
+      - GoogleOAuth2:
+        - https://www.googleapis.com/auth/admob.readonly
+        - https://www.googleapis.com/auth/admob.report
+    servers:
+    - url: https://admob.googleapis.com
+      description: Google AdMob API
+  /v1beta/accounts:
+    get:
+      operationId: accounts_list
+      summary: Lists the AdMob publisher account that was most recently signed in to from the AdMob UI
+      description: Lists the AdMob publisher account that was most recently signed in to from the AdMob UI. For more information, see https://support.google.com/admob/answer/10243672.
+      tags:
+      - accounts
+      parameters:
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+        description: Maximum number of accounts to return.
+      - name: pageToken
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The value returned by the last `ListPublisherAccountsResponse`; indicates that this is a continuation of a prior `ListPublisherAccounts` call, and that the system should return the next page of data.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListPublisherAccountsResponse'
+        '400':
+          description: INVALID_ARGUMENT — malformed request, unknown publisher id, or incompatible report metrics/dimensions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '401':
+          description: UNAUTHENTICATED — missing or invalid OAuth 2.0 access token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '403':
+          description: PERMISSION_DENIED — AdMob API not enabled on the project, or the effective user lacks access to the resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '429':
+          description: RESOURCE_EXHAUSTED — per-project quota exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '500':
+          description: INTERNAL — unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+      security:
+      - GoogleOAuth2:
+        - https://www.googleapis.com/auth/admob.readonly
+        - https://www.googleapis.com/auth/admob.report
+    servers:
+    - url: https://admob.googleapis.com
+      description: Google AdMob API
+components:
+  schemas:
+    ListPublisherAccountsResponse:
+      type: object
+      description: Response for the publisher account list request.
+      properties:
+        account:
+          type: array
+          description: Publisher that the client credentials can access.
+          items:
+            $ref: '#/components/schemas/PublisherAccount'
+        nextPageToken:
+          type: string
+          description: If not empty, indicates that there might be more accounts for the request; you must pass this value in a new `ListPublisherAccountsRequest`.
+    GoogleRpcStatus:
+      type: object
+      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
+      properties:
+        code:
+          type: integer
+          description: The status code, which should be an enum value of google.rpc.Code.
+        message:
+          type: string
+          description: A developer-facing error message in English.
+        status:
+          type: string
+          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
+        details:
+          type: array
+          items:
+            type: object
+          description: A list of messages that carry the error details.
+      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
+    PublisherAccount:
+      type: object
+      description: A publisher account contains information relevant to the use of this API, such as the time zone used for the reports.
+      properties:
+        reportingTimeZone:
+          type: string
+          description: The time zone that is used in reports that are generated for this account. The value is a time-zone ID as specified by the CLDR project, for example, "America/Los_Angeles".
+        currencyCode:
+          type: string
+          description: Currency code of the earning-related metrics, which is the 3-letter code defined in ISO 4217. The daily average rate is used for the currency conversion.
+        publisherId:
+          type: string
+          description: The unique ID by which this publisher account can be identified in the API requests (for example, pub-1234567890).
+        name:
+          type: string
+          description: Resource name of this account. Format is accounts/{publisher_id}.
+  securitySchemes:
+    GoogleOAuth2:
+      type: oauth2
+      description: Google OAuth 2.0 user authorization. AdMob does not support service accounts.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/v2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/admob.readonly: See your AdMob data
+            https://www.googleapis.com/auth/admob.report: See your AdMob data
+externalDocs:
+  description: AdMob API documentation
+  url: https://developers.google.com/admob/api/
+x-refined-from:
+- google-admob-api-v1-openapi.yml
+- google-admob-api-v1beta-openapi.yml

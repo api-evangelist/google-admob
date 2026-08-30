@@ -1,0 +1,193 @@
+openapi: 3.2.0
+info:
+  title: Google AdMob Adapters API
+  version: v1beta
+  description: 'The AdMob API allows publishers to programmatically get information about their AdMob account. '
+  contact:
+    name: Google
+    url: https://developers.google.com/admob/api/
+  termsOfService: https://developers.google.com/terms
+  license:
+    name: Google APIs Terms of Service
+    url: https://developers.google.com/terms
+  x-discovery-revision: '20260731'
+  x-discovery-source: https://admob.googleapis.com/$discovery/rest?version=v1beta
+servers:
+- url: https://admob.googleapis.com
+  description: Google AdMob API
+security:
+- GoogleOAuth2:
+  - https://www.googleapis.com/auth/admob.readonly
+  - https://www.googleapis.com/auth/admob.report
+tags:
+- name: adapters
+paths:
+  /v1beta/accounts/{accountsId}/adSources/{adSourcesId}/adapters:
+    get:
+      operationId: accounts_adSources_adapters_list
+      summary: List the adapters of the ad source.
+      description: List the adapters of the ad source.
+      tags:
+      - adapters
+      x-resource-name-parameter:
+        parent:
+          pattern: ^accounts/[^/]+/adSources/[^/]+$
+          description: 'Required. The parent which owns this collection of adapters. Format: accounts/{publisher_id}/adSources/{ad_source_id}'
+      parameters:
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+        description: The maximum number of adapters to return. If unspecified or 0, at most 10,000 adapters will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.
+      - name: pageToken
+        in: query
+        required: false
+        schema:
+          type: string
+        description: A page token, received from a previous `ListAdapters` call. Provide this to retrieve the subsequent page.
+      - name: accountsId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path segment of the resource name.
+      - name: adSourcesId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path segment of the resource name.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAdaptersResponse'
+        '400':
+          description: INVALID_ARGUMENT — malformed request, unknown publisher id, or incompatible report metrics/dimensions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '401':
+          description: UNAUTHENTICATED — missing or invalid OAuth 2.0 access token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '403':
+          description: PERMISSION_DENIED — AdMob API not enabled on the project, or the effective user lacks access to the resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '429':
+          description: RESOURCE_EXHAUSTED — per-project quota exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+        '500':
+          description: INTERNAL — unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleRpcStatus'
+      security:
+      - GoogleOAuth2:
+        - https://www.googleapis.com/auth/admob.readonly
+components:
+  schemas:
+    ListAdaptersResponse:
+      type: object
+      description: Response for the ListAdaptersRequest.
+      properties:
+        adapters:
+          type: array
+          description: The adapter.
+          items:
+            $ref: '#/components/schemas/Adapter'
+        nextPageToken:
+          type: string
+          description: Used to set the `page_token` in the `ListAdapterRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+    GoogleRpcStatus:
+      type: object
+      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
+      properties:
+        code:
+          type: integer
+          description: The status code, which should be an enum value of google.rpc.Code.
+        message:
+          type: string
+          description: A developer-facing error message in English.
+        status:
+          type: string
+          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
+        details:
+          type: array
+          items:
+            type: object
+          description: A list of messages that carry the error details.
+      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
+    AdapterAdapterConfigMetadata:
+      type: object
+      description: Configuration metadata associated with this adapter. They are used to define the ad_unit_configurations associated with AdUnitMappings for the this adapter.
+      properties:
+        isRequired:
+          type: boolean
+          description: Whether this metadata is required for configuring the AdUnitMappings.
+        adapterConfigMetadataId:
+          type: string
+          description: This is used to fill the key of the [ad_unit_configurations](#AdUnitMapping.ad_unit_configurations).
+        adapterConfigMetadataLabel:
+          type: string
+          description: Name of the adapter configuration metadata.
+    Adapter:
+      type: object
+      description: Describes adapters supported by each mediation ad source. Adapters correspond to a specific SDK implementation of the ad source, and are each associated with a single platform and a list of supported ad unit formats. Adapters may also require setting some configurations to perform ad requests. Configurations can be specified in the AdUnitMapping by setting the [ad_unit_configurations](#AdUnitMapping.ad_unit_configurations) key/value pairs. For example, the ad_unit_configurations can be used to pass various IDs to the adapter's third-party SDK.
+      properties:
+        adapterId:
+          type: string
+          description: Output only. ID of this adapter. It is used to set [adapter_id](#AdUnitMapping.adapter_id).
+          readOnly: true
+        name:
+          type: string
+          description: 'Output only. Resource name of the adapter. Format is: accounts/{publisher_id}/adSources/{ad_source_id}/adapters/{adapter_id}.'
+          readOnly: true
+        title:
+          type: string
+          description: Output only. The display name of this adapter.
+          readOnly: true
+        formats:
+          type: array
+          description: Output only. Indicates the formats of the ad units supported by this adapter.
+          readOnly: true
+          items:
+            type: string
+        adapterConfigMetadata:
+          type: array
+          description: Output only. Configuration metadata associated with this adapter.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/AdapterAdapterConfigMetadata'
+        platform:
+          type: string
+          description: 'Output only. Mobile application platform supported by this adapter. Supported values are: IOS, ANDROID, WINDOWS_PHONE'
+          readOnly: true
+  securitySchemes:
+    GoogleOAuth2:
+      type: oauth2
+      description: Google OAuth 2.0 user authorization. AdMob does not support service accounts.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/v2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/admob.readonly: See your AdMob data
+            https://www.googleapis.com/auth/admob.report: See your AdMob data
+externalDocs:
+  description: AdMob API documentation
+  url: https://developers.google.com/admob/api/
