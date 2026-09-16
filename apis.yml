@@ -1,16 +1,15 @@
 aid: google-admob
 name: Google AdMob
-description: >-
-  AdMob is Google's mobile app advertising and monetization platform, letting app publishers earn revenue
-  through in-app ads (banner, interstitial, rewarded, rewarded interstitial, native and app open formats),
-  maximize fill rate and eCPM with AdMob Mediation and open bidding across many ad networks, and understand
-  performance through reporting. The AdMob API (admob.googleapis.com) provides programmatic access to AdMob
-  account data, apps, ad units, ad sources and adapters, ad unit mappings, mediation groups and mediation
-  A/B experiments, plus network, mediation and campaign performance reports, over REST/JSON authorized with
-  Google OAuth 2.0 user tokens using the admob.readonly and admob.report scopes. Service accounts are not
-  supported. The stable v1 channel is entirely read-only; the v1beta channel carries the whole write surface.
-  Google publishes no OpenAPI for AdMob — the first-party machine-readable contract is a Google Discovery
-  Document served by the API host itself, alongside a protobuf IDL in googleapis/googleapis.
+description: AdMob is Google's mobile app advertising and monetization platform, letting app publishers
+  earn revenue through in-app ads (banner, interstitial, rewarded, rewarded interstitial, native and app
+  open formats), maximize fill rate and eCPM with AdMob Mediation and open bidding across many ad networks,
+  and understand performance through reporting. The AdMob API (admob.googleapis.com) provides programmatic
+  access to AdMob account data, apps, ad units, ad sources and adapters, ad unit mappings, mediation groups
+  and mediation A/B experiments, plus network, mediation and campaign performance reports, over REST/JSON
+  authorized with Google OAuth 2.0 user tokens using the admob.readonly and admob.report scopes. Service
+  accounts are not supported. The stable v1 channel is entirely read-only; the v1beta channel carries
+  the whole write surface. Google publishes no OpenAPI for AdMob — the first-party machine-readable contract
+  is a Google Discovery Document served by the API host itself, alongside a protobuf IDL in googleapis/googleapis.
 type: Index
 deliveryModel:
   model: saas
@@ -41,17 +40,17 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/google-admob.png
 url: https://raw.githubusercontent.com/api-evangelist/google-admob/refs/heads/main/apis.yml
 created: '2026-03-13'
-modified: '2026-08-13'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 tags:
-  - Ad Mediation
-  - AdMob
-  - Advertising
-  - App Monetization
-  - Mobile Advertising
-  - Mobile Apps
-  - Reports
-  - Reporting
+- Ad Mediation
+- AdMob
+- Advertising
+- App Monetization
+- Mobile Advertising
+- Mobile Apps
+- Reports
+- Reporting
 apis:
 - aid: google-admob:google-admob-accounts-api
   name: Google AdMob Accounts API
@@ -218,8 +217,7 @@ apis:
     url: json-ld/json-ld.yml
 - aid: google-admob:google-admob-mediationabexperiments-api
   name: Google AdMob Mediation Ab Experiments API
-  description: >-
-    The mediationAbExperiments API from Google AdMob — 2 operation(s) for mediationabexperiments.
+  description: The mediationAbExperiments API from Google AdMob — 2 operation(s) for mediationabexperiments.
   humanURL: https://developers.google.com/admob/api
   baseURL: https://admob.googleapis.com
   tags:
@@ -309,101 +307,103 @@ apis:
   - type: JSONLD
     url: json-ld/json-ld.yml
 common:
-  - type: Overlay
-    url: overlays/google-admob-api-v1-overlay.yaml
-  - type: Overlay
-    url: overlays/google-admob-api-v1beta-overlay.yaml
-  - type: Website
-    url: https://admob.google.com
-  - type: DeveloperPortal
-    url: https://developers.google.com/admob/api
-  - type: Documentation
-    url: https://developers.google.com/admob/api/v1/getting-started
-  - type: APIReference
-    url: https://developers.google.com/admob/api/rest
-  - type: GettingStarted
-    url: https://developers.google.com/admob/api/v1/getting-started
-  - type: Support
-    url: https://groups.google.com/g/google-admob-api
-  - type: HelpCenter
-    url: https://support.google.com/admob
-  - type: Blog
-    url: https://ads-developers.googleblog.com/
-  - type: GitHubOrganization
-    url: https://github.com/googleads
-  - type: LinkedIn
-    url: https://www.linkedin.com/showcase/googleadmob
-  - type: SignUp
-    url: https://admob.google.com/home/get-started/
-  - type: Pricing
-    url: https://admob.google.com/home/
-  - type: TermsOfService
-    url: https://developers.google.com/terms
-  - type: PrivacyPolicy
-    url: https://policies.google.com/privacy
-  - type: StatusPage
-    url: https://ads.google.com/status/publisher/
-  - type: ChangeLog
-    url: https://developers.google.com/admob/api/release-notes
-  - type: Security
-    url: https://g.co/vrp
-  - type: Compliance
-    url: https://business.safety.google/compliance/
-  - type: Authentication
-    url: authentication/google-admob-authentication.yml
-  - type: OAuthScopes
-    url: scopes/google-admob-scopes.yml
-  - type: AgenticAccess
-    url: agentic-access/google-admob-agentic-access.yml
-  - type: VulnerabilityDisclosure
-    url: security/google-admob-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/google-admob-domain-security.yml
-  - type: TrustCenter
-    url: security/google-admob-trust-center.yml
-  - type: WellKnown
-    url: well-known/google-admob-well-known.yml
-  - type: SecurityTxt
-    url: well-known/google-admob-security.txt
-  - type: Packages
-    url: packages/google-admob-packages.yml
-  - type: SDKs
-    url: packages/google-admob-packages.yml
-  - type: ChangeLog
-    url: changelog/google-admob-changelog.yml
-  - type: Lifecycle
-    url: lifecycle/google-admob-lifecycle.yml
-  - type: Conventions
-    url: conventions/google-admob-conventions.yml
-  - type: Conformance
-    url: conformance/google-admob-conformance.yml
-  - type: DataModel
-    url: data-model/google-admob-data-model.yml
-  - type: ErrorCatalog
-    url: errors/google-admob-problem-types.yml
-  - type: RateLimits
-    url: rate-limits/google-admob-rate-limits.yml
-  - type: Plans
-    url: plans/google-admob-plans-pricing.yml
-  - type: FinOps
-    url: finops/google-admob-finops.yml
-  - type: Sandbox
-    url: sandbox/google-admob-sandbox.yml
-  - type: AgentSkill
-    url: skills/_index.yml
-  - type: LLMsTxt
-    url: llms/google-admob-llms.txt
-  - type: Protobuf
-    url: grpc/google-admob-admob-api.proto
-  - type: Rules
-    url: rules/google-admob-jsonschema-spectral-rules.yml
-  - type: JSONLD
-    url: json-ld/json-ld.yml
+- type: Overlay
+  url: overlays/google-admob-api-v1-overlay.yaml
+- type: Overlay
+  url: overlays/google-admob-api-v1beta-overlay.yaml
+- type: Website
+  url: https://admob.google.com
+- type: DeveloperPortal
+  url: https://developers.google.com/admob/api
+- type: Documentation
+  url: https://developers.google.com/admob/api/v1/getting-started
+- type: APIReference
+  url: https://developers.google.com/admob/api/rest
+- type: GettingStarted
+  url: https://developers.google.com/admob/api/v1/getting-started
+- type: Support
+  url: https://groups.google.com/g/google-admob-api
+- type: HelpCenter
+  url: https://support.google.com/admob
+- type: Blog
+  url: https://ads-developers.googleblog.com/
+- type: GitHubOrganization
+  url: https://github.com/googleads
+- type: LinkedIn
+  url: https://www.linkedin.com/showcase/googleadmob
+- type: SignUp
+  url: https://admob.google.com/home/get-started/
+- type: Pricing
+  url: https://admob.google.com/home/
+- type: TermsOfService
+  url: https://developers.google.com/terms
+- type: PrivacyPolicy
+  url: https://policies.google.com/privacy
+- type: StatusPage
+  url: https://ads.google.com/status/publisher/
+- type: ChangeLog
+  url: https://developers.google.com/admob/api/release-notes
+- type: Security
+  url: https://g.co/vrp
+- type: Compliance
+  url: https://business.safety.google/compliance/
+- type: Authentication
+  url: authentication/google-admob-authentication.yml
+- type: OAuthScopes
+  url: scopes/google-admob-scopes.yml
+- type: AgenticAccess
+  url: agentic-access/google-admob-agentic-access.yml
+- type: VulnerabilityDisclosure
+  url: security/google-admob-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/google-admob-domain-security.yml
+- type: TrustCenter
+  url: security/google-admob-trust-center.yml
+- type: WellKnown
+  url: well-known/google-admob-well-known.yml
+- type: SecurityTxt
+  url: well-known/google-admob-security.txt
+- type: Packages
+  url: packages/google-admob-packages.yml
+- type: SDKs
+  url: packages/google-admob-packages.yml
+- type: ChangeLog
+  url: changelog/google-admob-changelog.yml
+- type: Lifecycle
+  url: lifecycle/google-admob-lifecycle.yml
+- type: Conventions
+  url: conventions/google-admob-conventions.yml
+- type: Conformance
+  url: conformance/google-admob-conformance.yml
+- type: DataModel
+  url: data-model/google-admob-data-model.yml
+- type: ErrorCatalog
+  url: errors/google-admob-problem-types.yml
+- type: RateLimits
+  url: rate-limits/google-admob-rate-limits.yml
+- type: Plans
+  url: plans/google-admob-plans-pricing.yml
+- type: FinOps
+  url: finops/google-admob-finops.yml
+- type: Sandbox
+  url: sandbox/google-admob-sandbox.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/google-admob-llms.txt
+- type: Protobuf
+  url: grpc/google-admob-admob-api.proto
+- type: Rules
+  url: rules/google-admob-jsonschema-spectral-rules.yml
+- type: JSONLD
+  url: json-ld/json-ld.yml
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
 x-enrichment:
   date: '2026-08-13'
   status: enriched
   artifacts_added: 27
   pass: local-v1
+x-aliases:
+- AdMob
