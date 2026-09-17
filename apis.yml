@@ -144,30 +144,6 @@ apis:
     url: json-schema/json-schema.yml
   - type: JSONLD
     url: json-ld/json-ld.yml
-- aid: google-admob:google-admob-adunits-api
-  name: Google AdMob Ad Units API
-  description: The adUnits API from Google AdMob — 2 operation(s) for adunits.
-  humanURL: https://developers.google.com/admob/api
-  baseURL: https://admob.googleapis.com
-  tags:
-  - Ad Units
-  tags_raw:
-  - adUnits
-  properties:
-  - type: OpenAPI
-    url: openapi/google-admob-adunits-api-openapi.yml
-  - type: Protobuf
-    url: grpc/google-admob-admob-api.proto
-  - type: Documentation
-    url: https://developers.google.com/admob/api/v1/getting-started
-  - type: APIReference
-    url: https://developers.google.com/admob/api/rest
-  - type: Authentication
-    url: authentication/google-admob-authentication.yml
-  - type: JSONSchema
-    url: json-schema/json-schema.yml
-  - type: JSONLD
-    url: json-ld/json-ld.yml
 - aid: google-admob:google-admob-apps-api
   name: Google AdMob Apps API
   description: The apps API from Google AdMob — 2 operation(s) for apps.
@@ -217,7 +193,8 @@ apis:
     url: json-ld/json-ld.yml
 - aid: google-admob:google-admob-mediationabexperiments-api
   name: Google AdMob Mediation Ab Experiments API
-  description: The mediationAbExperiments API from Google AdMob — 2 operation(s) for mediationabexperiments.
+  description: >-
+    The mediationAbExperiments API from Google AdMob — 2 operation(s) for mediationabexperiments.
   humanURL: https://developers.google.com/admob/api
   baseURL: https://admob.googleapis.com
   tags:
@@ -294,6 +271,28 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/google-admob-networkreport-api-openapi.yml
+  - type: Protobuf
+    url: grpc/google-admob-admob-api.proto
+  - type: Documentation
+    url: https://developers.google.com/admob/api/v1/getting-started
+  - type: APIReference
+    url: https://developers.google.com/admob/api/rest
+  - type: Authentication
+    url: authentication/google-admob-authentication.yml
+  - type: JSONSchema
+    url: json-schema/json-schema.yml
+  - type: JSONLD
+    url: json-ld/json-ld.yml
+- aid: google-admob:google-admob-ad-units-api
+  name: Google AdMob Ad Units API
+  description: The Ad Units API from Google AdMob — 2 operation(s) for ad units.
+  humanURL: https://developers.google.com/admob/api
+  baseURL: https://admob.googleapis.com
+  tags:
+  - Ad Units
+  properties:
+  - type: OpenAPI
+    url: openapi/google-admob-ad-units-api-openapi.yml
   - type: Protobuf
     url: grpc/google-admob-admob-api.proto
   - type: Documentation
