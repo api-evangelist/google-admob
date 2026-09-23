@@ -161,80 +161,6 @@ paths:
       description: Google AdMob API
 components:
   schemas:
-    ReportRow:
-      type: object
-      description: A row of the returning report.
-      properties:
-        dimensionValues:
-          type: object
-          description: Map of dimension values in a row, with keys as enum name of the dimensions.
-          additionalProperties:
-            $ref: '#/components/schemas/ReportRowDimensionValue'
-        metricValues:
-          type: object
-          description: Map of metric values in a row, with keys as enum name of the metrics. If a metric being requested has no value returned, the map will not include it.
-          additionalProperties:
-            $ref: '#/components/schemas/ReportRowMetricValue'
-    StringList:
-      type: object
-      description: List of string values.
-      properties:
-        values:
-          type: array
-          description: The string values.
-          items:
-            type: string
-    MediationReportSpecDimensionFilter:
-      type: object
-      description: Describes which report rows to match based on their dimension values.
-      properties:
-        matchesAny:
-          $ref: '#/components/schemas/StringList'
-        dimension:
-          type: string
-          description: Applies the filter criterion to the specified dimension.
-          enum:
-          - DIMENSION_UNSPECIFIED
-          - DATE
-          - MONTH
-          - WEEK
-          - AD_SOURCE
-          - AD_SOURCE_INSTANCE
-          - AD_UNIT
-          - APP
-          - MEDIATION_GROUP
-          - COUNTRY
-          - FORMAT
-          - PLATFORM
-          - MOBILE_OS_VERSION
-          - GMA_SDK_VERSION
-          - APP_VERSION_NAME
-          - SERVING_RESTRICTION
-          x-enum-descriptions:
-          - Default value for an unset field. Do not use.
-          - A date in the YYYYMMDD format (for example, "20210701"). Requests can specify at most one time dimension.
-          - A month in the YYYYMM format (for example, "202107"). Requests can specify at most one time dimension.
-          - The date of the first day of a week in the YYYYMMDD format (for example, "20210701"). Requests can specify at most one time dimension.
-          - The [unique ID of the ad source](/admob/api/v1/ad_sources) (for example, "5450213213286189855" and "AdMob Network" as label value).
-          - The unique ID of the ad source instance (for example, "ca-app-pub-1234:asi:5678" and "AdMob (default)" as label value).
-          - The unique ID of the ad unit (for example, "ca-app-pub-1234/8790"). If AD_UNIT dimension is specified, then APP is included automatically.
-          - The unique ID of the mobile application (for example, "ca-app-pub-1234~1234").
-          - The unique ID of the mediation group (for example, "ca-app-pub-1234:mg:1234" and "AdMob (default)" as label value).
-          - CLDR country code of the place where the ad views/clicks occur (for example, "US" or "FR"). This is a geography dimension.
-          - Format of the ad unit (for example, "banner", "native"), an ad delivery dimension.
-          - Mobile OS platform of the app (for example, "Android" or "iOS").
-          - Mobile operating system version, e.g. "iOS 13.5.1".
-          - GMA SDK version, e.g. "iOS 7.62.0".
-          - For Android, the app version name can be found in versionName in PackageInfo. For iOS, the app version name can be found in CFBundleShortVersionString.
-          - Restriction mode for ads serving (e.g. "Non-personalized ads").
-    DateRange:
-      type: object
-      description: Specification of a single date range. Both dates are inclusive.
-      properties:
-        startDate:
-          $ref: '#/components/schemas/Date'
-        endDate:
-          $ref: '#/components/schemas/Date'
     MediationReportSpecSortCondition:
       type: object
       description: Sorting direction to be applied on a dimension or a metric.
@@ -310,6 +236,145 @@ components:
           - The number of times ads are returned in response to a request. The value is an integer.
           - The ratio of matched ad requests over the total ad requests. The value is a double precision (approximate) decimal value.
           - The third-party ad network's estimated average eCPM. The currency unit (USD, EUR, or other) of the earning metrics are determined by the localization setting for currency. The amount is in micros. For example, $2.30 would be represented as 2300000. The estimated average eCPM per mediation group and per ad source instance level is supported dating back to October 20, 2019. Third-party estimated average eCPM will show 0 for dates prior to October 20, 2019.
+    ReportRowDimensionValue:
+      type: object
+      description: Representation of a dimension value.
+      properties:
+        displayLabel:
+          type: string
+          description: The localized string representation of the value. If unspecified, the display label should be derived from the value.
+        value:
+          type: string
+          description: Dimension value in the format specified in the report's spec Dimension enum.
+    GoogleRpcStatus:
+      type: object
+      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
+      properties:
+        code:
+          type: integer
+          description: The status code, which should be an enum value of google.rpc.Code.
+        message:
+          type: string
+          description: A developer-facing error message in English.
+        status:
+          type: string
+          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
+        details:
+          type: array
+          items:
+            type: object
+          description: A list of messages that carry the error details.
+      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
+    MediationReportSpecDimensionFilter:
+      type: object
+      description: Describes which report rows to match based on their dimension values.
+      properties:
+        matchesAny:
+          $ref: '#/components/schemas/StringList'
+        dimension:
+          type: string
+          description: Applies the filter criterion to the specified dimension.
+          enum:
+          - DIMENSION_UNSPECIFIED
+          - DATE
+          - MONTH
+          - WEEK
+          - AD_SOURCE
+          - AD_SOURCE_INSTANCE
+          - AD_UNIT
+          - APP
+          - MEDIATION_GROUP
+          - COUNTRY
+          - FORMAT
+          - PLATFORM
+          - MOBILE_OS_VERSION
+          - GMA_SDK_VERSION
+          - APP_VERSION_NAME
+          - SERVING_RESTRICTION
+          x-enum-descriptions:
+          - Default value for an unset field. Do not use.
+          - A date in the YYYYMMDD format (for example, "20210701"). Requests can specify at most one time dimension.
+          - A month in the YYYYMM format (for example, "202107"). Requests can specify at most one time dimension.
+          - The date of the first day of a week in the YYYYMMDD format (for example, "20210701"). Requests can specify at most one time dimension.
+          - The [unique ID of the ad source](/admob/api/v1/ad_sources) (for example, "5450213213286189855" and "AdMob Network" as label value).
+          - The unique ID of the ad source instance (for example, "ca-app-pub-1234:asi:5678" and "AdMob (default)" as label value).
+          - The unique ID of the ad unit (for example, "ca-app-pub-1234/8790"). If AD_UNIT dimension is specified, then APP is included automatically.
+          - The unique ID of the mobile application (for example, "ca-app-pub-1234~1234").
+          - The unique ID of the mediation group (for example, "ca-app-pub-1234:mg:1234" and "AdMob (default)" as label value).
+          - CLDR country code of the place where the ad views/clicks occur (for example, "US" or "FR"). This is a geography dimension.
+          - Format of the ad unit (for example, "banner", "native"), an ad delivery dimension.
+          - Mobile OS platform of the app (for example, "Android" or "iOS").
+          - Mobile operating system version, e.g. "iOS 13.5.1".
+          - GMA SDK version, e.g. "iOS 7.62.0".
+          - For Android, the app version name can be found in versionName in PackageInfo. For iOS, the app version name can be found in CFBundleShortVersionString.
+          - Restriction mode for ads serving (e.g. "Non-personalized ads").
+    Date:
+      type: object
+      description: 'Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp'
+      properties:
+        year:
+          type: integer
+          format: int32
+          description: Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+        month:
+          type: integer
+          format: int32
+          description: Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+        day:
+          type: integer
+          format: int32
+          description: Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+    GenerateMediationReportRequest:
+      type: object
+      description: Request to generate an AdMob Mediation report.
+      properties:
+        reportSpec:
+          $ref: '#/components/schemas/MediationReportSpec'
+    DateRange:
+      type: object
+      description: Specification of a single date range. Both dates are inclusive.
+      properties:
+        startDate:
+          $ref: '#/components/schemas/Date'
+        endDate:
+          $ref: '#/components/schemas/Date'
+    ReportFooter:
+      type: object
+      description: Groups data available after report generation, for example, warnings and row counts. Always sent as the last message in the stream response.
+      properties:
+        warnings:
+          type: array
+          description: Warnings associated with generation of the report.
+          items:
+            $ref: '#/components/schemas/ReportWarning'
+        matchingRowCount:
+          type: string
+          format: int64
+          description: 'Total number of rows that matched the request. Warning: This count does NOT always match the number of rows in the response. Do not make that assumption when processing the response.'
+    GenerateMediationReportResponse:
+      type: object
+      description: 'The streaming response for the AdMob Mediation report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message. For example: [{ "header": { "date_range": { "start_date": {"year": 2018, "month": 9, "day": 1}, "end_date": {"year": 2018, "month": 9, "day": 1} }, "localization_settings": { "currency_code": "USD", "language_code": "en-US" } } }, { "row": { "dimension_values": { "DATE": {"value": "20180918"}, "APP": { "value": "ca-app-pub-8123415297019784~1001342552", "display_label": "My app name!" } }, "metric_values": { "ESTIMATED_EARNINGS": {"decimal_value": "1324746"} } } }, { "footer": {"matching_row_count": 1} }]'
+      properties:
+        header:
+          $ref: '#/components/schemas/ReportHeader'
+        row:
+          $ref: '#/components/schemas/ReportRow'
+        footer:
+          $ref: '#/components/schemas/ReportFooter'
+    ReportRow:
+      type: object
+      description: A row of the returning report.
+      properties:
+        dimensionValues:
+          type: object
+          description: Map of dimension values in a row, with keys as enum name of the dimensions.
+          additionalProperties:
+            $ref: '#/components/schemas/ReportRowDimensionValue'
+        metricValues:
+          type: object
+          description: Map of metric values in a row, with keys as enum name of the metrics. If a metric being requested has no value returned, the map will not include it.
+          additionalProperties:
+            $ref: '#/components/schemas/ReportRowMetricValue'
     MediationReportSpec:
       type: object
       description: 'The specification for generating an AdMob Mediation report. For example, the specification to get observed ECPM sliced by ad source and app for the ''US'' and ''CN'' countries can look like the following example: { "date_range": { "start_date": {"year": 2021, "month": 9, "day": 1}, "end_date": {"year": 2021, "month": 9, "day": 30} }, "dimensions": ["AD_SOURCE", "APP", "COUNTRY"], "metrics": ["OBSERVED_ECPM"], "dimension_filters": [ { "dimension": "COUNTRY", "matches_any": {"values": [{"value": "US", "value": "CN"}]} } ], "sort_conditions": [ {"dimension":"APP", order: "ASCENDING"} ], "localization_settings": { "currency_code": "USD", "language_code": "en-US" } } For a better understanding, you can treat the preceding specification like the following pseudo SQL: SELECT AD_SOURCE, APP, COUNTRY, OBSERVED_ECPM FROM MEDIATION_REPORT WHERE DATE >= ''2021-09-01'' AND DATE <= ''2021-09-30'' AND COUNTRY IN (''US'', ''CN'') GROUP BY AD_SOURCE, APP, COUNTRY ORDER BY APP ASC;'
@@ -399,29 +464,41 @@ components:
             - GMA SDK version, e.g. "iOS 7.62.0".
             - For Android, the app version name can be found in versionName in PackageInfo. For iOS, the app version name can be found in CFBundleShortVersionString.
             - Restriction mode for ads serving (e.g. "Non-personalized ads").
-    ReportRowDimensionValue:
+    LocalizationSettings:
       type: object
-      description: Representation of a dimension value.
+      description: Localization settings for reports, such as currency and language. It affects how metrics are calculated.
       properties:
-        displayLabel:
+        languageCode:
           type: string
-          description: The localized string representation of the value. If unspecified, the display label should be derived from the value.
-        value:
+          description: Language used for any localized text, such as some dimension value display labels. The language tag defined in the IETF BCP47. Defaults to 'en-US' if unspecified.
+        currencyCode:
           type: string
-          description: Dimension value in the format specified in the report's spec Dimension enum.
-    ReportFooter:
+          description: Currency code of the earning related metrics, which is the 3-letter code defined in ISO 4217. The daily average rate is used for the currency conversion. Defaults to the account currency code if unspecified.
+    ReportRowMetricValue:
       type: object
-      description: Groups data available after report generation, for example, warnings and row counts. Always sent as the last message in the stream response.
+      description: Representation of a metric value.
       properties:
-        warnings:
-          type: array
-          description: Warnings associated with generation of the report.
-          items:
-            $ref: '#/components/schemas/ReportWarning'
-        matchingRowCount:
+        microsValue:
           type: string
           format: int64
-          description: 'Total number of rows that matched the request. Warning: This count does NOT always match the number of rows in the response. Do not make that assumption when processing the response.'
+          description: Amount in micros. One million is equivalent to one unit. Currency value is in the unit (USD, EUR or other) specified by the request. For example, $6.50 whould be represented as 6500000 micros.
+        integerValue:
+          type: string
+          format: int64
+          description: Metric integer value.
+        doubleValue:
+          type: number
+          format: double
+          description: Double precision (approximate) decimal values. Rates are from 0 to 1.
+    StringList:
+      type: object
+      description: List of string values.
+      properties:
+        values:
+          type: array
+          description: The string values.
+          items:
+            type: string
     ReportWarning:
       type: object
       description: Warnings associated with generation of the report.
@@ -444,73 +521,6 @@ components:
         description:
           type: string
           description: Describes the details of the warning message, in English.
-    Date:
-      type: object
-      description: 'Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp'
-      properties:
-        year:
-          type: integer
-          format: int32
-          description: Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-        month:
-          type: integer
-          format: int32
-          description: Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-        day:
-          type: integer
-          format: int32
-          description: Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-    GenerateMediationReportResponse:
-      type: object
-      description: 'The streaming response for the AdMob Mediation report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message. For example: [{ "header": { "date_range": { "start_date": {"year": 2018, "month": 9, "day": 1}, "end_date": {"year": 2018, "month": 9, "day": 1} }, "localization_settings": { "currency_code": "USD", "language_code": "en-US" } } }, { "row": { "dimension_values": { "DATE": {"value": "20180918"}, "APP": { "value": "ca-app-pub-8123415297019784~1001342552", "display_label": "My app name!" } }, "metric_values": { "ESTIMATED_EARNINGS": {"decimal_value": "1324746"} } } }, { "footer": {"matching_row_count": 1} }]'
-      properties:
-        header:
-          $ref: '#/components/schemas/ReportHeader'
-        row:
-          $ref: '#/components/schemas/ReportRow'
-        footer:
-          $ref: '#/components/schemas/ReportFooter'
-    GenerateMediationReportRequest:
-      type: object
-      description: Request to generate an AdMob Mediation report.
-      properties:
-        reportSpec:
-          $ref: '#/components/schemas/MediationReportSpec'
-    ReportRowMetricValue:
-      type: object
-      description: Representation of a metric value.
-      properties:
-        microsValue:
-          type: string
-          format: int64
-          description: Amount in micros. One million is equivalent to one unit. Currency value is in the unit (USD, EUR or other) specified by the request. For example, $6.50 whould be represented as 6500000 micros.
-        integerValue:
-          type: string
-          format: int64
-          description: Metric integer value.
-        doubleValue:
-          type: number
-          format: double
-          description: Double precision (approximate) decimal values. Rates are from 0 to 1.
-    GoogleRpcStatus:
-      type: object
-      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
-      properties:
-        code:
-          type: integer
-          description: The status code, which should be an enum value of google.rpc.Code.
-        message:
-          type: string
-          description: A developer-facing error message in English.
-        status:
-          type: string
-          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
-        details:
-          type: array
-          items:
-            type: object
-          description: A list of messages that carry the error details.
-      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
     ReportHeader:
       type: object
       description: Groups data helps to treat the generated report. Always sent as a first message in the stream response.
@@ -522,16 +532,6 @@ components:
           $ref: '#/components/schemas/DateRange'
         localizationSettings:
           $ref: '#/components/schemas/LocalizationSettings'
-    LocalizationSettings:
-      type: object
-      description: Localization settings for reports, such as currency and language. It affects how metrics are calculated.
-      properties:
-        languageCode:
-          type: string
-          description: Language used for any localized text, such as some dimension value display labels. The language tag defined in the IETF BCP47. Defaults to 'en-US' if unspecified.
-        currencyCode:
-          type: string
-          description: Currency code of the earning related metrics, which is the 3-letter code defined in ISO 4217. The daily average rate is used for the currency conversion. Defaults to the account currency code if unspecified.
   securitySchemes:
     GoogleOAuth2:
       type: oauth2

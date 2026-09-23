@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Google AdMob Ad Sources API
   version: v1beta
-  description: 'The AdMob API allows publishers to programmatically get information about their AdMob account. '
+  description: The AdMob API allows publishers to programmatically get information about their AdMob account.
   contact:
     name: Google
     url: https://developers.google.com/admob/api/
@@ -25,7 +25,7 @@ paths:
   /v1beta/accounts/{accountsId}/adSources:
     get:
       operationId: accounts_adSources_list
-      summary: List the ad sources.
+      summary: List the ad sources
       description: List the ad sources.
       tags:
       - adSources
@@ -96,19 +96,6 @@ paths:
         - https://www.googleapis.com/auth/admob.report
 components:
   schemas:
-    AdSource:
-      type: object
-      description: Definition of a mediation ad source.
-      properties:
-        name:
-          type: string
-          description: 'Resource name of this ad source. Format is: accounts/{publisher_id}/adSources/{ad_source_id}'
-        title:
-          type: string
-          description: Display name of this ad source.
-        adSourceId:
-          type: string
-          description: ID of this ad source.
     GoogleRpcStatus:
       type: object
       description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
@@ -128,6 +115,19 @@ components:
             type: object
           description: A list of messages that carry the error details.
       x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
+    AdSource:
+      type: object
+      description: Definition of a mediation ad source.
+      properties:
+        name:
+          type: string
+          description: 'Resource name of this ad source. Format is: accounts/{publisher_id}/adSources/{ad_source_id}'
+        title:
+          type: string
+          description: Display name of this ad source.
+        adSourceId:
+          type: string
+          description: ID of this ad source.
     ListAdSourcesResponse:
       type: object
       description: Response for the ListAdSourcesRequest.

@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Google AdMob Adapters API
   version: v1beta
-  description: 'The AdMob API allows publishers to programmatically get information about their AdMob account. '
+  description: The AdMob API allows publishers to programmatically get information about their AdMob account.
   contact:
     name: Google
     url: https://developers.google.com/admob/api/
@@ -20,15 +20,15 @@ security:
   - https://www.googleapis.com/auth/admob.readonly
   - https://www.googleapis.com/auth/admob.report
 tags:
-- name: adapters
+- name: Adapters
 paths:
   /v1beta/accounts/{accountsId}/adSources/{adSourcesId}/adapters:
     get:
       operationId: accounts_adSources_adapters_list
-      summary: List the adapters of the ad source.
+      summary: List the adapters of the ad source
       description: List the adapters of the ad source.
       tags:
-      - adapters
+      - Adapters
       x-resource-name-parameter:
         parent:
           pattern: ^accounts/[^/]+/adSources/[^/]+$
@@ -101,6 +101,19 @@ paths:
         - https://www.googleapis.com/auth/admob.readonly
 components:
   schemas:
+    AdapterAdapterConfigMetadata:
+      type: object
+      description: Configuration metadata associated with this adapter. They are used to define the ad_unit_configurations associated with AdUnitMappings for the this adapter.
+      properties:
+        isRequired:
+          type: boolean
+          description: Whether this metadata is required for configuring the AdUnitMappings.
+        adapterConfigMetadataId:
+          type: string
+          description: This is used to fill the key of the [ad_unit_configurations](#AdUnitMapping.ad_unit_configurations).
+        adapterConfigMetadataLabel:
+          type: string
+          description: Name of the adapter configuration metadata.
     ListAdaptersResponse:
       type: object
       description: Response for the ListAdaptersRequest.
@@ -132,19 +145,6 @@ components:
             type: object
           description: A list of messages that carry the error details.
       x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
-    AdapterAdapterConfigMetadata:
-      type: object
-      description: Configuration metadata associated with this adapter. They are used to define the ad_unit_configurations associated with AdUnitMappings for the this adapter.
-      properties:
-        isRequired:
-          type: boolean
-          description: Whether this metadata is required for configuring the AdUnitMappings.
-        adapterConfigMetadataId:
-          type: string
-          description: This is used to fill the key of the [ad_unit_configurations](#AdUnitMapping.ad_unit_configurations).
-        adapterConfigMetadataLabel:
-          type: string
-          description: Name of the adapter configuration metadata.
     Adapter:
       type: object
       description: Describes adapters supported by each mediation ad source. Adapters correspond to a specific SDK implementation of the ad source, and are each associated with a single platform and a list of supported ad unit formats. Adapters may also require setting some configurations to perform ad requests. Configurations can be specified in the AdUnitMapping by setting the [ad_unit_configurations](#AdUnitMapping.ad_unit_configurations) key/value pairs. For example, the ad_unit_configurations can be used to pass various IDs to the adapter's third-party SDK.

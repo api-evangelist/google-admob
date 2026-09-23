@@ -21,15 +21,15 @@ security:
   - https://www.googleapis.com/auth/admob.readonly
   - https://www.googleapis.com/auth/admob.report
 tags:
-- name: adUnits
+- name: Ad Units
 paths:
   /v1/accounts/{accountsId}/adUnits:
     get:
       operationId: accounts_adUnits_list
-      summary: List the ad units under the specified AdMob account.
+      summary: List the ad units under the specified AdMob account
       description: List the ad units under the specified AdMob account.
       tags:
-      - adUnits
+      - Ad Units
       x-resource-name-parameter:
         parent:
           pattern: ^accounts/[^/]+$
@@ -103,7 +103,7 @@ paths:
       summary: Creates an ad unit under the specified AdMob account
       description: Creates an ad unit under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.
       tags:
-      - adUnits
+      - Ad Units
       x-resource-name-parameter:
         parent:
           pattern: ^accounts/[^/]+$
@@ -160,10 +160,10 @@ paths:
                 $ref: '#/components/schemas/GoogleRpcStatus'
     get:
       operationId: accounts_adUnits_list
-      summary: List the ad units under the specified AdMob account.
+      summary: List the ad units under the specified AdMob account
       description: List the ad units under the specified AdMob account.
       tags:
-      - adUnits
+      - Ad Units
       x-resource-name-parameter:
         parent:
           pattern: ^accounts/[^/]+$
@@ -233,30 +233,6 @@ paths:
       description: Google AdMob API
 components:
   schemas:
-    AdUnit:
-      type: object
-      description: Describes an AdMob ad unit.
-      properties:
-        appId:
-          type: string
-          description: 'The externally visible ID of the app this ad unit is associated with. Example: ca-app-pub-9876543210987654~0123456789'
-        name:
-          type: string
-          description: 'Resource name for this ad unit. Format is accounts/{publisher_id}/adUnits/{ad_unit_id_fragment} Example: accounts/pub-9876543210987654/adUnits/0123456789'
-        adTypes:
-          type: array
-          description: 'Ad media type supported by this ad unit. Possible values as follows: "RICH_MEDIA" - Text, image, and other non-video media. "VIDEO" - Video media.'
-          items:
-            type: string
-        adUnitId:
-          type: string
-          description: 'The externally visible ID of the ad unit which can be used to integrate with AdMob. This is a read only property. Example: ca-app-pub-9876543210987654/0123456789'
-        displayName:
-          type: string
-          description: The display name of the ad unit as shown in the AdMob UI, which is provided by the user. The maximum length allowed is 80 characters.
-        adFormat:
-          type: string
-          description: 'AdFormat of the ad unit. Possible values are as follows: "APP_OPEN" - App Open ad format. "BANNER" - Banner ad format. "BANNER_INTERSTITIAL" - Legacy format that can be used as either banner or interstitial. This format can no longer be created but can be targeted by mediation groups. "INTERSTITIAL" - A full screen ad. Supported ad types are "RICH_MEDIA" and "VIDEO". "NATIVE" - Native ad format. "REWARDED" - An ad that, once viewed, gets a callback verifying the view so that a reward can be given to the user. Supported ad types are "RICH_MEDIA" (interactive) and video where video can not be excluded. "REWARDED_INTERSTITIAL" - Rewarded Interstitial ad format. Only supports video ad type. See https://support.google.com/admob/answer/9884467.'
     ListAdUnitsResponse:
       type: object
       description: Response for the ad units list request.
@@ -288,6 +264,41 @@ components:
             type: object
           description: A list of messages that carry the error details.
       x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
+    AdUnit:
+      type: object
+      description: Describes an AdMob ad unit.
+      properties:
+        appId:
+          type: string
+          description: 'The externally visible ID of the app this ad unit is associated with. Example: ca-app-pub-9876543210987654~0123456789'
+        name:
+          type: string
+          description: 'Resource name for this ad unit. Format is accounts/{publisher_id}/adUnits/{ad_unit_id_fragment} Example: accounts/pub-9876543210987654/adUnits/0123456789'
+        adTypes:
+          type: array
+          description: 'Ad media type supported by this ad unit. Possible values as follows: "RICH_MEDIA" - Text, image, and other non-video media. "VIDEO" - Video media.'
+          items:
+            type: string
+        adUnitId:
+          type: string
+          description: 'The externally visible ID of the ad unit which can be used to integrate with AdMob. This is a read only property. Example: ca-app-pub-9876543210987654/0123456789'
+        displayName:
+          type: string
+          description: The display name of the ad unit as shown in the AdMob UI, which is provided by the user. The maximum length allowed is 80 characters.
+        adFormat:
+          type: string
+          description: 'AdFormat of the ad unit. Possible values are as follows: "APP_OPEN" - App Open ad format. "BANNER" - Banner ad format. "BANNER_INTERSTITIAL" - Legacy format that can be used as either banner or interstitial. This format can no longer be created but can be targeted by mediation groups. "INTERSTITIAL" - A full screen ad. Supported ad types are "RICH_MEDIA" and "VIDEO". "NATIVE" - Native ad format. "REWARDED" - An ad that, once viewed, gets a callback verifying the view so that a reward can be given to the user. Supported ad types are "RICH_MEDIA" (interactive) and video where video can not be excluded. "REWARDED_INTERSTITIAL" - Rewarded Interstitial ad format. Only supports video ad type. See https://support.google.com/admob/answer/9884467.'
+    AdUnitRewardSettings:
+      type: object
+      description: Settings for a rewarded ad unit.
+      properties:
+        unitType:
+          type: string
+          description: Reward item for this ad unit.
+        unitAmount:
+          type: string
+          format: int64
+          description: Reward amount for this ad unit.
     AdUnit_2:
       type: object
       description: Describes an AdMob ad unit.
@@ -314,17 +325,6 @@ components:
         adFormat:
           type: string
           description: 'AdFormat of the ad unit. Possible values are as follows: "APP_OPEN" - App Open ad format. "BANNER" - Banner ad format. "BANNER_INTERSTITIAL" - Legacy format that can be used as either banner or interstitial. This format can no longer be created but can be targeted by mediation groups. "INTERSTITIAL" - A full screen ad. Supported ad types are "RICH_MEDIA" and "VIDEO". "NATIVE" - Native ad format. "REWARDED" - An ad that, once viewed, gets a callback verifying the view so that a reward can be given to the user. Supported ad types are "RICH_MEDIA" (interactive) and video where video can not be excluded. "REWARDED_INTERSTITIAL" - Rewarded Interstitial ad format. Only supports video ad type. See https://support.google.com/admob/answer/9884467.'
-    AdUnitRewardSettings:
-      type: object
-      description: Settings for a rewarded ad unit.
-      properties:
-        unitType:
-          type: string
-          description: Reward item for this ad unit.
-        unitAmount:
-          type: string
-          format: int64
-          description: Reward amount for this ad unit.
   securitySchemes:
     GoogleOAuth2:
       type: oauth2

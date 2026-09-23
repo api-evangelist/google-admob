@@ -21,15 +21,15 @@ security:
   - https://www.googleapis.com/auth/admob.readonly
   - https://www.googleapis.com/auth/admob.report
 tags:
-- name: apps
+- name: Apps
 paths:
   /v1/accounts/{accountsId}/apps:
     get:
       operationId: accounts_apps_list
-      summary: List the apps under the specified AdMob account.
+      summary: List the apps under the specified AdMob account
       description: List the apps under the specified AdMob account.
       tags:
-      - apps
+      - Apps
       x-resource-name-parameter:
         parent:
           pattern: ^accounts/[^/]+$
@@ -103,7 +103,7 @@ paths:
       summary: Creates an app under the specified AdMob account
       description: Creates an app under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.
       tags:
-      - apps
+      - Apps
       x-resource-name-parameter:
         parent:
           pattern: ^accounts/[^/]+$
@@ -160,10 +160,10 @@ paths:
                 $ref: '#/components/schemas/GoogleRpcStatus'
     get:
       operationId: accounts_apps_list
-      summary: List the apps under the specified AdMob account.
+      summary: List the apps under the specified AdMob account
       description: List the apps under the specified AdMob account.
       tags:
-      - apps
+      - Apps
       x-resource-name-parameter:
         parent:
           pattern: ^accounts/[^/]+$
@@ -233,6 +233,44 @@ paths:
       description: Google AdMob API
 components:
   schemas:
+    AppManualAppInfo:
+      type: object
+      description: 'Information provided for manual apps which are not linked to an application store (Example: Google Play, App Store).'
+      properties:
+        displayName:
+          type: string
+          description: The display name of the app as shown in the AdMob UI, which is provided by the user. The maximum length allowed is 80 characters.
+    GoogleRpcStatus:
+      type: object
+      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
+      properties:
+        code:
+          type: integer
+          description: The status code, which should be an enum value of google.rpc.Code.
+        message:
+          type: string
+          description: A developer-facing error message in English.
+        status:
+          type: string
+          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
+        details:
+          type: array
+          items:
+            type: object
+          description: A list of messages that carry the error details.
+      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
+    ListAppsResponse:
+      type: object
+      description: Response for the apps list request.
+      properties:
+        apps:
+          type: array
+          description: The resulting apps for the requested account.
+          items:
+            $ref: '#/components/schemas/App'
+        nextPageToken:
+          type: string
+          description: If not empty, indicates that there may be more apps for the request; this value should be passed in a new `ListAppsRequest`.
     App:
       type: object
       description: 'Describes an AdMob app for a specific platform (For example: Android or iOS).'
@@ -264,44 +302,6 @@ components:
           description: 'Resource name for this app. Format is accounts/{publisher_id}/apps/{app_id_fragment} Example: accounts/pub-9876543210987654/apps/0123456789'
         manualAppInfo:
           $ref: '#/components/schemas/AppManualAppInfo'
-    ListAppsResponse:
-      type: object
-      description: Response for the apps list request.
-      properties:
-        apps:
-          type: array
-          description: The resulting apps for the requested account.
-          items:
-            $ref: '#/components/schemas/App'
-        nextPageToken:
-          type: string
-          description: If not empty, indicates that there may be more apps for the request; this value should be passed in a new `ListAppsRequest`.
-    AppManualAppInfo:
-      type: object
-      description: 'Information provided for manual apps which are not linked to an application store (Example: Google Play, App Store).'
-      properties:
-        displayName:
-          type: string
-          description: The display name of the app as shown in the AdMob UI, which is provided by the user. The maximum length allowed is 80 characters.
-    GoogleRpcStatus:
-      type: object
-      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
-      properties:
-        code:
-          type: integer
-          description: The status code, which should be an enum value of google.rpc.Code.
-        message:
-          type: string
-          description: A developer-facing error message in English.
-        status:
-          type: string
-          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
-        details:
-          type: array
-          items:
-            type: object
-          description: A list of messages that carry the error details.
-      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
     AppLinkedAppInfo:
       type: object
       description: Information from the app store if the app is linked to an app store.

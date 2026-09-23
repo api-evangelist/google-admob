@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Google AdMob Mediation Ab Experiments API
   version: v1beta
-  description: 'The AdMob API allows publishers to programmatically get information about their AdMob account. '
+  description: The AdMob API allows publishers to programmatically get information about their AdMob account.
   contact:
     name: Google
     url: https://developers.google.com/admob/api/
@@ -25,7 +25,7 @@ paths:
   /v1beta/accounts/{accountsId}/mediationGroups/{mediationGroupsId}/mediationAbExperiments:
     post:
       operationId: accounts_mediationGroups_mediationAbExperiments_create
-      summary: Create an A/B testing experiment for a specified AdMob account and a mediation group
+      summary: Create an A/B testing experiment for a specified AdMob account and a mediation…
       description: Create an A/B testing experiment for a specified AdMob account and a mediation group. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.
       tags:
       - mediationAbExperiments
@@ -158,6 +158,31 @@ paths:
                 $ref: '#/components/schemas/GoogleRpcStatus'
 components:
   schemas:
+    GoogleRpcStatus:
+      type: object
+      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
+      properties:
+        code:
+          type: integer
+          description: The status code, which should be an enum value of google.rpc.Code.
+        message:
+          type: string
+          description: A developer-facing error message in English.
+        status:
+          type: string
+          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
+        details:
+          type: array
+          items:
+            type: object
+          description: A list of messages that carry the error details.
+      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
+    MediationAbExperimentExperimentMediationLine:
+      type: object
+      description: The mediation group line for the experiment. It will be used for serving during the run of the experiment.
+      properties:
+        mediationGroupLine:
+          $ref: '#/components/schemas/MediationGroupMediationGroupLine'
     MediationGroupMediationGroupLine:
       type: object
       description: Settings for an ad network used by a mediation group.
@@ -220,46 +245,6 @@ components:
           - CPM is calculated per ad request based on the ad auction.
           - CPM is set by the user manually.
           - CPM is retrieved from the ad network using the publisher specified credentials. Output only.
-    MediationAbExperimentExperimentMediationLine:
-      type: object
-      description: The mediation group line for the experiment. It will be used for serving during the run of the experiment.
-      properties:
-        mediationGroupLine:
-          $ref: '#/components/schemas/MediationGroupMediationGroupLine'
-    StopMediationAbExperimentRequest:
-      type: object
-      description: Request to end the mediation A/B experiment and choose a winning variant.
-      properties:
-        variantChoice:
-          type: string
-          description: The choice for the winning variant.
-          enum:
-          - VARIANT_CHOICE_UNSPECIFIED
-          - VARIANT_CHOICE_A
-          - VARIANT_CHOICE_B
-          x-enum-descriptions:
-          - Default value for an unset field. Do not use.
-          - Use the mediation lines from Variant A and complete the experiment. Variant A contains the original serving lines before the experiment creation.
-          - Use the mediation lines form Variant B and complete the experiment. Variant B contains the newly added serving lines.
-    GoogleRpcStatus:
-      type: object
-      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
-      properties:
-        code:
-          type: integer
-          description: The status code, which should be an enum value of google.rpc.Code.
-        message:
-          type: string
-          description: A developer-facing error message in English.
-        status:
-          type: string
-          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
-        details:
-          type: array
-          items:
-            type: object
-          description: A list of messages that carry the error details.
-      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
     MediationAbExperiment:
       type: object
       description: The mediation A/B experiment.
@@ -335,6 +320,21 @@ components:
           - Experiment hasn't run long enough to determine a leader.
           - Neither variant is a decisive winner in the observed data.
           readOnly: true
+    StopMediationAbExperimentRequest:
+      type: object
+      description: Request to end the mediation A/B experiment and choose a winning variant.
+      properties:
+        variantChoice:
+          type: string
+          description: The choice for the winning variant.
+          enum:
+          - VARIANT_CHOICE_UNSPECIFIED
+          - VARIANT_CHOICE_A
+          - VARIANT_CHOICE_B
+          x-enum-descriptions:
+          - Default value for an unset field. Do not use.
+          - Use the mediation lines from Variant A and complete the experiment. Variant A contains the original serving lines before the experiment creation.
+          - Use the mediation lines form Variant B and complete the experiment. Variant B contains the newly added serving lines.
   securitySchemes:
     GoogleOAuth2:
       type: oauth2

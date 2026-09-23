@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Google AdMob Mediation Groups API
   version: v1beta
-  description: 'The AdMob API allows publishers to programmatically get information about their AdMob account. '
+  description: The AdMob API allows publishers to programmatically get information about their AdMob account.
   contact:
     name: Google
     url: https://developers.google.com/admob/api/
@@ -235,87 +235,25 @@ paths:
                 $ref: '#/components/schemas/GoogleRpcStatus'
 components:
   schemas:
-    MediationGroup:
+    GoogleRpcStatus:
       type: object
-      description: Describes an AdMob Mediation group.
+      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
       properties:
-        name:
+        code:
+          type: integer
+          description: The status code, which should be an enum value of google.rpc.Code.
+        message:
           type: string
-          description: 'Resource name for this mediation group. Format is: accounts/{publisher_id}/mediationGroups/{mediation_group_id} Example: accounts/pub-9876543210987654/mediationGroups/0123456789'
-        mediationGroupLines:
-          type: object
-          description: The mediation lines used for serving for this mediation group. Key is the ID of the mediation group line. For creation, use distinct negative values as placeholder.
-          additionalProperties:
-            $ref: '#/components/schemas/MediationGroupMediationGroupLine'
-        mediationAbExperimentState:
+          description: A developer-facing error message in English.
+        status:
           type: string
-          description: Output only. The state of the mediation a/b experiment that belongs to this mediation group.
-          enum:
-          - EXPERIMENT_STATE_UNSPECIFIED
-          - RUNNING
-          - NOT_RUNNING
-          x-enum-descriptions:
-          - Default value for an unset field. Do not use.
-          - The mediation group has an experiment in the RUNNING state.
-          - There is no experiment in the RUNNING state in the mediation group.
-          readOnly: true
-        state:
-          type: string
-          description: The status of the mediation group. Only enabled mediation groups will be served.
-          enum:
-          - STATE_UNSPECIFIED
-          - ENABLED
-          - DISABLED
-          x-enum-descriptions:
-          - Default value for an unset field. Do not use.
-          - The mediation group is active and used to serve ads or to collect stats.
-          - The mediation group has been disabled and is no longer serving ads or collecting stats. Disabled mediation groups can be re-enabled.
-        mediationGroupId:
-          type: string
-          description: 'The ID of the mediation group. Example: "0123456789". This is a read only property.'
-        targeting:
-          $ref: '#/components/schemas/MediationGroupTargeting'
-        displayName:
-          type: string
-          description: User provided name for the mediation group. The maximum length allowed is 120 characters.
-    MediationGroupTargeting:
-      type: object
-      description: Set of criteria targeted by this mediation group. For example, a mediation group can target specific ad unit IDs, platform, format and geo location.
-      properties:
-        targetedRegionCodes:
+          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
+        details:
           type: array
-          description: The Unicode country/region code (CLDR) of a location, such as "US". Unset if this mediation group targets all available regions. For more information, see http://www.unicode.org/reports/tr35/#unicode_region_subtag.
           items:
-            type: string
-        platform:
-          type: string
-          description: 'Describes the platform of the app. Examples: "IOS", "ANDROID".'
-        format:
-          type: string
-          description: 'Ad format targeted by this mediation group. Examples: "BANNER", "NATIVE".'
-        adUnitIds:
-          type: array
-          description: 'Ad units targeted by this mediation group. Example: "ca-app-pub-1234/8790".'
-          items:
-            type: string
-        excludedRegionCodes:
-          type: array
-          description: The Unicode country/region code (CLDR) of a location, such as "US". Unset if this mediation group does not exclude any region.
-          items:
-            type: string
-        idfaTargeting:
-          type: string
-          description: The parameter can be used to target ad requests based on the availability of the IDFA. If set to ALL, the mediation group applies to all ad requests (with or without IDFA). If set to AVAILABLE, the mediation group applies to ad requests with IDFA. If set to NOT_AVAILABLE, the mediation group applies to ad requests without IDFA. Doesn't need to be specified for an ANDROID device.
-          enum:
-          - IDFA_TARGETING_UNSPECIFIED
-          - ALL
-          - AVAILABLE
-          - NOT_AVAILABLE
-          x-enum-descriptions:
-          - Default value. This value is unused.
-          - All the devices are targeted, regardless of IDFA availability.
-          - Only the devices with IDFA availability are targeted.
-          - Only the devices without IDFA availability are targeted.
+            type: object
+          description: A list of messages that carry the error details.
+      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
     MediationGroupMediationGroupLine:
       type: object
       description: Settings for an ad network used by a mediation group.
@@ -378,6 +316,44 @@ components:
           - CPM is calculated per ad request based on the ad auction.
           - CPM is set by the user manually.
           - CPM is retrieved from the ad network using the publisher specified credentials. Output only.
+    MediationGroupTargeting:
+      type: object
+      description: Set of criteria targeted by this mediation group. For example, a mediation group can target specific ad unit IDs, platform, format and geo location.
+      properties:
+        targetedRegionCodes:
+          type: array
+          description: The Unicode country/region code (CLDR) of a location, such as "US". Unset if this mediation group targets all available regions. For more information, see http://www.unicode.org/reports/tr35/#unicode_region_subtag.
+          items:
+            type: string
+        platform:
+          type: string
+          description: 'Describes the platform of the app. Examples: "IOS", "ANDROID".'
+        format:
+          type: string
+          description: 'Ad format targeted by this mediation group. Examples: "BANNER", "NATIVE".'
+        adUnitIds:
+          type: array
+          description: 'Ad units targeted by this mediation group. Example: "ca-app-pub-1234/8790".'
+          items:
+            type: string
+        excludedRegionCodes:
+          type: array
+          description: The Unicode country/region code (CLDR) of a location, such as "US". Unset if this mediation group does not exclude any region.
+          items:
+            type: string
+        idfaTargeting:
+          type: string
+          description: The parameter can be used to target ad requests based on the availability of the IDFA. If set to ALL, the mediation group applies to all ad requests (with or without IDFA). If set to AVAILABLE, the mediation group applies to ad requests with IDFA. If set to NOT_AVAILABLE, the mediation group applies to ad requests without IDFA. Doesn't need to be specified for an ANDROID device.
+          enum:
+          - IDFA_TARGETING_UNSPECIFIED
+          - ALL
+          - AVAILABLE
+          - NOT_AVAILABLE
+          x-enum-descriptions:
+          - Default value. This value is unused.
+          - All the devices are targeted, regardless of IDFA availability.
+          - Only the devices with IDFA availability are targeted.
+          - Only the devices without IDFA availability are targeted.
     ListMediationGroupsResponse:
       type: object
       description: Response for the mediation groups list request.
@@ -390,25 +366,49 @@ components:
         nextPageToken:
           type: string
           description: If not empty, indicates that there may be more mediation groups for the request; this value should be passed in a new `ListMediationGroupsRequest`.
-    GoogleRpcStatus:
+    MediationGroup:
       type: object
-      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
+      description: Describes an AdMob Mediation group.
       properties:
-        code:
-          type: integer
-          description: The status code, which should be an enum value of google.rpc.Code.
-        message:
+        name:
           type: string
-          description: A developer-facing error message in English.
-        status:
+          description: 'Resource name for this mediation group. Format is: accounts/{publisher_id}/mediationGroups/{mediation_group_id} Example: accounts/pub-9876543210987654/mediationGroups/0123456789'
+        mediationGroupLines:
+          type: object
+          description: The mediation lines used for serving for this mediation group. Key is the ID of the mediation group line. For creation, use distinct negative values as placeholder.
+          additionalProperties:
+            $ref: '#/components/schemas/MediationGroupMediationGroupLine'
+        mediationAbExperimentState:
           type: string
-          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
-        details:
-          type: array
-          items:
-            type: object
-          description: A list of messages that carry the error details.
-      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
+          description: Output only. The state of the mediation a/b experiment that belongs to this mediation group.
+          enum:
+          - EXPERIMENT_STATE_UNSPECIFIED
+          - RUNNING
+          - NOT_RUNNING
+          x-enum-descriptions:
+          - Default value for an unset field. Do not use.
+          - The mediation group has an experiment in the RUNNING state.
+          - There is no experiment in the RUNNING state in the mediation group.
+          readOnly: true
+        state:
+          type: string
+          description: The status of the mediation group. Only enabled mediation groups will be served.
+          enum:
+          - STATE_UNSPECIFIED
+          - ENABLED
+          - DISABLED
+          x-enum-descriptions:
+          - Default value for an unset field. Do not use.
+          - The mediation group is active and used to serve ads or to collect stats.
+          - The mediation group has been disabled and is no longer serving ads or collecting stats. Disabled mediation groups can be re-enabled.
+        mediationGroupId:
+          type: string
+          description: 'The ID of the mediation group. Example: "0123456789". This is a read only property.'
+        targeting:
+          $ref: '#/components/schemas/MediationGroupTargeting'
+        displayName:
+          type: string
+          description: User provided name for the mediation group. The maximum length allowed is 120 characters.
   securitySchemes:
     GoogleOAuth2:
       type: oauth2

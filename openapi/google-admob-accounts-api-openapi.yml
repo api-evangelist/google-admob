@@ -21,15 +21,15 @@ security:
   - https://www.googleapis.com/auth/admob.readonly
   - https://www.googleapis.com/auth/admob.report
 tags:
-- name: accounts
+- name: Accounts
 paths:
   /v1/accounts/{accountsId}:
     get:
       operationId: accounts_get
-      summary: Gets information about the specified AdMob publisher account.
+      summary: Gets information about the specified AdMob publisher account
       description: Gets information about the specified AdMob publisher account.
       tags:
-      - accounts
+      - Accounts
       x-resource-name-parameter:
         name:
           pattern: ^accounts/[^/]+$
@@ -88,10 +88,10 @@ paths:
   /v1/accounts:
     get:
       operationId: accounts_list
-      summary: Lists the AdMob publisher account that was most recently signed in to from the AdMob UI
+      summary: Lists the AdMob publisher account that was most recently signed in to from the…
       description: Lists the AdMob publisher account that was most recently signed in to from the AdMob UI. For more information, see https://support.google.com/admob/answer/10243672.
       tags:
-      - accounts
+      - Accounts
       parameters:
       - name: pageSize
         in: query
@@ -153,10 +153,10 @@ paths:
   /v1beta/accounts/{accountsId}:
     get:
       operationId: accounts_get
-      summary: Gets information about the specified AdMob publisher account.
+      summary: Gets information about the specified AdMob publisher account
       description: Gets information about the specified AdMob publisher account.
       tags:
-      - accounts
+      - Accounts
       x-resource-name-parameter:
         name:
           pattern: ^accounts/[^/]+$
@@ -215,10 +215,10 @@ paths:
   /v1beta/accounts:
     get:
       operationId: accounts_list
-      summary: Lists the AdMob publisher account that was most recently signed in to from the AdMob UI
+      summary: Lists the AdMob publisher account that was most recently signed in to from the…
       description: Lists the AdMob publisher account that was most recently signed in to from the AdMob UI. For more information, see https://support.google.com/admob/answer/10243672.
       tags:
-      - accounts
+      - Accounts
       parameters:
       - name: pageSize
         in: query
@@ -279,18 +279,6 @@ paths:
       description: Google AdMob API
 components:
   schemas:
-    ListPublisherAccountsResponse:
-      type: object
-      description: Response for the publisher account list request.
-      properties:
-        account:
-          type: array
-          description: Publisher that the client credentials can access.
-          items:
-            $ref: '#/components/schemas/PublisherAccount'
-        nextPageToken:
-          type: string
-          description: If not empty, indicates that there might be more accounts for the request; you must pass this value in a new `ListPublisherAccountsRequest`.
     GoogleRpcStatus:
       type: object
       description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
@@ -310,6 +298,18 @@ components:
             type: object
           description: A list of messages that carry the error details.
       x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
+    ListPublisherAccountsResponse:
+      type: object
+      description: Response for the publisher account list request.
+      properties:
+        account:
+          type: array
+          description: Publisher that the client credentials can access.
+          items:
+            $ref: '#/components/schemas/PublisherAccount'
+        nextPageToken:
+          type: string
+          description: If not empty, indicates that there might be more accounts for the request; you must pass this value in a new `ListPublisherAccountsRequest`.
     PublisherAccount:
       type: object
       description: A publisher account contains information relevant to the use of this API, such as the time zone used for the reports.

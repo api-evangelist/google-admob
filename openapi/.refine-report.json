@@ -1,22 +1,50 @@
 {
   "provider": "google-admob",
   "sources": [
-    "google-admob-accounts-api-openapi.yml",
-    "google-admob-adunits-api-openapi.yml",
-    "google-admob-apps-api-openapi.yml",
-    "google-admob-mediationgroups-api-openapi.yml",
-    "google-admob-networkreport-generate-api-openapi.yml"
+    "_original/google-admob-api-v1-openapi.yml",
+    "_original/google-admob-api-v1beta-openapi.yml"
   ],
   "outputs": [
     "google-admob-accounts-api-openapi.yml",
     "google-admob-adunits-api-openapi.yml",
     "google-admob-apps-api-openapi.yml",
-    "google-admob-mediationgroups-api-openapi.yml",
-    "google-admob-networkreport-generate-api-openapi.yml"
+    "google-admob-mediationreport-api-openapi.yml",
+    "google-admob-networkreport-api-openapi.yml",
+    "google-admob-adsources-api-openapi.yml",
+    "google-admob-adunitmappings-api-openapi.yml",
+    "google-admob-adapters-api-openapi.yml",
+    "google-admob-campaignreport-api-openapi.yml",
+    "google-admob-mediationabexperiments-api-openapi.yml",
+    "google-admob-mediationgroups-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "google-admob-api-v1-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "google-admob-api-v1beta-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'accounts' spans 2 source specs (google-admob-api-v1-openapi.yml, google-admob-api-v1beta-openapi.yml): per-path servers applied",
+    "tag 'adUnits' spans 2 source specs (google-admob-api-v1-openapi.yml, google-admob-api-v1beta-openapi.yml): per-path servers applied",
+    "tag 'apps' spans 2 source specs (google-admob-api-v1-openapi.yml, google-admob-api-v1beta-openapi.yml): per-path servers applied",
+    "tag 'mediationReport' spans 2 source specs (google-admob-api-v1-openapi.yml, google-admob-api-v1beta-openapi.yml): per-path servers applied",
+    "tag 'networkReport' spans 2 source specs (google-admob-api-v1-openapi.yml, google-admob-api-v1beta-openapi.yml): per-path servers applied",
+    "superseded outputs removed: google-admob-ad-units-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 11 total)"
+  ],
+  "skipped": [
+    "google-admob-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-admob-ad-units-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-admob-adapters-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-admob-adsources-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-admob-adunitmappings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-admob-apps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-admob-campaignreport-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-admob-mediationabexperiments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-admob-mediationgroups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-admob-mediationreport-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-admob-networkreport-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
