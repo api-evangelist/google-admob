@@ -159,7 +159,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/GoogleRpcStatus'
     get:
-      operationId: accounts_apps_list
+      operationId: getV1betaAccountsByAccountsIdApps
       summary: List the apps under the specified AdMob account
       description: List the apps under the specified AdMob account.
       tags:
@@ -228,6 +228,8 @@ paths:
       security:
       - GoogleOAuth2:
         - https://www.googleapis.com/auth/admob.readonly
+      x-operation-id-source: normalized
+      x-operation-id-original: accounts_apps_list
     servers:
     - url: https://admob.googleapis.com
       description: Google AdMob API

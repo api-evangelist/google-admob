@@ -177,74 +177,6 @@ components:
             type: object
           description: A list of messages that carry the error details.
       x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
-    MediationAbExperimentExperimentMediationLine:
-      type: object
-      description: The mediation group line for the experiment. It will be used for serving during the run of the experiment.
-      properties:
-        mediationGroupLine:
-          $ref: '#/components/schemas/MediationGroupMediationGroupLine'
-    MediationGroupMediationGroupLine:
-      type: object
-      description: Settings for an ad network used by a mediation group.
-      properties:
-        cpmMicros:
-          type: string
-          format: int64
-          description: The CPM for this allocation line. $0.01 is the minimum allowed amount. For LIVE CPM modes, the default amount is $0.01. This value is ignored if `cpm_mode` is `LIVE`. **Warning:** "USD" is the only supported currency at the moment. The unit is in micros.
-        adSourceId:
-          type: string
-          description: The ID of the ad source this mediation line is associated with.
-        experimentVariant:
-          type: string
-          description: Output only. The Mediation A/B experiment variant to which the mediation group line belongs to.
-          enum:
-          - VARIANT_UNSPECIFIED
-          - VARIANT_A
-          - VARIANT_B
-          - ORIGINAL
-          x-enum-descriptions:
-          - Default value for an unset field. Do not use.
-          - The mediation group line belongs to the variant A.
-          - The mediation group line belongs to the variant B.
-          - The mediation group line isn't a part of an experiment.
-          readOnly: true
-        displayName:
-          type: string
-          description: User-provided label for this mediation line. The maximum length allowed is 255 characters.
-        adUnitMappings:
-          type: object
-          description: References of the ad unit mappings for each ad unit associated with this mediation line. Key is the ad unit ID, value is resource name of the ad unit mapping. For mediation lines where the ad source id is the AdMob Network, ad unit mappings will be ignored.
-          additionalProperties:
-            type: string
-        id:
-          type: string
-          description: The 16 digit ID for this mediation line e.g. 0123456789012345. When creating a new mediation group line, use a distinct negative integer as the ID place holder.
-        state:
-          type: string
-          description: The status of the mediation group line. Only enabled mediation group lines will be served.
-          enum:
-          - STATE_UNSPECIFIED
-          - ENABLED
-          - DISABLED
-          - REMOVED
-          x-enum-descriptions:
-          - Default value for an unset field. Do not use.
-          - The mediation group line is active and used to serve ads.
-          - The mediation group line has been disabled and is no longer served. Disabled mediation group lines can be re-enabled.
-          - The mediation group line will be removed and no longer served. Removed mediation group lines can not be re-enabled and will no longer be visible. This is an input only field.
-        cpmMode:
-          type: string
-          description: Indicates how the CPM for this mediation line is provided. Note that `MANUAL` and `LIVE` are the only fully-supported mode at the moment. Please use the AdMob UI (https://admob.google.com) if you wish to create or update to other cpm modes.
-          enum:
-          - CPM_MODE_UNSPECIFIED
-          - LIVE
-          - MANUAL
-          - ANO
-          x-enum-descriptions:
-          - Default value for an unset field. Do not use.
-          - CPM is calculated per ad request based on the ad auction.
-          - CPM is set by the user manually.
-          - CPM is retrieved from the ad network using the publisher specified credentials. Output only.
     MediationAbExperiment:
       type: object
       description: The mediation A/B experiment.
@@ -335,6 +267,74 @@ components:
           - Default value for an unset field. Do not use.
           - Use the mediation lines from Variant A and complete the experiment. Variant A contains the original serving lines before the experiment creation.
           - Use the mediation lines form Variant B and complete the experiment. Variant B contains the newly added serving lines.
+    MediationGroupMediationGroupLine:
+      type: object
+      description: Settings for an ad network used by a mediation group.
+      properties:
+        cpmMicros:
+          type: string
+          format: int64
+          description: The CPM for this allocation line. $0.01 is the minimum allowed amount. For LIVE CPM modes, the default amount is $0.01. This value is ignored if `cpm_mode` is `LIVE`. **Warning:** "USD" is the only supported currency at the moment. The unit is in micros.
+        adSourceId:
+          type: string
+          description: The ID of the ad source this mediation line is associated with.
+        experimentVariant:
+          type: string
+          description: Output only. The Mediation A/B experiment variant to which the mediation group line belongs to.
+          enum:
+          - VARIANT_UNSPECIFIED
+          - VARIANT_A
+          - VARIANT_B
+          - ORIGINAL
+          x-enum-descriptions:
+          - Default value for an unset field. Do not use.
+          - The mediation group line belongs to the variant A.
+          - The mediation group line belongs to the variant B.
+          - The mediation group line isn't a part of an experiment.
+          readOnly: true
+        displayName:
+          type: string
+          description: User-provided label for this mediation line. The maximum length allowed is 255 characters.
+        adUnitMappings:
+          type: object
+          description: References of the ad unit mappings for each ad unit associated with this mediation line. Key is the ad unit ID, value is resource name of the ad unit mapping. For mediation lines where the ad source id is the AdMob Network, ad unit mappings will be ignored.
+          additionalProperties:
+            type: string
+        id:
+          type: string
+          description: The 16 digit ID for this mediation line e.g. 0123456789012345. When creating a new mediation group line, use a distinct negative integer as the ID place holder.
+        state:
+          type: string
+          description: The status of the mediation group line. Only enabled mediation group lines will be served.
+          enum:
+          - STATE_UNSPECIFIED
+          - ENABLED
+          - DISABLED
+          - REMOVED
+          x-enum-descriptions:
+          - Default value for an unset field. Do not use.
+          - The mediation group line is active and used to serve ads.
+          - The mediation group line has been disabled and is no longer served. Disabled mediation group lines can be re-enabled.
+          - The mediation group line will be removed and no longer served. Removed mediation group lines can not be re-enabled and will no longer be visible. This is an input only field.
+        cpmMode:
+          type: string
+          description: Indicates how the CPM for this mediation line is provided. Note that `MANUAL` and `LIVE` are the only fully-supported mode at the moment. Please use the AdMob UI (https://admob.google.com) if you wish to create or update to other cpm modes.
+          enum:
+          - CPM_MODE_UNSPECIFIED
+          - LIVE
+          - MANUAL
+          - ANO
+          x-enum-descriptions:
+          - Default value for an unset field. Do not use.
+          - CPM is calculated per ad request based on the ad auction.
+          - CPM is set by the user manually.
+          - CPM is retrieved from the ad network using the publisher specified credentials. Output only.
+    MediationAbExperimentExperimentMediationLine:
+      type: object
+      description: The mediation group line for the experiment. It will be used for serving during the run of the experiment.
+      properties:
+        mediationGroupLine:
+          $ref: '#/components/schemas/MediationGroupMediationGroupLine'
   securitySchemes:
     GoogleOAuth2:
       type: oauth2

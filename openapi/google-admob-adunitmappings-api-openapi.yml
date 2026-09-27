@@ -234,6 +234,15 @@ paths:
         - https://www.googleapis.com/auth/admob.readonly
 components:
   schemas:
+    BatchCreateAdUnitMappingsRequest:
+      type: object
+      description: Request to create a batch of ad unit mappings under the specific AdMob account.
+      properties:
+        requests:
+          type: array
+          description: Required. The request message specifying the ad unit mappings to create. A maximum of 100 ad unit mappings can be created in a batch. If the number of ad unit mappings in the batch request exceed 100, the entire request will be rejected and no ad unit mappings will be created.
+          items:
+            $ref: '#/components/schemas/CreateAdUnitMappingRequest'
     GoogleRpcStatus:
       type: object
       description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
@@ -253,18 +262,6 @@ components:
             type: object
           description: A list of messages that carry the error details.
       x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
-    ListAdUnitMappingsResponse:
-      type: object
-      description: Response for the ListAdUnitMappingsRequest.
-      properties:
-        adUnitMappings:
-          type: array
-          description: The ad unit mappings from the specified account and ad unit.
-          items:
-            $ref: '#/components/schemas/AdUnitMapping'
-        nextPageToken:
-          type: string
-          description: Used to set the `page_token` in the `ListAdUnitMappingsRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages.
     BatchCreateAdUnitMappingsResponse:
       type: object
       description: Response containing a batch of created ad unit mappings.
@@ -274,24 +271,6 @@ components:
           description: The Ad units mappings created under the requested account.
           items:
             $ref: '#/components/schemas/AdUnitMapping'
-    CreateAdUnitMappingRequest:
-      type: object
-      description: Request to create an ad unit mapping under the specific AdMob account and ad unit.
-      properties:
-        parent:
-          type: string
-          description: 'Required. The parent which owns the ad unit mapping. Format: accounts/{publisher_id}/adUnits/{ad_unit_id}'
-        adUnitMapping:
-          $ref: '#/components/schemas/AdUnitMapping'
-    BatchCreateAdUnitMappingsRequest:
-      type: object
-      description: Request to create a batch of ad unit mappings under the specific AdMob account.
-      properties:
-        requests:
-          type: array
-          description: Required. The request message specifying the ad unit mappings to create. A maximum of 100 ad unit mappings can be created in a batch. If the number of ad unit mappings in the batch request exceed 100, the entire request will be rejected and no ad unit mappings will be created.
-          items:
-            $ref: '#/components/schemas/CreateAdUnitMappingRequest'
     AdUnitMapping:
       type: object
       description: Settings to map an AdMob ad unit to a 3rd party ad unit.
@@ -321,6 +300,27 @@ components:
         name:
           type: string
           description: 'Resource name of this ad unit mapping. Format is: accounts/{publisher_id}/adUnits/{ad_unit_id_fragment}/adUnitMappings/{ad_unit_mapping_id} Example: accounts/pub-1234567890123456/adUnits/0123456789/adUnitMappings/987654321'
+    ListAdUnitMappingsResponse:
+      type: object
+      description: Response for the ListAdUnitMappingsRequest.
+      properties:
+        adUnitMappings:
+          type: array
+          description: The ad unit mappings from the specified account and ad unit.
+          items:
+            $ref: '#/components/schemas/AdUnitMapping'
+        nextPageToken:
+          type: string
+          description: Used to set the `page_token` in the `ListAdUnitMappingsRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+    CreateAdUnitMappingRequest:
+      type: object
+      description: Request to create an ad unit mapping under the specific AdMob account and ad unit.
+      properties:
+        parent:
+          type: string
+          description: 'Required. The parent which owns the ad unit mapping. Format: accounts/{publisher_id}/adUnits/{ad_unit_id}'
+        adUnitMapping:
+          $ref: '#/components/schemas/AdUnitMapping'
   securitySchemes:
     GoogleOAuth2:
       type: oauth2

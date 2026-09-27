@@ -101,50 +101,6 @@ paths:
         - https://www.googleapis.com/auth/admob.readonly
 components:
   schemas:
-    AdapterAdapterConfigMetadata:
-      type: object
-      description: Configuration metadata associated with this adapter. They are used to define the ad_unit_configurations associated with AdUnitMappings for the this adapter.
-      properties:
-        isRequired:
-          type: boolean
-          description: Whether this metadata is required for configuring the AdUnitMappings.
-        adapterConfigMetadataId:
-          type: string
-          description: This is used to fill the key of the [ad_unit_configurations](#AdUnitMapping.ad_unit_configurations).
-        adapterConfigMetadataLabel:
-          type: string
-          description: Name of the adapter configuration metadata.
-    ListAdaptersResponse:
-      type: object
-      description: Response for the ListAdaptersRequest.
-      properties:
-        adapters:
-          type: array
-          description: The adapter.
-          items:
-            $ref: '#/components/schemas/Adapter'
-        nextPageToken:
-          type: string
-          description: Used to set the `page_token` in the `ListAdapterRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages.
-    GoogleRpcStatus:
-      type: object
-      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
-      properties:
-        code:
-          type: integer
-          description: The status code, which should be an enum value of google.rpc.Code.
-        message:
-          type: string
-          description: A developer-facing error message in English.
-        status:
-          type: string
-          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
-        details:
-          type: array
-          items:
-            type: object
-          description: A list of messages that carry the error details.
-      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
     Adapter:
       type: object
       description: Describes adapters supported by each mediation ad source. Adapters correspond to a specific SDK implementation of the ad source, and are each associated with a single platform and a list of supported ad unit formats. Adapters may also require setting some configurations to perform ad requests. Configurations can be specified in the AdUnitMapping by setting the [ad_unit_configurations](#AdUnitMapping.ad_unit_configurations) key/value pairs. For example, the ad_unit_configurations can be used to pass various IDs to the adapter's third-party SDK.
@@ -177,6 +133,50 @@ components:
           type: string
           description: 'Output only. Mobile application platform supported by this adapter. Supported values are: IOS, ANDROID, WINDOWS_PHONE'
           readOnly: true
+    ListAdaptersResponse:
+      type: object
+      description: Response for the ListAdaptersRequest.
+      properties:
+        adapters:
+          type: array
+          description: The adapter.
+          items:
+            $ref: '#/components/schemas/Adapter'
+        nextPageToken:
+          type: string
+          description: Used to set the `page_token` in the `ListAdapterRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+    AdapterAdapterConfigMetadata:
+      type: object
+      description: Configuration metadata associated with this adapter. They are used to define the ad_unit_configurations associated with AdUnitMappings for the this adapter.
+      properties:
+        isRequired:
+          type: boolean
+          description: Whether this metadata is required for configuring the AdUnitMappings.
+        adapterConfigMetadataId:
+          type: string
+          description: This is used to fill the key of the [ad_unit_configurations](#AdUnitMapping.ad_unit_configurations).
+        adapterConfigMetadataLabel:
+          type: string
+          description: Name of the adapter configuration metadata.
+    GoogleRpcStatus:
+      type: object
+      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
+      properties:
+        code:
+          type: integer
+          description: The status code, which should be an enum value of google.rpc.Code.
+        message:
+          type: string
+          description: A developer-facing error message in English.
+        status:
+          type: string
+          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
+        details:
+          type: array
+          items:
+            type: object
+          description: A list of messages that carry the error details.
+      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
   securitySchemes:
     GoogleOAuth2:
       type: oauth2
