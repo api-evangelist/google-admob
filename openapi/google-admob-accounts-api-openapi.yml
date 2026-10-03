@@ -283,6 +283,25 @@ paths:
       description: Google AdMob API
 components:
   schemas:
+    GoogleRpcStatus:
+      type: object
+      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
+      properties:
+        code:
+          type: integer
+          description: The status code, which should be an enum value of google.rpc.Code.
+        message:
+          type: string
+          description: A developer-facing error message in English.
+        status:
+          type: string
+          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
+        details:
+          type: array
+          items:
+            type: object
+          description: A list of messages that carry the error details.
+      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
     ListPublisherAccountsResponse:
       type: object
       description: Response for the publisher account list request.
@@ -311,25 +330,6 @@ components:
         name:
           type: string
           description: Resource name of this account. Format is accounts/{publisher_id}.
-    GoogleRpcStatus:
-      type: object
-      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
-      properties:
-        code:
-          type: integer
-          description: The status code, which should be an enum value of google.rpc.Code.
-        message:
-          type: string
-          description: A developer-facing error message in English.
-        status:
-          type: string
-          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
-        details:
-          type: array
-          items:
-            type: object
-          description: A list of messages that carry the error details.
-      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
   securitySchemes:
     GoogleOAuth2:
       type: oauth2

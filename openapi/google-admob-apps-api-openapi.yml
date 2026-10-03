@@ -235,13 +235,6 @@ paths:
       description: Google AdMob API
 components:
   schemas:
-    AppManualAppInfo:
-      type: object
-      description: 'Information provided for manual apps which are not linked to an application store (Example: Google Play, App Store).'
-      properties:
-        displayName:
-          type: string
-          description: The display name of the app as shown in the AdMob UI, which is provided by the user. The maximum length allowed is 80 characters.
     GoogleRpcStatus:
       type: object
       description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
@@ -261,18 +254,6 @@ components:
             type: object
           description: A list of messages that carry the error details.
       x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
-    ListAppsResponse:
-      type: object
-      description: Response for the apps list request.
-      properties:
-        apps:
-          type: array
-          description: The resulting apps for the requested account.
-          items:
-            $ref: '#/components/schemas/App'
-        nextPageToken:
-          type: string
-          description: If not empty, indicates that there may be more apps for the request; this value should be passed in a new `ListAppsRequest`.
     App:
       type: object
       description: 'Describes an AdMob app for a specific platform (For example: Android or iOS).'
@@ -304,6 +285,25 @@ components:
           description: 'Resource name for this app. Format is accounts/{publisher_id}/apps/{app_id_fragment} Example: accounts/pub-9876543210987654/apps/0123456789'
         manualAppInfo:
           $ref: '#/components/schemas/AppManualAppInfo'
+    AppManualAppInfo:
+      type: object
+      description: 'Information provided for manual apps which are not linked to an application store (Example: Google Play, App Store).'
+      properties:
+        displayName:
+          type: string
+          description: The display name of the app as shown in the AdMob UI, which is provided by the user. The maximum length allowed is 80 characters.
+    ListAppsResponse:
+      type: object
+      description: Response for the apps list request.
+      properties:
+        apps:
+          type: array
+          description: The resulting apps for the requested account.
+          items:
+            $ref: '#/components/schemas/App'
+        nextPageToken:
+          type: string
+          description: If not empty, indicates that there may be more apps for the request; this value should be passed in a new `ListAppsRequest`.
     AppLinkedAppInfo:
       type: object
       description: Information from the app store if the app is linked to an app store.

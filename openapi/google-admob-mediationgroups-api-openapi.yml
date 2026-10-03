@@ -254,18 +254,6 @@ components:
             type: object
           description: A list of messages that carry the error details.
       x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
-    ListMediationGroupsResponse:
-      type: object
-      description: Response for the mediation groups list request.
-      properties:
-        mediationGroups:
-          type: array
-          description: The resulting mediation groups for the requested account.
-          items:
-            $ref: '#/components/schemas/MediationGroup'
-        nextPageToken:
-          type: string
-          description: If not empty, indicates that there may be more mediation groups for the request; this value should be passed in a new `ListMediationGroupsRequest`.
     MediationGroupMediationGroupLine:
       type: object
       description: Settings for an ad network used by a mediation group.
@@ -328,6 +316,18 @@ components:
           - CPM is calculated per ad request based on the ad auction.
           - CPM is set by the user manually.
           - CPM is retrieved from the ad network using the publisher specified credentials. Output only.
+    ListMediationGroupsResponse:
+      type: object
+      description: Response for the mediation groups list request.
+      properties:
+        mediationGroups:
+          type: array
+          description: The resulting mediation groups for the requested account.
+          items:
+            $ref: '#/components/schemas/MediationGroup'
+        nextPageToken:
+          type: string
+          description: If not empty, indicates that there may be more mediation groups for the request; this value should be passed in a new `ListMediationGroupsRequest`.
     MediationGroupTargeting:
       type: object
       description: Set of criteria targeted by this mediation group. For example, a mediation group can target specific ad unit IDs, platform, format and geo location.
