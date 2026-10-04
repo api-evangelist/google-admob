@@ -1,21 +1,19 @@
-# Kin Score artifact — google-admob — 2026-08-29T213958
+# Kin Score artifact — google-admob — 2026-09-24T161608
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: google-admob
-  schema_version: 0.16.0
-  scored_at: '2026-08-29'
-  run_ts: 2026-08-29T213958
-  composite: 61.3
+  schema_version: 0.22.0
+  scored_at: '2026-09-24'
+  run_ts: 2026-09-24T161608
+  composite: 60.1
   band: strong
   facets:
-    discoverability: 74.1
+    discoverability: 68.5
     contract_quality: 61.5
-    governance: 14.4
+    contract_governance: 14.4
     operational_transparency: 76.3
     developer_ergonomics: 66.1
-    commercial_clarity: 68.4
-    contract_governance: 14.4
     access_clarity: 68.4
   agent_readiness:
     score: 34.7
@@ -46,7 +44,7 @@ kin_score:
     agentic_access: derived
     conformance: derived
     contracts:
-      total: 8
+      total: 17
       derived: 0
       coverage: 0.0
       callable: 100.0
