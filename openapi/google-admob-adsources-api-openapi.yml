@@ -96,18 +96,6 @@ paths:
         - https://www.googleapis.com/auth/admob.report
 components:
   schemas:
-    ListAdSourcesResponse:
-      type: object
-      description: Response for the ListAdSourcesRequest.
-      properties:
-        adSources:
-          type: array
-          description: The ad sources.
-          items:
-            $ref: '#/components/schemas/AdSource'
-        nextPageToken:
-          type: string
-          description: Used to set the `page_token` in the `ListAdSourcesRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages.
     GoogleRpcStatus:
       type: object
       description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
@@ -127,6 +115,18 @@ components:
             type: object
           description: A list of messages that carry the error details.
       x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
+    ListAdSourcesResponse:
+      type: object
+      description: Response for the ListAdSourcesRequest.
+      properties:
+        adSources:
+          type: array
+          description: The ad sources.
+          items:
+            $ref: '#/components/schemas/AdSource'
+        nextPageToken:
+          type: string
+          description: Used to set the `page_token` in the `ListAdSourcesRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages.
     AdSource:
       type: object
       description: Definition of a mediation ad source.

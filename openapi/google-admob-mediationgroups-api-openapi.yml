@@ -316,6 +316,49 @@ components:
           - CPM is calculated per ad request based on the ad auction.
           - CPM is set by the user manually.
           - CPM is retrieved from the ad network using the publisher specified credentials. Output only.
+    MediationGroup:
+      type: object
+      description: Describes an AdMob Mediation group.
+      properties:
+        name:
+          type: string
+          description: 'Resource name for this mediation group. Format is: accounts/{publisher_id}/mediationGroups/{mediation_group_id} Example: accounts/pub-9876543210987654/mediationGroups/0123456789'
+        mediationGroupLines:
+          type: object
+          description: The mediation lines used for serving for this mediation group. Key is the ID of the mediation group line. For creation, use distinct negative values as placeholder.
+          additionalProperties:
+            $ref: '#/components/schemas/MediationGroupMediationGroupLine'
+        mediationAbExperimentState:
+          type: string
+          description: Output only. The state of the mediation a/b experiment that belongs to this mediation group.
+          enum:
+          - EXPERIMENT_STATE_UNSPECIFIED
+          - RUNNING
+          - NOT_RUNNING
+          x-enum-descriptions:
+          - Default value for an unset field. Do not use.
+          - The mediation group has an experiment in the RUNNING state.
+          - There is no experiment in the RUNNING state in the mediation group.
+          readOnly: true
+        state:
+          type: string
+          description: The status of the mediation group. Only enabled mediation groups will be served.
+          enum:
+          - STATE_UNSPECIFIED
+          - ENABLED
+          - DISABLED
+          x-enum-descriptions:
+          - Default value for an unset field. Do not use.
+          - The mediation group is active and used to serve ads or to collect stats.
+          - The mediation group has been disabled and is no longer serving ads or collecting stats. Disabled mediation groups can be re-enabled.
+        mediationGroupId:
+          type: string
+          description: 'The ID of the mediation group. Example: "0123456789". This is a read only property.'
+        targeting:
+          $ref: '#/components/schemas/MediationGroupTargeting'
+        displayName:
+          type: string
+          description: User provided name for the mediation group. The maximum length allowed is 120 characters.
     ListMediationGroupsResponse:
       type: object
       description: Response for the mediation groups list request.
@@ -366,49 +409,6 @@ components:
           - All the devices are targeted, regardless of IDFA availability.
           - Only the devices with IDFA availability are targeted.
           - Only the devices without IDFA availability are targeted.
-    MediationGroup:
-      type: object
-      description: Describes an AdMob Mediation group.
-      properties:
-        name:
-          type: string
-          description: 'Resource name for this mediation group. Format is: accounts/{publisher_id}/mediationGroups/{mediation_group_id} Example: accounts/pub-9876543210987654/mediationGroups/0123456789'
-        mediationGroupLines:
-          type: object
-          description: The mediation lines used for serving for this mediation group. Key is the ID of the mediation group line. For creation, use distinct negative values as placeholder.
-          additionalProperties:
-            $ref: '#/components/schemas/MediationGroupMediationGroupLine'
-        mediationAbExperimentState:
-          type: string
-          description: Output only. The state of the mediation a/b experiment that belongs to this mediation group.
-          enum:
-          - EXPERIMENT_STATE_UNSPECIFIED
-          - RUNNING
-          - NOT_RUNNING
-          x-enum-descriptions:
-          - Default value for an unset field. Do not use.
-          - The mediation group has an experiment in the RUNNING state.
-          - There is no experiment in the RUNNING state in the mediation group.
-          readOnly: true
-        state:
-          type: string
-          description: The status of the mediation group. Only enabled mediation groups will be served.
-          enum:
-          - STATE_UNSPECIFIED
-          - ENABLED
-          - DISABLED
-          x-enum-descriptions:
-          - Default value for an unset field. Do not use.
-          - The mediation group is active and used to serve ads or to collect stats.
-          - The mediation group has been disabled and is no longer serving ads or collecting stats. Disabled mediation groups can be re-enabled.
-        mediationGroupId:
-          type: string
-          description: 'The ID of the mediation group. Example: "0123456789". This is a read only property.'
-        targeting:
-          $ref: '#/components/schemas/MediationGroupTargeting'
-        displayName:
-          type: string
-          description: User provided name for the mediation group. The maximum length allowed is 120 characters.
   securitySchemes:
     GoogleOAuth2:
       type: oauth2

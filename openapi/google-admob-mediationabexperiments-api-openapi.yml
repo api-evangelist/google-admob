@@ -177,12 +177,21 @@ components:
             type: object
           description: A list of messages that carry the error details.
       x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
-    MediationAbExperimentExperimentMediationLine:
+    StopMediationAbExperimentRequest:
       type: object
-      description: The mediation group line for the experiment. It will be used for serving during the run of the experiment.
+      description: Request to end the mediation A/B experiment and choose a winning variant.
       properties:
-        mediationGroupLine:
-          $ref: '#/components/schemas/MediationGroupMediationGroupLine'
+        variantChoice:
+          type: string
+          description: The choice for the winning variant.
+          enum:
+          - VARIANT_CHOICE_UNSPECIFIED
+          - VARIANT_CHOICE_A
+          - VARIANT_CHOICE_B
+          x-enum-descriptions:
+          - Default value for an unset field. Do not use.
+          - Use the mediation lines from Variant A and complete the experiment. Variant A contains the original serving lines before the experiment creation.
+          - Use the mediation lines form Variant B and complete the experiment. Variant B contains the newly added serving lines.
     MediationGroupMediationGroupLine:
       type: object
       description: Settings for an ad network used by a mediation group.
@@ -245,6 +254,12 @@ components:
           - CPM is calculated per ad request based on the ad auction.
           - CPM is set by the user manually.
           - CPM is retrieved from the ad network using the publisher specified credentials. Output only.
+    MediationAbExperimentExperimentMediationLine:
+      type: object
+      description: The mediation group line for the experiment. It will be used for serving during the run of the experiment.
+      properties:
+        mediationGroupLine:
+          $ref: '#/components/schemas/MediationGroupMediationGroupLine'
     MediationAbExperiment:
       type: object
       description: The mediation A/B experiment.
@@ -320,21 +335,6 @@ components:
           - Experiment hasn't run long enough to determine a leader.
           - Neither variant is a decisive winner in the observed data.
           readOnly: true
-    StopMediationAbExperimentRequest:
-      type: object
-      description: Request to end the mediation A/B experiment and choose a winning variant.
-      properties:
-        variantChoice:
-          type: string
-          description: The choice for the winning variant.
-          enum:
-          - VARIANT_CHOICE_UNSPECIFIED
-          - VARIANT_CHOICE_A
-          - VARIANT_CHOICE_B
-          x-enum-descriptions:
-          - Default value for an unset field. Do not use.
-          - Use the mediation lines from Variant A and complete the experiment. Variant A contains the original serving lines before the experiment creation.
-          - Use the mediation lines form Variant B and complete the experiment. Variant B contains the newly added serving lines.
   securitySchemes:
     GoogleOAuth2:
       type: oauth2
