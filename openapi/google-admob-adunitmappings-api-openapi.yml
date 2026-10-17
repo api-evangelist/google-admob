@@ -234,46 +234,6 @@ paths:
         - https://www.googleapis.com/auth/admob.readonly
 components:
   schemas:
-    GoogleRpcStatus:
-      type: object
-      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
-      properties:
-        code:
-          type: integer
-          description: The status code, which should be an enum value of google.rpc.Code.
-        message:
-          type: string
-          description: A developer-facing error message in English.
-        status:
-          type: string
-          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
-        details:
-          type: array
-          items:
-            type: object
-          description: A list of messages that carry the error details.
-      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
-    BatchCreateAdUnitMappingsResponse:
-      type: object
-      description: Response containing a batch of created ad unit mappings.
-      properties:
-        adUnitMappings:
-          type: array
-          description: The Ad units mappings created under the requested account.
-          items:
-            $ref: '#/components/schemas/AdUnitMapping'
-    ListAdUnitMappingsResponse:
-      type: object
-      description: Response for the ListAdUnitMappingsRequest.
-      properties:
-        adUnitMappings:
-          type: array
-          description: The ad unit mappings from the specified account and ad unit.
-          items:
-            $ref: '#/components/schemas/AdUnitMapping'
-        nextPageToken:
-          type: string
-          description: Used to set the `page_token` in the `ListAdUnitMappingsRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages.
     BatchCreateAdUnitMappingsRequest:
       type: object
       description: Request to create a batch of ad unit mappings under the specific AdMob account.
@@ -312,6 +272,37 @@ components:
         name:
           type: string
           description: 'Resource name of this ad unit mapping. Format is: accounts/{publisher_id}/adUnits/{ad_unit_id_fragment}/adUnitMappings/{ad_unit_mapping_id} Example: accounts/pub-1234567890123456/adUnits/0123456789/adUnitMappings/987654321'
+    GoogleRpcStatus:
+      type: object
+      description: Canonical Google API error envelope (google.rpc.Status), returned inside an `error` wrapper.
+      properties:
+        code:
+          type: integer
+          description: The status code, which should be an enum value of google.rpc.Code.
+        message:
+          type: string
+          description: A developer-facing error message in English.
+        status:
+          type: string
+          description: The canonical error reason, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED.
+        details:
+          type: array
+          items:
+            type: object
+          description: A list of messages that carry the error details.
+      x-source: Derived from Google's documented AdMob error responses at https://developers.google.com/admob/api/v1/errors; not present in the Discovery Document.
+    ListAdUnitMappingsResponse:
+      type: object
+      description: Response for the ListAdUnitMappingsRequest.
+      properties:
+        adUnitMappings:
+          type: array
+          description: The ad unit mappings from the specified account and ad unit.
+          items:
+            $ref: '#/components/schemas/AdUnitMapping'
+        nextPageToken:
+          type: string
+          description: Used to set the `page_token` in the `ListAdUnitMappingsRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages.
     CreateAdUnitMappingRequest:
       type: object
       description: Request to create an ad unit mapping under the specific AdMob account and ad unit.
@@ -321,6 +312,15 @@ components:
           description: 'Required. The parent which owns the ad unit mapping. Format: accounts/{publisher_id}/adUnits/{ad_unit_id}'
         adUnitMapping:
           $ref: '#/components/schemas/AdUnitMapping'
+    BatchCreateAdUnitMappingsResponse:
+      type: object
+      description: Response containing a batch of created ad unit mappings.
+      properties:
+        adUnitMappings:
+          type: array
+          description: The Ad units mappings created under the requested account.
+          items:
+            $ref: '#/components/schemas/AdUnitMapping'
   securitySchemes:
     GoogleOAuth2:
       type: oauth2
