@@ -1,4 +1,4 @@
-# Google AdMob (google-admob)
+# Google AdMob
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,54 +64,174 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-The Google AdMob API provides programmatic access to information about AdMob accounts, allowing publishers to retrieve details about ad sources, ad units, apps, and mediation groups, and to generate campaign, mediation, and network reports for mobile app monetization.
+AdMob is Google's mobile app advertising and monetization platform, letting app publishers earn revenue through in-app ads (banner, interstitial, rewarded, rewarded interstitial, native and app open formats), maximize fill rate and eCPM with AdMob Mediation and open bidding across many ad networks, and understand performance through reporting. The AdMob API (admob.googleapis.com) provides programmatic access to AdMob account data, apps, ad units, ad sources and adapters, ad unit mappings, mediation groups and mediation A/B experiments, plus network, mediation and campaign performance reports, over REST/JSON authorized with Google OAuth 2.0 user tokens using the admob.readonly and admob.report scopes. Service accounts are not supported. The stable v1 channel is entirely read-only; the v1beta channel carries the whole write surface. Google publishes no OpenAPI for AdMob — the first-party machine-readable contract is a Google Discovery Document served by the API host itself, alongside a protobuf IDL in googleapis/googleapis.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/google-admob/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/google-admob/refs/heads/main/apis.yml)
+**Areas:** Ad Mediation · AdMob · Advertising · App Monetization · Mobile Advertising · Mobile App · Reports · Reporting
 
-## Scope
+## Google AdMob on APIs.io
 
-- **Type:** Index
+Everything profiled for Google AdMob is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/google-admob/](https://apis.io/providers/google-admob/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (11)
 
-- Ad Mediation
-- AdMob
-- App Monetization
-- Mobile Advertising
-- Mobile Apps
-- Reports
+- [Google AdMob Accounts API](https://apis.io/apis/google-admob/google-admob-accounts-api/) — The accounts API from Google AdMob — 4 operation(s) for accounts.
+- [Google AdMob Adapters API](https://apis.io/apis/google-admob/google-admob-adapters-api/) — The adapters API from Google AdMob — 1 operation(s) for adapters.
+- [Google AdMob Ad Sources API](https://apis.io/apis/google-admob/google-admob-adsources-api/) — The adSources API from Google AdMob — 1 operation(s) for adsources.
+- [Google AdMob Ad Unit Mappings API](https://apis.io/apis/google-admob/google-admob-adunitmappings-api/) — The adUnitMappings API from Google AdMob — 2 operation(s) for adunitmappings.
+- [Google AdMob Apps API](https://apis.io/apis/google-admob/google-admob-apps-api/) — The apps API from Google AdMob — 2 operation(s) for apps.
+- [Google AdMob Campaign Report API](https://apis.io/apis/google-admob/google-admob-campaignreport-api/) — The campaignReport API from Google AdMob — 1 operation(s) for campaignreport.
+- [Google AdMob Mediation Ab Experiments API](https://apis.io/apis/google-admob/google-admob-mediationabexperiments-api/) — The mediationAbExperiments API from Google AdMob — 2 operation(s) for mediationabexperiments.
+- [Google AdMob Mediation Groups API](https://apis.io/apis/google-admob/google-admob-mediationgroups-api/) — The mediationGroups API from Google AdMob — 2 operation(s) for mediationgroups.
+- [Google AdMob Mediation Report API](https://apis.io/apis/google-admob/google-admob-mediationreport-api/) — The mediationReport API from Google AdMob — 2 operation(s) for mediationreport.
+- [Google AdMob Network Report API](https://apis.io/apis/google-admob/google-admob-networkreport-api/) — The networkReport API from Google AdMob — 2 operation(s) for networkreport.
+- [Google AdMob Ad Units API](https://apis.io/apis/google-admob/google-admob-ad-units-api/) — The Ad Units API from Google AdMob — 2 operation(s) for ad units.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-13
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### Google AdMob API
+Model Context Protocol servers that expose the API to agents.
 
-The AdMob API enables publishers to programmatically manage their mobile app monetization, including ad units, apps, mediation groups, and ad sources, while generating detailed campaign and network reports.
+- [google-admob-mcp.yml](https://apis.io/servers/google-admob/google-admob-mcp-yml/)
 
-- **Human URL:** [https://developers.google.com/admob/api](https://developers.google.com/admob/api)
-- **Base URL:** `https://admob.googleapis.com`
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [OpenAPI](openapi/openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/openapi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/openapi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/json-schema.yml) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/json-ld.yml) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Google Admob Agentic Access](https://apis.io/agentic-access/google-admob/google-admob-agentic-access/)
 
-## Common Properties
+#### Collections (8)
 
-- [GitHub Organization](https://github.com/googleads)
-- [LinkedIn](https://www.linkedin.com/showcase/googleadmob)
-- [Getting Started](https://developers.google.com/admob/api/v1/getting-started)
+Postman and Open Collection request collections.
+
+- [Google AdMob Accounts API](https://apis.io/collections/google-admob/open-google-admob-accounts-api/)
+- [Google AdMob Accounts adUnits API](https://apis.io/collections/google-admob/open-google-admob-adunits-api/)
+- [Google AdMob API](https://apis.io/collections/google-admob/open-google-admob-api-v1/)
+- [Google AdMob API](https://apis.io/collections/google-admob/open-google-admob-api-v1beta/)
+- [Google AdMob Accounts Apps API](https://apis.io/collections/google-admob/open-google-admob-apps-api/)
+- [Google AdMob Accounts mediationGroups API](https://apis.io/collections/google-admob/open-google-admob-mediationgroups-api/)
+- [Google AdMob Accounts networkReport:generate API](https://apis.io/collections/google-admob/open-google-admob-networkreport-generate-api/)
+- [Google AdMob API](https://apis.io/collections/google-admob/open-openapi/)
+
+#### Overlays (2)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Google Admob Api V1 Overlay](https://apis.io/overlays/google-admob/google-admob-api-v1-overlay/)
+- [Google Admob Api V1Beta Overlay](https://apis.io/overlays/google-admob/google-admob-api-v1beta-overlay/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Google AdMob — jsonschema rules](https://apis.io/rules/google-admob/google-admob-jsonschema-spectral-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Google Admob Authentication](https://apis.io/security/google-admob/google-admob-authentication/)
+- [Google Admob Domain Security](https://apis.io/security/google-admob/google-admob-domain-security/)
+- [Google Admob Trust Center](https://apis.io/security/google-admob/google-admob-trust-center/)
+- [Google Admob Vulnerability Disclosure](https://apis.io/security/google-admob/google-admob-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Google Admob Scopes](https://apis.io/scopes/google-admob/google-admob-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Google Admob Plans Pricing](https://apis.io/plans/google-admob/google-admob-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Google Admob Rate Limits](https://apis.io/rate-limits/google-admob/google-admob-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Google Admob Finops](https://apis.io/finops/google-admob/google-admob-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://admob.google.com)
+- [Documentation](https://developers.google.com/admob/api/v1/getting-started)
+- [Getting started](https://developers.google.com/admob/api/v1/getting-started)
+- [API reference](https://developers.google.com/admob/api/rest)
 - [Pricing](https://admob.google.com/home/)
-- [JSON-LD](json-ld/json-ld.yml) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Sign up](https://admob.google.com/home/get-started/)
+- [Support](https://groups.google.com/g/google-admob-api)
+- [Changelog](https://developers.google.com/admob/api/release-notes)
+- [Blog](https://ads-developers.googleblog.com/)
+- [Security](https://g.co/vrp)
+- [Compliance](https://business.safety.google/compliance/)
+- [Terms of service](https://developers.google.com/terms)
+- [Privacy policy](https://policies.google.com/privacy)
+- [GitHub](https://github.com/googleads)
+- [Status](https://ads.google.com/status/publisher/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 61.5** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 56.4 |
+| Contract governance | 14.4 |
+| Operational transparency | 76.3 |
+| Developer ergonomics | 66.1 |
+| Access clarity | 60.5 |
+
+**Agent readiness 34.0** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 45.1** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/google-admob/](https://apis.io/providers/google-admob/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Google AdMob: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/google-admob/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
