@@ -8,6 +8,12 @@ artifacts:
   authentication/google-admob-authentication.yml:
     method: searched
     evidence: declared in the artifact
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
   changelog/google-admob-changelog.yml:
     method: searched
     evidence: declared in the artifact
@@ -36,17 +42,17 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   collections/google-admob-apps-api.opencollection.json:
-    method: derived
-    evidence: openapi/google-admob-apps-api
+    method: unknown
+    evidence: no authorship recorded
   collections/google-admob-apps-api.postman_collection.json:
-    method: derived
-    evidence: openapi/google-admob-apps-api
+    method: unknown
+    evidence: no authorship recorded
   collections/google-admob-mediationgroups-api.opencollection.json:
-    method: derived
-    evidence: openapi/google-admob-mediationgroups-api
+    method: unknown
+    evidence: no authorship recorded
   collections/google-admob-mediationgroups-api.postman_collection.json:
-    method: derived
-    evidence: openapi/google-admob-mediationgroups-api
+    method: unknown
+    evidence: no authorship recorded
   collections/google-admob-networkreport-generate-api.opencollection.json:
     method: unknown
     evidence: no authorship recorded
@@ -59,21 +65,34 @@ artifacts:
   collections/openapi.postman_collection.json:
     method: unknown
     evidence: no authorship recorded
+  compliance/google-admob-compliance.yml:
+    method: harvested
+    evidence: declared in the artifact
   conformance/google-admob-conformance.yml:
     method: derived
     evidence: declared in the artifact
   conventions/google-admob-conventions.yml:
     method: searched
     evidence: declared in the artifact
+  data-license/google-admob-data-license.yml:
+    method: harvested
+    evidence: declared in the artifact
   data-model/google-admob-data-model.yml:
     method: derived
     evidence: declared in the artifact
+  discovery/admob-v1.json:
+    method: harvested
+    evidence: byte-identical to https://admob.googleapis.com/$discovery/rest?version=v1 (sha256 46464b06b432,
+      fetched 2026-11-12T01:31:41+00:00)
   discovery/google-admob-api-v1.json:
     method: unknown
     evidence: no authorship recorded
   discovery/google-admob-api-v1beta.json:
     method: unknown
     evidence: no authorship recorded
+  eligibility/google-admob-eligibility.yml:
+    method: harvested
+    evidence: declared in the artifact
   errors/google-admob-problem-types.yml:
     method: searched
     evidence: declared in the artifact
@@ -89,12 +108,18 @@ artifacts:
   grpc/google-admob-admob-resources.proto:
     method: unknown
     evidence: no authorship recorded
+  hosts/google-admob-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
   integrations/_index.yml:
     method: generated
     evidence: carries an API Evangelist house phrase
   integrations/google-admob-integration-edges.yml:
     method: searched
     evidence: declared in the artifact
+  json-ld/google-admob-context.jsonld:
+    method: unknown
+    evidence: no authorship recorded
   json-ld/json-ld.yml:
     method: unknown
     evidence: no authorship recorded
@@ -104,7 +129,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -170,6 +195,9 @@ artifacts:
   kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/google-admob-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
@@ -179,47 +207,9 @@ artifacts:
   mcp/google-admob-mcp.yml:
     method: derived
     evidence: declared in the artifact
-  openapi/_original/google-admob-api-v1-openapi.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/google-admob-api-v1beta-openapi.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
   openapi/google-admob-accounts-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/google-admob-ad-units-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/google-admob-adapters-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/google-admob-adsources-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/google-admob-adunitmappings-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/google-admob-apps-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/google-admob-campaignreport-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/google-admob-mediationabexperiments-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/google-admob-mediationgroups-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/google-admob-mediationreport-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/google-admob-networkreport-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   overlays/google-admob-api-v1-overlay.yaml:
     method: derived
     evidence: an API Evangelist overlay (title) over the provider's contract
@@ -229,13 +219,22 @@ artifacts:
   packages/google-admob-packages.yml:
     method: searched
     evidence: declared in the artifact
+  patterns/google-admob-patterns.yml:
+    method: derived
+    evidence: declared in the artifact
   plans/google-admob-plans-pricing.yml:
     method: searched
+    evidence: declared in the artifact
+  privacy/google-admob-privacy-policy.yml:
+    method: harvested
     evidence: declared in the artifact
   rate-limits/google-admob-rate-limits.yml:
     method: searched
     evidence: declared in the artifact
   rules/google-admob-jsonschema-spectral-rules.yml:
+    method: generated
+    evidence: declared in the artifact
+  rules/google-admob-rules.yml:
     method: generated
     evidence: declared in the artifact
   sandbox/google-admob-sandbox.yml:
@@ -264,6 +263,15 @@ artifacts:
     evidence: declared in the artifact
   skills/google-admob-mediation-experiment.md:
     method: generated
+    evidence: declared in the artifact
+  terms/google-admob-terms-of-service.yml:
+    method: harvested
+    evidence: declared in the artifact
+  vendors/google-admob-vendors.yml:
+    method: unknown
+    evidence: no authorship recorded
+  vocabulary/google-admob-vocabulary.yml:
+    method: derived
     evidence: declared in the artifact
   well-known/google-admob-oauth-authorization-server.json:
     method: unknown
